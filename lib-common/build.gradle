@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+import com.haodong.dependencies.*
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    /*third*/
+    api Deps.retrofit
+    api Deps.retrofit_converter_gson
+    api Deps.okhttp_logging_interceptor
+    api Deps.swiperefreshlayout
+    api Deps.material
+    api Deps.circleimageview
+    api Deps.baseRecyclerViewAdapterHelper
+    api Deps.banner
+    api Deps.glide
+    kapt Deps.glide_compiler
+    api Deps.cardView
+    api Deps.verticalTabLayout
+    api Deps.flowLayout
+    api Deps.persistentCookieJar
+    api Deps.licensesDialog
+    api Deps.material_dialogs_input
+    api Deps.livedata_ktx
+    api Deps.viewPager2
+    api Deps.koin_android
+    api Deps.koin_androidx_scope
+    api Deps.koin_androidx_viewmodel
+    api Deps.retrofit2_rxjava
+
+
+    /*jetpack*/
+    api Deps.lifecycle_common_java8
+    api Deps.lifecycle_viewmodel_ktx
+    api Deps.lifecycle_runtime_ktx
+    api Deps.lifecycle_livedata_ktx
+    api Deps.lifecycle_extension
+    api Deps.unpeek_livedata
+    api Deps.smartrefreshlayout
+    api Deps.permissionx
+    /*android*/
+    api Deps.recyclerView
+    api Deps.appcompat
+    api Deps.core_ktx
+    api Deps.kotlin_stdlib
+    api Deps.material_dialogs_core
+    api Deps.coroutines_android
+    api Deps.viewmodel_ktx
+    api Deps.navigation_fragment_ktx
+    api Deps.navigation_ui_ktx
+    api Deps.constraintlayout
+    api Deps.appcompat
+    api Deps.constraintlayout
+//    api 'androidx.vectordrawable:vectordrawable:1.1.0'
+//    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    debugImplementation(Deps.leakCanary)
+
+
+
+
+}

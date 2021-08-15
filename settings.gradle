@@ -1,0 +1,3 @@
+rootProject.name = "KotlinMVVMDemo"
+include ':app'
+include ':lib-common'
