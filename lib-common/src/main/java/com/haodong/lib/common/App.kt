@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.haodong.lib.common.model.bean.User
 import kotlin.properties.Delegates
 
 /**
@@ -15,6 +16,7 @@ abstract class App:Application(), ViewModelStoreOwner{
     private lateinit var mAppViewModelStore: ViewModelStore
     companion object{
         var CONTEXT: Context by Delegates.notNull()
+        lateinit var CURRENT_USER: User
 
     }
 

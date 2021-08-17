@@ -19,7 +19,7 @@ import com.haodong.lib.common.App
  * Time : 2021/8/14
  * Description:
  */
-abstract class DataBindingFragment<T:ViewDataBinding>(@LayoutRes val layoutId: Int) : Fragment(layoutId) {
+abstract class DataBindingFragment<T: ViewDataBinding>(@LayoutRes val layoutId: Int) : Fragment(layoutId) {
 
      lateinit var mContext: BaseActivity
     val mFragmentProvider: ViewModelProvider by lazy {
@@ -48,15 +48,15 @@ abstract class DataBindingFragment<T:ViewDataBinding>(@LayoutRes val layoutId: I
     //目前我们在项目中提供了 Application、Activity、Fragment 三个级别的作用域，
     //值得注意的是，通过不同作用域的 Provider 获得的 ViewModel 实例不是同一个，
     //所以如果 ViewModel 对状态信息的保留不符合预期，可以从这个角度出发去排查 是否眼前的 ViewModel 实例不是目标实例所致。
-    protected open fun <T : ViewModel?> getFragmentScopeViewModel(modelClass: Class<T>): T {
+    protected open fun <T : ViewModel> getFragmentScopeViewModel(modelClass: Class<T>): T {
         return mFragmentProvider.get(modelClass)
     }
 
-    protected open fun <T : ViewModel?> getActivityScopeViewModel(modelClass: Class<T>): T {
+    protected open fun <T : ViewModel> getActivityScopeViewModel(modelClass: Class<T>): T {
         return mActivityProvider.get(modelClass)
 
     }
-    protected open fun <T : ViewModel?> getApplicationScopeViewModel(modelClass: Class<T>): T {
+    protected open fun <T : ViewModel> getApplicationScopeViewModel(modelClass: Class<T>): T {
 
         return mApplicationProvider.get(modelClass)
     }

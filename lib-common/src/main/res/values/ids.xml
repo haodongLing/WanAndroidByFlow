@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+
+    <item type="id" name="statusbarutil_fake_status_bar_view" />
+    <item type="id" name="statusbarutil_translucent_view" />
+
+    <item type="id" name="draft_delete_travel_id"/>
+
+    <item name="cbk_page_image" type="id"/>
+
+
+    <!-- msgadapter -->
+    <item type="id" name="tag_first"></item>
+    <item type="id" name="tag_second"></item>
+
+
+    <item type="id" name="index_sort_id"></item>
+    
+</resources>

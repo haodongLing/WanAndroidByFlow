@@ -1,1 +1,1 @@
-/Users/haodongling/mine/KotlinMVVMDemo/buildSrc/build/classes/kotlin/main/com/haodong/dependencies/Deps.class:/Users/haodongling/mine/KotlinMVVMDemo/buildSrc/build/classes/kotlin/main/com/haodong/dependencies/Versions.class
+/Users/haodongling/mine/kotlin/KotlinMVVMDemo/buildSrc/build/classes/kotlin/main/com/haodong/dependencies/Deps.class:/Users/haodongling/mine/kotlin/KotlinMVVMDemo/buildSrc/build/classes/kotlin/main/com/haodong/dependencies/Versions.class

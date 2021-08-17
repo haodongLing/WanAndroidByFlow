@@ -1,6 +1,7 @@
-package com.haodong.lib.common.api
+package com.haodong.lib.common.model.api
 
 import com.afollestad.materialdialogs.BuildConfig
+import com.haodong.lib.common.net.intercepter.ResponseInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -29,6 +30,7 @@ abstract class BaseRetrofitClient {
             }
 
             builder.addInterceptor(logging)
+                .addNetworkInterceptor(ResponseInterceptor())
                 .connectTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
 
             handleBuilder(builder)

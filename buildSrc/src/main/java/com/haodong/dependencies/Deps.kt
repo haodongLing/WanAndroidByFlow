@@ -46,6 +46,9 @@ object Versions {
     const val youth_banner = "1.4.9"
     const val permissionx = "1.4.0"
     const val unpeek_livedata = "6.0.0-beta1"
+    const val navigation_fragment = "2.3.5"
+    const val dokit = "3.4.0-alpha04"
+    const val preference="1.1.1"
 }
 
 object Deps {
@@ -101,5 +104,8 @@ object Deps {
     const val smartrefreshlayout = "com.scwang.smartrefresh:SmartRefreshLayout:${Versions.smartrefreshlayout}"
     const val youth_banner = "com.youth.banner:banner:${Versions.youth_banner}"
     const val permissionx = "com.permissionx.guolindev:permissionx:${Versions.permissionx}"
+    const val navigation = "androidx.navigation:navigation-fragment:${Versions.navigation_fragment}"
+    const val navigation_ui="androidx.navigation:navigation-ui:${Versions.navigation}"
+    const val preferences = "androidx.preference:preference:${Versions.preference}"
 
 }

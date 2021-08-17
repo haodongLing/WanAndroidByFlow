@@ -1,10 +1,10 @@
-package com.haodong.kotlinmvvmdemo.api
+package com.haodong.kotlinmvvmdemo.model.api
 
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.haodong.lib.common.App
-import com.haodong.lib.common.api.BaseRetrofitClient
+import com.haodong.lib.common.model.api.BaseRetrofitClient
 import com.haodong.lib.common.util.NetWorkUtils
 import okhttp3.Cache
 import okhttp3.CacheControl
@@ -17,6 +17,9 @@ import java.io.File
  * on 2018/3/13 15:45
  */
 object RetrofitClient : BaseRetrofitClient() {
+    val userService by lazy{
+        getService(UserService::class.java, BASE_URL)
+    }
 
 
     private val cookieJar by lazy { PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.CONTEXT)) }

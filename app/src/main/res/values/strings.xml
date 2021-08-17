@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">KotlinMVVMDemo</string>
+    <string name="home">首页</string>
+    <string name="project_type">发现</string>
+    <string name="sofa">沙发</string>
+    <string name="me">我的</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="login">登陆</string>
+    <string name="register">注册</string>
 </resources>
