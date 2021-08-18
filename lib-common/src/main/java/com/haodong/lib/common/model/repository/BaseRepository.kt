@@ -1,12 +1,12 @@
 package com.haodong.lib.common.model.repository
 
 import android.widget.Toast
-import com.didichuxing.doraemonkit.util.NetworkUtils
 import com.haodong.lib.common.App
 import com.haodong.lib.common.ext.toast
 import com.haodong.lib.common.model.DTOResult
 import com.haodong.lib.common.model.WanResponse
 import com.haodong.lib.common.model.bean.HttpCode
+import com.haodong.lib.common.util.NetWorkUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -50,7 +50,7 @@ open class BaseRepository {
         response: WanResponse<T>
     ): Flow<DTOResult<T>> {
         return flow {
-            if (!NetworkUtils.isConnected()) {
+            if (!NetWorkUtils.isNetworkAvailable(App.CONTEXT)) {
                 withContext(Dispatchers.Main) {
                     App.CONTEXT.toast(HttpCode.HttpEnum.HTTP_ERROR_CONNECT.message, Toast.LENGTH_SHORT)
                 }

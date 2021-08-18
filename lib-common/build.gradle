@@ -1,9 +1,16 @@
-apply plugin: 'com.android.application'
+import com.haodong.dependencies.*
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-import com.haodong.dependencies.*
 apply plugin: 'com.didi.dokit'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -47,30 +54,29 @@ dependencies {
     api Deps.retrofit
     api Deps.retrofit_converter_gson
     api Deps.okhttp_logging_interceptor
-    api Deps.swiperefreshlayout
     api Deps.material
     api Deps.circleimageview
     api Deps.baseRecyclerViewAdapterHelper
-    api Deps.banner
     api Deps.glide
     kapt Deps.glide_compiler
     api Deps.cardView
-    api Deps.verticalTabLayout
+//    api Deps.verticalTabLayout
     api Deps.flowLayout
     api Deps.persistentCookieJar
     api Deps.licensesDialog
     api Deps.material_dialogs_input
-    api Deps.livedata_ktx
     api Deps.viewPager2
     api Deps.koin_android
     api Deps.koin_androidx_scope
     api Deps.koin_androidx_viewmodel
     api Deps.retrofit2_rxjava
+    api Deps.arouter_api
+    kapt Deps.arouter_compiler
+    api Deps.youth_banner
 
 
     /*jetpack*/
     api Deps.lifecycle_common_java8
-    api Deps.lifecycle_viewmodel_ktx
     api Deps.lifecycle_runtime_ktx
     api Deps.lifecycle_livedata_ktx
     api Deps.lifecycle_extension
@@ -84,24 +90,14 @@ dependencies {
     api Deps.kotlin_stdlib
     api Deps.material_dialogs_core
     api Deps.coroutines_android
-    api Deps.viewmodel_ktx
     api Deps.navigation_fragment_ktx
     api Deps.navigation_ui_ktx
-    api Deps.constraintlayout
-    api Deps.appcompat
     api Deps.constraintlayout
     api Deps.preferences
 //    api 'androidx.vectordrawable:vectordrawable:1.1.0'
 //    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
-    //dokit
-    //核心模块
-    debugApi "io.github.didi.dokit:dokitx:${Versions.dokit}"
-    //文件同步模块
-//    debugImplementation "io.github.didi.dokit:dokitx-ft:${rootProject.ext.depsVersion["dokit"]}"
-    //no-op 模块
-    releaseApi "io.github.didi.dokit:dokitx-no-op:${Versions.dokit}"
-    debugImplementation(Deps.leakCanary)
+
 
 
 

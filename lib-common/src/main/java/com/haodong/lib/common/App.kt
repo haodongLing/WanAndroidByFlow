@@ -23,7 +23,6 @@ abstract class App:Application(), ViewModelStoreOwner{
     override fun onCreate() {
         super.onCreate()
 
-//        volleyQueue = Volley.newRequestQueue(this);
         mAppViewModelStore = ViewModelStore()
         CONTEXT=applicationContext
     }

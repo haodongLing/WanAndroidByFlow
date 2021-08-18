@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation">
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.haodong.kotlinmvvmdemo.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+    </fragment>
+    <fragment
+        android:id="@+id/nav_sofa"
+        android:name="com.haodong.kotlinmvvmdemo.ui.sofa.SofaFragment"
+        android:label="SofaFragment"
+        tools:layout="@layout/fragment_sofa">
+
+    </fragment>
+    <fragment
+        android:id="@+id/nav_publish"
+        android:name="com.haodong.kotlinmvvmdemo.ui.publish.PublishFragment"
+        android:label="PublishFragment"
+        tools:layout="@layout/fragment_publish">
+
+    </fragment>
+    <fragment
+        android:id="@+id/nav_find"
+        android:name="com.haodong.kotlinmvvmdemo.ui.find.FindFragment"
+        android:label="FindFragment"
+        tools:layout="@layout/fragment_find">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_mine"
+        android:name="com.haodong.kotlinmvvmdemo.ui.mine.MineFragment"
+        android:label="MineFragment"
+        tools:layout="@layout/fragment_mine">
+
+    </fragment>
+</navigation>

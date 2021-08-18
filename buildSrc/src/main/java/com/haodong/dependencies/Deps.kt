@@ -24,7 +24,6 @@ object Versions {
     const val circleImageview = "2.2.0"
     const val leakcanary = "2.0-alpha-3"
     const val baseRecyclerViewAdapterHelper = "2.9.50"
-    const val banner = "1.4.10"
     const val glide = "4.11.0"
     const val glide_compiler = "4.11.0"
     const val cardView = "1.0.0"
@@ -49,6 +48,7 @@ object Versions {
     const val navigation_fragment = "2.3.5"
     const val dokit = "3.4.0-alpha04"
     const val preference="1.1.1"
+    const val arouter="1.5.1"
 }
 
 object Deps {
@@ -58,13 +58,11 @@ object Deps {
     const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
     const val material = "com.google.android.material:material:${Versions.material}"
-    const val livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.livedata_ktx}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
     const val core_ktx = "androidx.core:core-ktx:${Versions.core_ktx}"
     const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
-    const val viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewmodel_ktx}"
     const val lifecycle_extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle_extension}"
     const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
     const val lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
@@ -88,11 +86,10 @@ object Deps {
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
     const val baseRecyclerViewAdapterHelper =
         "com.github.CymChad:BaseRecyclerViewAdapterHelper:${Versions.baseRecyclerViewAdapterHelper}"
-    const val banner = "com.youth.banner:banner:${Versions.banner}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_compiler}"
     const val cardView = "androidx.cardview:cardview:${Versions.cardView}"
-    const val verticalTabLayout = "q.rorbin:VerticalTabLayout:${Versions.verticalTabLayout}"
+//    const val verticalTabLayout = "q.rorbin:VerticalTabLayout:${Versions.verticalTabLayout}"
     const val flowLayout = "com.hyman:flowlayout-lib:${Versions.flowLayout}"
     const val licensesDialog = "de.psdev.licensesdialog:licensesdialog:${Versions.licensesDialog}"
     const val material_dialogs_core = "com.afollestad.material-dialogs:core:${Versions.material_dialogs}"
@@ -104,8 +101,10 @@ object Deps {
     const val smartrefreshlayout = "com.scwang.smartrefresh:SmartRefreshLayout:${Versions.smartrefreshlayout}"
     const val youth_banner = "com.youth.banner:banner:${Versions.youth_banner}"
     const val permissionx = "com.permissionx.guolindev:permissionx:${Versions.permissionx}"
-    const val navigation = "androidx.navigation:navigation-fragment:${Versions.navigation_fragment}"
-    const val navigation_ui="androidx.navigation:navigation-ui:${Versions.navigation}"
+//    const val navigation = "androidx.navigation:navigation-fragment:${Versions.navigation_fragment}"
+//    const val navigation_ui="androidx.navigation:navigation-ui:${Versions.navigation}"
     const val preferences = "androidx.preference:preference:${Versions.preference}"
+    const val arouter_api="com.alibaba:arouter-api:${Versions.arouter}"
+    const val arouter_compiler="com.alibaba:arouter-compiler:${Versions.arouter}"
 
 }

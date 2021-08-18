@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:binding="http://schemas.android.com/tools">
+    xmlns:binding="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    app:ignore="NamespaceTypo">
 
     <data>
+
         <variable
             name="title"
             type="com.haodong.kotlinmvvmdemo.model.bean.Title" />
+
+        <variable
+            name="viewModel"
+            type="com.haodong.kotlinmvvmdemo.ui.login.LoginViewModel" />
 
     </data>
 
@@ -21,6 +27,7 @@
             android:orientation="vertical">
 
             <include
+                android:id="@+id/title_layout"
                 layout="@layout/title_layout"
                 app:title="@{title}" />
 
@@ -64,28 +71,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/login"
                 android:enabled="@{viewModel.uiState.enableLoginButton}"
+                android:onClick="@{() -> viewModel.login()}"
+                android:text="@string/login"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:onClick="@{() -> viewModel.login()}" />
+                android:textSize="16sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@color/colorPrimary"
+                android:enabled="@{viewModel.uiState.enableLoginButton}"
+                android:onClick="@{() -> viewModel.register()}"
                 android:text="@string/register"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:enabled="@{viewModel.uiState.enableLoginButton}"
-                android:onClick="@{() -> viewModel.register()}" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 

@@ -34,7 +34,6 @@ class LoginRepository(val service: UserService) : BaseRepository() {
         emit(LoginUiState(needLogin = true))
     }.flowOn(Dispatchers.IO).catch { emit(LoginUiState(isError = it.message, enableLoginButton = true)) }
 
-    suspend fun login(userName: String, password: String) = executeResponseFlow(service.login(userName, password))
 
     suspend fun loginFlow(userName: String, passWord: String) = flow {
 

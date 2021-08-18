@@ -19,7 +19,7 @@ import com.haodong.lib.common.App
  * Time : 2021/8/14
  * Description:
  */
-abstract class DataBindingFragment<T: ViewDataBinding>(@LayoutRes val layoutId: Int) : Fragment(layoutId) {
+abstract class BaseVMFragment<T: ViewDataBinding>(@LayoutRes val layoutId: Int) : Fragment(layoutId) {
 
      lateinit var mContext: BaseActivity
     val mFragmentProvider: ViewModelProvider by lazy {
@@ -76,7 +76,7 @@ abstract class DataBindingFragment<T: ViewDataBinding>(@LayoutRes val layoutId: 
             @LayoutRes layoutId: Int,
             container: ViewGroup?
     ): T =   DataBindingUtil.inflate<T>(inflater,layoutId, container,false).apply {
-        lifecycleOwner = this@DataBindingFragment
+        lifecycleOwner = this@BaseVMFragment
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -2,26 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/nav_home"
         android:icon="@drawable/icon_tab_home"
         android:title="@string/home" />
 
     <item
-        android:id="@+id/blog"
+        android:id="@+id/nav_sofa"
         android:icon="@drawable/icon_tab_sofa"
         android:title="@string/sofa" />
 
     <item
-        android:id="@+id/search"
+        android:id="@+id/nav_publish"
         android:icon="@drawable/icon_tab_publish"
         android:title="" />
 
     <item
-        android:id="@+id/project"
+        android:id="@+id/nav_find"
         android:icon="@drawable/icon_tab_find"
         android:title="@string/project_type" />
     <item
-        android:id="@+id/profile"
+        android:id="@+id/nav_mine"
         android:icon="@drawable/icon_tab_mine"
         android:title="@string/me" />
 
