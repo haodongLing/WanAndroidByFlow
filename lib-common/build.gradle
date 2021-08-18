@@ -5,21 +5,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.didi.dokit'
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
-
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion Versions.compileSdk
+    buildToolsVersion Versions.buildTools
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -42,58 +36,77 @@ android {
         enabled = true
     }
 }
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+        arg("AROUTER_GENERATE_DOC", "enable")
+    }
+}
+
 
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
+    api project(':lib-task-launcher')
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     /*third*/
-    api Deps.retrofit
-    api Deps.retrofit_converter_gson
-    api Deps.okhttp_logging_interceptor
-    api Deps.material
-    api Deps.circleimageview
-    api Deps.baseRecyclerViewAdapterHelper
-    api Deps.glide
-    kapt Deps.glide_compiler
-    api Deps.cardView
-//    api Deps.verticalTabLayout
-    api Deps.flowLayout
-    api Deps.persistentCookieJar
-    api Deps.licensesDialog
-    api Deps.material_dialogs_input
-    api Deps.viewPager2
-    api Deps.koin_android
-    api Deps.koin_androidx_scope
-    api Deps.koin_androidx_viewmodel
-    api Deps.retrofit2_rxjava
-    api Deps.arouter_api
-    kapt Deps.arouter_compiler
-    api Deps.youth_banner
+    api Deps.GitHub.retrofit
+    api Deps.GitHub.retrofit_converter_gson
+    api Deps.GitHub.retrofit2_rxjava
+    api Deps.GitHub.okhttp_logging_interceptor
+    api Deps.GitHub.circleimageview
+    api Deps.GitHub.baseRecyclerViewAdapterHelper
+    api Deps.GitHub.glide
+    kapt Deps.GitHub.glide_compiler
+    api Deps.GitHub.flowLayout
+    api Deps.GitHub.persistentCookieJar
+    api Deps.GitHub.licensesDialog
+    api Deps.GitHub.material_dialogs_input
+    api Deps.GitHub.arouter_api
+    kapt Deps.GitHub.arouter_compiler
+    api Deps.GitHub.youth_banner
+    api Deps.GitHub.unpeek_livedata
+    api Deps.GitHub.smartrefreshlayout
+    api Deps.GitHub.permissionx
+    api Deps.GitHub.statusBarUtil
+    api Deps.GitHub.autoSize
+    api Deps.GitHub.material_dialogs_core
 
-
+    /*kotlin*/
+    api Deps.Kotlin.core_ktx
+    api Deps.Kotlin.kotlin_stdlib
+    api Deps.Kotlin.coroutines_android
     /*jetpack*/
-    api Deps.lifecycle_common_java8
-    api Deps.lifecycle_runtime_ktx
-    api Deps.lifecycle_livedata_ktx
-    api Deps.lifecycle_extension
-    api Deps.unpeek_livedata
-    api Deps.smartrefreshlayout
-    api Deps.permissionx
     /*android*/
-    api Deps.recyclerView
-    api Deps.appcompat
-    api Deps.core_ktx
-    api Deps.kotlin_stdlib
-    api Deps.material_dialogs_core
-    api Deps.coroutines_android
-    api Deps.navigation_fragment_ktx
-    api Deps.navigation_ui_ktx
-    api Deps.constraintlayout
-    api Deps.preferences
+    api Deps.AndroidX.lifecycle_common_java8
+    api Deps.AndroidX.lifecycle_runtime_ktx
+    api Deps.AndroidX.lifecycle_livedata_ktx
+    api Deps.AndroidX.lifecycle_extension
+    api Deps.AndroidX.recyclerView
+    api Deps.AndroidX.appcompat
+    api Deps.AndroidX.navigation_fragment_ktx
+    api Deps.AndroidX.navigation_ui_ktx
+    api Deps.AndroidX.constraintlayout
+    api Deps.AndroidX.preferences
+    api Deps.AndroidX.cardView
+    api Deps.AndroidX.viewPager2
+    api Deps.AndroidX.koin_android
+    api Deps.AndroidX.koin_androidx_scope
+    api Deps.AndroidX.koin_androidx_viewmodel
+    api Deps.AndroidX.material
+
+    api Deps.SDK.TencentTBSX5
+    //dokit
+    //核心模块
+    debugApi "io.github.didi.dokit:dokitx:${Versions.dokit}"
+    //文件同步模块
+//    debugImplementation "io.github.didi.dokit:dokitx-ft:${rootProject.ext.depsVersion["dokit"]}"
+    //no-op 模块
+    releaseApi "io.github.didi.dokit:dokitx-no-op:${Versions.dokit}"
+    debugApi(Deps.GitHub.leakCanary)
 //    api 'androidx.vectordrawable:vectordrawable:1.1.0'
 //    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 

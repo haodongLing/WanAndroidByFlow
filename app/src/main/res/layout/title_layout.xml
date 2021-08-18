@@ -12,26 +12,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
-        <com.google.android.material.appbar.MaterialToolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/mToolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
             app:titleTextColor="@color/white"
-            android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-            icon="@{title.icon}"
-            navigationClick="@{title.action}"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{title.title}"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            tools:text="标题"
-            android:layout_gravity="center"/>
-
+            app:title="@{title.title}" />
     </FrameLayout>
 </layout>

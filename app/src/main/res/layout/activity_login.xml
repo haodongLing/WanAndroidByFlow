@@ -1,100 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:binding="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
-    app:ignore="NamespaceTypo">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="title"
-            type="com.haodong.kotlinmvvmdemo.model.bean.Title" />
 
         <variable
             name="viewModel"
             type="com.haodong.kotlinmvvmdemo.ui.login.LoginViewModel" />
 
+        <variable
+            name="title"
+            type="com.haodong.kotlinmvvmdemo.model.bean.Title" />
     </data>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <include
+            layout="@layout/title_layout"
+            app:title="@{title}" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userNameLayout"
+            style="@style/TextInputLayout"
+            android:layout_marginTop="80dp"
+            android:hint="@string/username">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/userNameEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@={viewModel.userName}"
+                binding:afterTextChanged="@{viewModel.verifyInput}"
+
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pswLayout"
+            style="@style/TextInputLayout"
+            android:hint="@string/password"
+            app:passwordToggleEnabled="true">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/passwordEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:text="@={viewModel.passWord}"
+                binding:afterTextChanged="@{viewModel.verifyInput}" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorPrimary"
+            android:enabled="@{viewModel.uiState.enableLoginButton}"
+            android:onClick="@{() -> viewModel.login()}"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
-            <include
-                android:id="@+id/title_layout"
-                layout="@layout/title_layout"
-                app:title="@{title}" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorPrimary"
+            android:enabled="@{viewModel.uiState.enableLoginButton}"
+            android:onClick="@{() -> viewModel.register()}"
+            android:text="@string/register"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/userNameLayout"
-                style="@style/TextInputLayout"
-                android:layout_marginTop="80dp"
-                android:hint="@string/username">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/userNameEt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="@={viewModel.userName}"
-                    binding:afterTextChanged="@{viewModel.verifyInput}" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pswLayout"
-                style="@style/TextInputLayout"
-                android:hint="@string/password"
-                app:passwordToggleEnabled="true">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/passwordEt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:text="@={viewModel.passWord}"
-                    binding:afterTextChanged="@{viewModel.verifyInput}" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/colorPrimary"
-                android:enabled="@{viewModel.uiState.enableLoginButton}"
-                android:onClick="@{() -> viewModel.login()}"
-                android:text="@string/login"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/colorPrimary"
-                android:enabled="@{viewModel.uiState.enableLoginButton}"
-                android:onClick="@{() -> viewModel.register()}"
-                android:text="@string/register"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-        </LinearLayout>
 
     </LinearLayout>
+
 </layout>

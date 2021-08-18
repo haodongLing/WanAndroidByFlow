@@ -20,6 +20,18 @@ public class ResponseInterceptor implements Interceptor {
     public Response intercept(@NotNull Chain chain) throws IOException {
         Response response=chain.proceed(chain.request());
         FFLog.i("reponse-->"+response.toString());
-        return null;
+//        try {
+//            if (response.body()!=null){
+//                BufferedSource source = response.body().source();
+//                Buffer buffer = source.buffer();
+//                Charset UTF8 = Charset.forName("UTF-8");
+//                String bodyStr = buffer.clone().readString(UTF8);
+//                JSONObject jsonObject = new JSONObject(bodyStr);
+//                FFLog.i("errorCode-->"+jsonObject.optInt("errorCode    ")+jsonObject.optString("errorMsg"," "));
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        return response;
     }
 }

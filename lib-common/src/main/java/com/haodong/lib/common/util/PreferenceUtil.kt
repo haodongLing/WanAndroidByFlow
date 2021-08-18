@@ -12,7 +12,7 @@ import kotlin.reflect.KProperty
  * Created by luyao
  * on 2018/1/19 15:50
  */
-class Preference<T>(val name: String, private val default: T) : ReadWriteProperty<Any?, T> {
+class PreferenceUtil<T>(val name: String, private val default: T) : ReadWriteProperty<Any?, T> {
 
     companion object {
         const val IS_LOGIN = "is_login"

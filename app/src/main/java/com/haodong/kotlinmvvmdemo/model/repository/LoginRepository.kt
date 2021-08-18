@@ -1,14 +1,14 @@
 package com.haodong.kotlinmvvmdemo.model.repository
 
 import com.google.gson.Gson
-import com.haodong.kotlinmvvmdemo.model.api.UserService
+import com.haodong.kotlinmvvmdemo.model.api.RetrofitClient
 import com.haodong.lib.common.model.bean.User
 import com.haodong.kotlinmvvmdemo.ui.login.LoginUiState
 import com.haodong.lib.common.App
 import com.haodong.lib.common.model.doError
 import com.haodong.lib.common.model.doSuccess
 import com.haodong.lib.common.model.repository.BaseRepository
-import com.haodong.lib.common.util.Preference
+import com.haodong.lib.common.util.PreferenceUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
@@ -17,9 +17,10 @@ import kotlinx.coroutines.flow.*
  * Time : 2021/8/17
  * Description:
  */
-class LoginRepository(val service: UserService) : BaseRepository() {
-    private var isLogin by Preference(Preference.IS_LOGIN, false)
-    private var userJson by Preference(Preference.USER_GSON, "")
+class LoginRepository() : BaseRepository() {
+    val service = RetrofitClient.userService
+    private var isLogin by PreferenceUtil(PreferenceUtil.IS_LOGIN, false)
+    private var userJson by PreferenceUtil(PreferenceUtil.USER_GSON, "")
     suspend fun register(userName: String, password: String) = flow<LoginUiState<User>> {
         if (userName.isNullOrBlank() || password.isNullOrBlank()) {
             emit(LoginUiState(enableLoginButton = false))
@@ -54,6 +55,6 @@ class LoginRepository(val service: UserService) : BaseRepository() {
     }.onStart {
         emit(LoginUiState(isLoading = true))
     }.flowOn(Dispatchers.IO)
-        .catch { emit(LoginUiState(isError = it.message, enableLoginButton = true)) }
+//        .catch { emit(LoginUiState(isError = it.message, enableLoginButton = true)) }
 
 }

@@ -4,8 +4,11 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.haodong.kotlinmvvmdemo.databinding.ActivityMainBinding
 import com.haodong.lib.common.core.BaseVMActivity
+import com.haodong.lib.common.global.BizConst
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -13,10 +16,8 @@ import kotlinx.android.synthetic.main.activity_main.*
  * Time : 2021/8/17
  * Description:
  */
+@Route(path = BizConst.MAIN)
 class MainActivity : BaseVMActivity<ActivityMainBinding>() {
-    init {
-        useBinding=true
-    }
 
     override fun initData() {
 
@@ -30,6 +31,10 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>() {
             NavigationUI.setupWithNavController(navView, navController)
         }
 
+    }
+
+    override fun initBefore() {
+        ARouter.getInstance().inject(this)
     }
 
     override fun startObserve() {

@@ -49,62 +49,87 @@ object Versions {
     const val dokit = "3.4.0-alpha04"
     const val preference="1.1.1"
     const val arouter="1.5.1"
+    const val statusBarUtil="1.5.1"
+    const val autoSize="v1.2.1"
+    const val TencentTBSX5 = "43939"                    // 腾讯X5WebView
 }
 
 object Deps {
 
-    // androidx
-    const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
-    const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
-    const val material = "com.google.android.material:material:${Versions.material}"
-    const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
-    const val core_ktx = "androidx.core:core-ktx:${Versions.core_ktx}"
-    const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
-    const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
-    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
-    const val lifecycle_extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle_extension}"
-    const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
-    const val lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
-    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
-    const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
-    const val unpeek_livedata = "com.kunminx.arch:unpeek-livedata:${Versions.unpeek_livedata}"
 
-    // kotlin
-    const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-    const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines_android}"
+    object AndroidX{
+        // androidx
+        const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+        const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
+        const val material = "com.google.android.material:material:${Versions.material}"
+        const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
 
-    // network
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val retrofit_converter_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit_converter_gson}"
-    const val okhttp_logging_interceptor =
-        "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging_interceptor}"
-    const val persistentCookieJar = "com.github.franmontiel:PersistentCookieJar:${Versions.persistentCookieJar}"
+        const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+        const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+        const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+        const val lifecycle_extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle_extension}"
+        const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
+        const val lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
+        const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
+        const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
+        const val koin_android = "org.koin:koin-android:${Versions.koin}"
+        const val koin_androidx_scope = "org.koin:koin-androidx-scope:${Versions.koin}"
+        const val koin_androidx_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+        const val cardView = "androidx.cardview:cardview:${Versions.cardView}"
+        const val preferences = "androidx.preference:preference:${Versions.preference}"
 
-    // third
-    const val circleimageview = "de.hdodenhof:circleimageview:${Versions.circleImageview}"
-    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
-    const val baseRecyclerViewAdapterHelper =
-        "com.github.CymChad:BaseRecyclerViewAdapterHelper:${Versions.baseRecyclerViewAdapterHelper}"
-    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
-    const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_compiler}"
-    const val cardView = "androidx.cardview:cardview:${Versions.cardView}"
-//    const val verticalTabLayout = "q.rorbin:VerticalTabLayout:${Versions.verticalTabLayout}"
-    const val flowLayout = "com.hyman:flowlayout-lib:${Versions.flowLayout}"
-    const val licensesDialog = "de.psdev.licensesdialog:licensesdialog:${Versions.licensesDialog}"
-    const val material_dialogs_core = "com.afollestad.material-dialogs:core:${Versions.material_dialogs}"
-    const val material_dialogs_input = "com.afollestad.material-dialogs:input:${Versions.material_dialogs}"
-    const val koin_android = "org.koin:koin-android:${Versions.koin}"
-    const val koin_androidx_scope = "org.koin:koin-androidx-scope:${Versions.koin}"
-    const val koin_androidx_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
-    const val retrofit2_rxjava = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
-    const val smartrefreshlayout = "com.scwang.smartrefresh:SmartRefreshLayout:${Versions.smartrefreshlayout}"
-    const val youth_banner = "com.youth.banner:banner:${Versions.youth_banner}"
-    const val permissionx = "com.permissionx.guolindev:permissionx:${Versions.permissionx}"
-//    const val navigation = "androidx.navigation:navigation-fragment:${Versions.navigation_fragment}"
+
+    }
+    object Kotlin{
+        // kotlin
+        const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+        const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines_android}"
+        const val core_ktx = "androidx.core:core-ktx:${Versions.core_ktx}"
+    }
+    object GitHub{
+        // network
+        const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+        const val retrofit_converter_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit_converter_gson}"
+        const val okhttp_logging_interceptor =
+            "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging_interceptor}"
+        const val persistentCookieJar = "com.github.franmontiel:PersistentCookieJar:${Versions.persistentCookieJar}"
+        // third
+        const val circleimageview = "de.hdodenhof:circleimageview:${Versions.circleImageview}"
+        const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
+        const val baseRecyclerViewAdapterHelper =
+            "com.github.CymChad:BaseRecyclerViewAdapterHelper:${Versions.baseRecyclerViewAdapterHelper}"
+        const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+        const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_compiler}"
+
+        //    const val verticalTabLayout = "q.rorbin:VerticalTabLayout:${Versions.verticalTabLayout}"
+        const val flowLayout = "com.hyman:flowlayout-lib:${Versions.flowLayout}"
+        const val licensesDialog = "de.psdev.licensesdialog:licensesdialog:${Versions.licensesDialog}"
+        const val material_dialogs_core = "com.afollestad.material-dialogs:core:${Versions.material_dialogs}"
+        const val material_dialogs_input = "com.afollestad.material-dialogs:input:${Versions.material_dialogs}"
+
+        const val retrofit2_rxjava = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+        const val smartrefreshlayout = "com.scwang.smartrefresh:SmartRefreshLayout:${Versions.smartrefreshlayout}"
+        const val youth_banner = "com.youth.banner:banner:${Versions.youth_banner}"
+        const val permissionx = "com.permissionx.guolindev:permissionx:${Versions.permissionx}"
+        //    const val navigation = "androidx.navigation:navigation-fragment:${Versions.navigation_fragment}"
 //    const val navigation_ui="androidx.navigation:navigation-ui:${Versions.navigation}"
-    const val preferences = "androidx.preference:preference:${Versions.preference}"
-    const val arouter_api="com.alibaba:arouter-api:${Versions.arouter}"
-    const val arouter_compiler="com.alibaba:arouter-compiler:${Versions.arouter}"
+
+        const val arouter_api="com.alibaba:arouter-api:${Versions.arouter}"
+        const val arouter_compiler="com.alibaba:arouter-compiler:${Versions.arouter}"
+        const val statusBarUtil="com.jaeger.statusbarutil:library:${Versions.statusBarUtil}"
+        const val autoSize="com.github.JessYanCoding:AndroidAutoSize:${Versions.autoSize}"
+        const val unpeek_livedata = "com.kunminx.arch:unpeek-livedata:${Versions.unpeek_livedata}"
+    }
+    object SDK{
+        const val TencentTBSX5 = "com.tencent.tbs.tbssdk:sdk:${Versions.TencentTBSX5}"
+    }
+
+
+
+
+
+
+
 
 }

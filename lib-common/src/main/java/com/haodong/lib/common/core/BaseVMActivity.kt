@@ -15,7 +15,7 @@ import com.haodong.lib.common.App
  * Time : 2021/8/14
  * Description:
  */
- abstract class BaseVMActivity<T:ViewDataBinding>(var useBinding:Boolean=true ) :AppCompatActivity() {
+ abstract class BaseVMActivity<T:ViewDataBinding> :AppCompatActivity() {
 
     lateinit var  mBinding: T
     val mActivityProvider: ViewModelProvider by lazy{
@@ -42,29 +42,25 @@ import com.haodong.lib.common.App
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        initBefore()
         super.onCreate(savedInstanceState)
-        if (useBinding){
-            mBinding=  DataBindingUtil.setContentView<T>(this, getLayoutId()).apply {
-                lifecycleOwner = this@BaseVMActivity
-            }
-        }else{
-            setContentView(getLayoutId())
-//            mBinding
+        mBinding=  DataBindingUtil.setContentView<T>(this, getLayoutId()).apply {
+            lifecycleOwner = this@BaseVMActivity
         }
         setVariable()
         initView()
         startObserve()
         initData()
     }
+   open fun initBefore(){}
 
     abstract fun getLayoutId():Int
-
-    abstract fun initData()
-
+    abstract fun setVariable()
     abstract fun initView()
+    abstract fun initData()
 
     abstract fun startObserve()
 
-    abstract fun setVariable()
+
 
 }
