@@ -51,4 +51,17 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
+
+    <style name="bottom_navigation" parent="Widget.Design.BottomNavigationView">
+    <item name="enforceTextAppearance">true</item>
+    <item name="enforceMaterialTheme">true</item>
+    <item name="android:background">?attr/colorSurface</item>
+    <item name="itemBackground">@null</item>
+    <item name="itemHorizontalTranslationEnabled">false</item>
+    <item name="itemIconTint">@color/mtrl_navigation_bar_item_tint</item>
+    <item name="itemTextAppearanceInactive">?attr/textAppearanceCaption</item>
+    <item name="itemTextAppearanceActive">?attr/textAppearanceCaption</item>
+    <item name="itemTextColor">@color/mtrl_navigation_bar_item_tint</item>
+    <item name="itemRippleColor">@color/mtrl_navigation_bar_ripple_color</item>
+    </style>
 </resources>

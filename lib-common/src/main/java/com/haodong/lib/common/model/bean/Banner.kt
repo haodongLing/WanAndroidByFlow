@@ -1,0 +1,14 @@
+package com.haodong.lib.common.model.bean
+
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
+data class Banner(val desc: String,
+                  val id: Int,
+                  val imagePath: String,
+                  val isVisible: Int,
+                  val order: Int,
+                  val title: String,
+                  val type: Int,
+                  val url: String)

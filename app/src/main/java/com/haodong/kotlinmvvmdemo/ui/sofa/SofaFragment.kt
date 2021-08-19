@@ -18,4 +18,8 @@ class SofaFragment : BaseVMFragment<FragmentSofaBinding>(R.layout.fragment_sofa)
 
     override fun startObserve() {
     }
+
+    override fun setVariable() {
+
+    }
 }

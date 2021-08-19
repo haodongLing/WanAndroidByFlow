@@ -18,4 +18,8 @@ class PublishFragment : BaseVMFragment<FragmentPublishBinding>(R.layout.fragment
 
     override fun startObserve() {
     }
+    override fun setVariable() {
+
+    }
+
 }

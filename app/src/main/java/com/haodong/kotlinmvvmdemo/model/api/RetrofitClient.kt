@@ -20,6 +20,9 @@ object RetrofitClient : BaseRetrofitClient() {
     val userService by lazy{
         getService(UserService::class.java, BASE_URL)
     }
+    val wanService by lazy {
+        getService(WanService::class.java, BASE_URL)
+    }
 
 
     private val cookieJar by lazy { PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.CONTEXT)) }

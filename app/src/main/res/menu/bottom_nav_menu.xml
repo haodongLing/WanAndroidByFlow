@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/icon_tab_home"
+        android:icon="@drawable/ic_bottom_bar_home"
         android:title="@string/home" />
 
     <item
         android:id="@+id/nav_sofa"
-        android:icon="@drawable/icon_tab_sofa"
+        android:icon="@drawable/ic_bottom_bar_ques"
         android:title="@string/sofa" />
 
     <item
@@ -18,11 +18,11 @@
 
     <item
         android:id="@+id/nav_find"
-        android:icon="@drawable/icon_tab_find"
+        android:icon="@drawable/ic_bottom_bar_navi"
         android:title="@string/project_type" />
     <item
         android:id="@+id/nav_mine"
-        android:icon="@drawable/icon_tab_mine"
+        android:icon="@drawable/ic_bottom_bar_mine"
         android:title="@string/me" />
 
 </menu>

@@ -2,6 +2,7 @@ package com.haodong.lib.common
 
 import android.app.Application
 import android.content.Context
+import androidx.annotation.NonNull
 import androidx.databinding.library.BuildConfig
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
@@ -11,6 +12,10 @@ import com.haodong.lib.common.model.bean.User
 import com.haodong.lib.common.tasks.X5WebTask
 import com.haodong.lib.common.util.FFLog
 import com.haodong.lib.dispatcher.launcher.TaskDispatcher
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.*
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import kotlin.properties.Delegates
 
 /**
@@ -19,6 +24,22 @@ import kotlin.properties.Delegates
  * Description:
  */
 class App : Application(), ViewModelStoreOwner {
+    init {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(object : DefaultRefreshHeaderCreator {
+
+            override fun createRefreshHeader(context: Context, layout: RefreshLayout): RefreshHeader {
+                return ClassicsHeader(context)
+            }
+
+        });
+        SmartRefreshLayout.setDefaultRefreshFooterCreator(object : DefaultRefreshFooterCreator {
+            override fun createRefreshFooter(context: Context, layout: RefreshLayout): RefreshFooter {
+                return ClassicsFooter(context)
+            }
+
+        });
+    }
+
     private lateinit var mAppViewModelStore: ViewModelStore
 
     companion object {

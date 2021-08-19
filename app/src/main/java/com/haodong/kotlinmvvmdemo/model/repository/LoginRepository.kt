@@ -29,7 +29,7 @@ class LoginRepository() : BaseRepository() {
         service.register(userName, password, password).doSuccess {
             emit(LoginUiState(needLogin = true))
         }.doError { err ->
-            emit(LoginUiState(isError = err, enableLoginButton = true))
+            emit(LoginUiState(isError = err.errMessage, enableLoginButton = true))
         }
     }.onStart {
         emit(LoginUiState(needLogin = true))
@@ -50,11 +50,11 @@ class LoginRepository() : BaseRepository() {
             App.CURRENT_USER = user
             emit(LoginUiState(isSuccess = user, enableLoginButton = true))
         }.doError { errorMsg ->
-            emit(LoginUiState<User>(isError = errorMsg, enableLoginButton = true))
+            emit(LoginUiState<User>(isError = errorMsg.errMessage, enableLoginButton = true))
         }
     }.onStart {
         emit(LoginUiState(isLoading = true))
     }.flowOn(Dispatchers.IO)
-//        .catch { emit(LoginUiState(isError = it.message, enableLoginButton = true)) }
+        .catch { emit(LoginUiState(isError = it.message, enableLoginButton = true)) }
 
 }

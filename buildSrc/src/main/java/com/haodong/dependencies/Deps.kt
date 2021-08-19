@@ -52,6 +52,7 @@ object Versions {
     const val statusBarUtil="1.5.1"
     const val autoSize="v1.2.1"
     const val TencentTBSX5 = "43939"                    // 腾讯X5WebView
+    const val lottie="2.7.0"
 }
 
 object Deps {
@@ -120,6 +121,7 @@ object Deps {
         const val statusBarUtil="com.jaeger.statusbarutil:library:${Versions.statusBarUtil}"
         const val autoSize="com.github.JessYanCoding:AndroidAutoSize:${Versions.autoSize}"
         const val unpeek_livedata = "com.kunminx.arch:unpeek-livedata:${Versions.unpeek_livedata}"
+        const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
     }
     object SDK{
         const val TencentTBSX5 = "com.tencent.tbs.tbssdk:sdk:${Versions.TencentTBSX5}"

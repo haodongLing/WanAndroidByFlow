@@ -69,7 +69,7 @@ abstract class BaseVMFragment<T: ViewDataBinding>(@LayoutRes val layoutId: Int) 
          }
     }
 
-    lateinit var binding:T
+    lateinit var mBinding:T
 
     protected  fun < T : ViewDataBinding> binding(
             inflater: LayoutInflater,
@@ -80,17 +80,18 @@ abstract class BaseVMFragment<T: ViewDataBinding>(@LayoutRes val layoutId: Int) 
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = binding(inflater,layoutId,container)
-        return binding.root
+        mBinding = binding(inflater,layoutId,container)
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        startObserve()
+        setVariable()
         initView()
+        startObserve()
         initData()
         super.onViewCreated(view, savedInstanceState)
     }
-
+    abstract fun setVariable()
     abstract fun initView()
     abstract fun initData()
     abstract fun startObserve()

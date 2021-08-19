@@ -26,9 +26,9 @@
     </fragment>
     <fragment
         android:id="@+id/nav_find"
-        android:name="com.haodong.kotlinmvvmdemo.ui.find.FindFragment"
+        android:name="com.haodong.kotlinmvvmdemo.ui.knowledge.KnowledgeNavFragment"
         android:label="FindFragment"
-        tools:layout="@layout/fragment_find">
+        tools:layout="@layout/fragment_knowledge">
 
     </fragment>
 

@@ -1,7 +1,7 @@
-package com.haodong.kotlinmvvmdemo.ui.find
+package com.haodong.kotlinmvvmdemo.ui.knowledge
 
 import com.haodong.kotlinmvvmdemo.R
-import com.haodong.kotlinmvvmdemo.databinding.FragmentFindBinding
+import com.haodong.kotlinmvvmdemo.databinding.FragmentKnowledgeBinding
 import com.haodong.lib.common.core.BaseVMFragment
 
 /**
@@ -9,7 +9,7 @@ import com.haodong.lib.common.core.BaseVMFragment
  * Time : 2021/8/16
  * Description:
  */
-class FindFragment : BaseVMFragment<FragmentFindBinding>(R.layout.fragment_find) {
+class KnowledgeNavFragment : BaseVMFragment<FragmentKnowledgeBinding>(R.layout.fragment_knowledge) {
     override fun initView() {
     }
 
@@ -17,5 +17,9 @@ class FindFragment : BaseVMFragment<FragmentFindBinding>(R.layout.fragment_find)
     }
 
     override fun startObserve() {
+    }
+
+    override fun setVariable() {
+
     }
 }

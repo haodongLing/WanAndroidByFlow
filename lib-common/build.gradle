@@ -74,6 +74,7 @@ dependencies {
     api Deps.GitHub.statusBarUtil
     api Deps.GitHub.autoSize
     api Deps.GitHub.material_dialogs_core
+    api Deps.GitHub.lottie
 
     /*kotlin*/
     api Deps.Kotlin.core_ktx

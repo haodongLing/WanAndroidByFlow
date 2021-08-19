@@ -28,9 +28,9 @@ suspend fun <T : Any> WanResponse<T>.doSuccess(successBlock: (suspend CoroutineS
 
 }
 
-suspend fun <T : Any> WanResponse<T>.doError(errorBlock: (suspend CoroutineScope.(String) -> Unit)? = null): WanResponse<T> {
+suspend fun <T : Any> WanResponse<T>.doError(errorBlock: (suspend CoroutineScope.(HttpCode) -> Unit)? = null): WanResponse<T> {
     return coroutineScope {
-        if (errorCode == -1) errorBlock?.invoke(this, this@doError.errorMsg)
+        if (errorCode == -1) errorBlock?.invoke(this, HttpCode(this@doError.errorCode,this@doError.errorMsg))
         this@doError
     }
 }

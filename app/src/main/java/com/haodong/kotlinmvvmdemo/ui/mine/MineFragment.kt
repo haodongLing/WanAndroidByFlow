@@ -18,4 +18,8 @@ class MineFragment : BaseVMFragment<FragmentMineBinding>(R.layout.fragment_mine)
 
     override fun startObserve() {
     }
+    override fun setVariable() {
+
+    }
+
 }
