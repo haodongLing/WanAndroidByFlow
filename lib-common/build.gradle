@@ -38,8 +38,8 @@ android {
 }
 kapt {
     arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-        arg("AROUTER_GENERATE_DOC", "enable")
+        arg("AROUTER_MODULE_NAME", "common")
+//        arg("AROUTER_GENERATE_DOC", "enable")
     }
 }
 

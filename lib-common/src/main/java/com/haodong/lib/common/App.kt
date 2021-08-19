@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.didichuxing.doraemonkit.DoKit
 import com.haodong.lib.common.model.bean.User
 import com.haodong.lib.common.tasks.X5WebTask
+import com.haodong.lib.common.util.FFLog
 import com.haodong.lib.dispatcher.launcher.TaskDispatcher
 import kotlin.properties.Delegates
 
@@ -53,11 +54,14 @@ class App : Application(), ViewModelStoreOwner {
      */
     private fun initARouter(): String {
         // 测试环境下打开ARouter的日志和调试模式 正式环境需要关闭
-        if (BuildConfig.DEBUG) {
-            ARouter.openLog()     // 打印日志
-            ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
-        }
+//        if (BuildConfig.DEBUG) {
+//            ARouter.openLog()     // 打印日志
+//            ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+//        }
+//        ARouter.openLog()     // 打印日志
+//        ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         ARouter.init(this@App)
+        FFLog.i("ARouter -->> init complete")
         return "ARouter -->> init complete"
     }
 

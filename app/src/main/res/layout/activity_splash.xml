@@ -29,6 +29,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_height="25dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_gray"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tv_jump"
+            android:layout_marginTop="100dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

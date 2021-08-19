@@ -42,18 +42,21 @@ class SplashActivity : BaseVMActivity<ActivitySplashBinding>() {
                     var isLogin by PreferenceUtil(PreferenceUtil.IS_LOGIN, false)
                     if (isLogin) {
                         FFLog.i("uri.parse-->"+Uri.parse("haodong:mvvm/demo/main"))
-                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+//                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
 
-//                        ARouter.getInstance().build(BizConst.MAIN).navigation(this@SplashActivity)
+                        ARouter.getInstance().build(BizConst.MAIN).navigation(this@SplashActivity)
                     } else {
                         FFLog.i("uri.parse-->"+Uri.parse("haodong:mvvm/demo/login"))
-                        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-//                        ARouter.getInstance().build(BizConst.LOGIN).navigation(this@SplashActivity)
+//                        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                        ARouter.getInstance().build(BizConst.LOGIN).navigation(this@SplashActivity)
                     }
                     finish()
                 }
 
             }.start()
+            tvJump.setOnClickListener {
+                ARouter.getInstance().build(BizConst.MAIN).navigation(this@SplashActivity)
+            }
         }
     }
 
