@@ -29,6 +29,7 @@
                         app:layout_scrollFlags="scroll|exitUntilCollapsed">
                         <com.youth.banner.Banner
                             android:id="@+id/banner"
+                            app:delay_time="5000"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 
@@ -39,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    android:background="@color/dk_color_F5F6F7"/>
+                    android:background="#f5f5f5"/>
 
 
             </com.haodong.lib.common.widget.CustomCoordinatorLayout>

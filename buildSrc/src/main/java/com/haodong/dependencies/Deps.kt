@@ -23,7 +23,7 @@ object Versions {
     const val material = "1.2.0-beta01"
     const val circleImageview = "2.2.0"
     const val leakcanary = "2.0-alpha-3"
-    const val baseRecyclerViewAdapterHelper = "2.9.50"
+    const val baseRecyclerViewAdapterHelper = "3.0.4"
     const val glide = "4.11.0"
     const val glide_compiler = "4.11.0"
     const val cardView = "1.0.0"
@@ -47,18 +47,23 @@ object Versions {
     const val unpeek_livedata = "6.0.0-beta1"
     const val navigation_fragment = "2.3.5"
     const val dokit = "3.4.0-alpha04"
-    const val preference="1.1.1"
-    const val arouter="1.5.1"
-    const val statusBarUtil="1.5.1"
-    const val autoSize="v1.2.1"
+    const val preference = "1.1.1"
+    const val arouter = "1.5.1"
+    const val statusBarUtil = "1.5.1"
+    const val autoSize = "v1.2.1"
     const val TencentTBSX5 = "43939"                    // 腾讯X5WebView
-    const val lottie="2.7.0"
+    const val lottie = "2.7.0"
+    const val revealLayout = "1.3.4"
+    const val roundedimageview = "2.3.0"
+    const val heartView = "1.0.0"
+    const val blurred = "1.3.0"
+    const val ponyo = "1.0.0"
 }
 
 object Deps {
 
 
-    object AndroidX{
+    object AndroidX {
         // androidx
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
@@ -82,19 +87,22 @@ object Deps {
 
 
     }
-    object Kotlin{
+
+    object Kotlin {
         // kotlin
         const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
         const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines_android}"
         const val core_ktx = "androidx.core:core-ktx:${Versions.core_ktx}"
     }
-    object GitHub{
+
+    object GitHub {
         // network
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val retrofit_converter_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit_converter_gson}"
         const val okhttp_logging_interceptor =
             "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging_interceptor}"
         const val persistentCookieJar = "com.github.franmontiel:PersistentCookieJar:${Versions.persistentCookieJar}"
+
         // third
         const val circleimageview = "de.hdodenhof:circleimageview:${Versions.circleImageview}"
         const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
@@ -116,22 +124,24 @@ object Deps {
         //    const val navigation = "androidx.navigation:navigation-fragment:${Versions.navigation_fragment}"
 //    const val navigation_ui="androidx.navigation:navigation-ui:${Versions.navigation}"
 
-        const val arouter_api="com.alibaba:arouter-api:${Versions.arouter}"
-        const val arouter_compiler="com.alibaba:arouter-compiler:${Versions.arouter}"
-        const val statusBarUtil="com.jaeger.statusbarutil:library:${Versions.statusBarUtil}"
-        const val autoSize="com.github.JessYanCoding:AndroidAutoSize:${Versions.autoSize}"
+        const val arouter_api = "com.alibaba:arouter-api:${Versions.arouter}"
+        const val arouter_compiler = "com.alibaba:arouter-compiler:${Versions.arouter}"
+        const val statusBarUtil = "com.jaeger.statusbarutil:library:${Versions.statusBarUtil}"
+        const val autoSize = "com.github.JessYanCoding:AndroidAutoSize:${Versions.autoSize}"
         const val unpeek_livedata = "com.kunminx.arch:unpeek-livedata:${Versions.unpeek_livedata}"
         const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
+        const val revealLayout = "com.github.goweii:RevealLayout:${Versions.revealLayout}"
+        const val roundedimageview = "com.makeramen:roundedimageview:${Versions.roundedimageview}"
+        const val heartView = "com.github.goweii:HeartView:${Versions.heartView}"
+        const val blurred = "com.github.goweii:blurred:${Versions.blurred}"
+        const val ponyo = "per.goweii.ponyo:ponyo:${Versions.ponyo}"
+        const val ponyoLog = "per.goweii.ponyo:ponyo-log:${Versions.ponyo}"
+        const val ponyoCrash = "per.goweii.ponyo:ponyo-crash:${Versions.ponyo}"
     }
-    object SDK{
+
+    object SDK {
         const val TencentTBSX5 = "com.tencent.tbs.tbssdk:sdk:${Versions.TencentTBSX5}"
     }
-
-
-
-
-
-
 
 
 }

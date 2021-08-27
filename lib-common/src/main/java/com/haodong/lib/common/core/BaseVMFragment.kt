@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -21,7 +22,7 @@ import com.haodong.lib.common.App
  */
 abstract class BaseVMFragment<T: ViewDataBinding>(@LayoutRes val layoutId: Int) : Fragment(layoutId) {
 
-     lateinit var mContext: BaseActivity
+     lateinit var mContext: AppCompatActivity
     val mFragmentProvider: ViewModelProvider by lazy {
         ViewModelProvider(this)
     }
@@ -35,9 +36,7 @@ abstract class BaseVMFragment<T: ViewDataBinding>(@LayoutRes val layoutId: Int) 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (activity is BaseActivity) {
-            mContext = activity as BaseActivity
-        }
+        mContext = activity as AppCompatActivity
     }
 
     // tip 1: DataBinding 严格模式（详见 DataBindingFragment - - - - - ）：

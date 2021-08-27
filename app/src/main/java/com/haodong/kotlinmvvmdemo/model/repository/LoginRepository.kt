@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.*
  * Description:
  */
 class LoginRepository() : BaseRepository() {
-    val service = RetrofitClient.userService
     private var isLogin by PreferenceUtil(PreferenceUtil.IS_LOGIN, false)
     private var userJson by PreferenceUtil(PreferenceUtil.USER_GSON, "")
     suspend fun register(userName: String, password: String) = flow<LoginUiState<User>> {
@@ -26,7 +25,7 @@ class LoginRepository() : BaseRepository() {
             emit(LoginUiState(enableLoginButton = false))
             return@flow
         }
-        service.register(userName, password, password).doSuccess {
+        RetrofitClient.userService.register(userName, password, password).doSuccess {
             emit(LoginUiState(needLogin = true))
         }.doError { err ->
             emit(LoginUiState(isError = err.errMessage, enableLoginButton = true))
@@ -44,7 +43,7 @@ class LoginRepository() : BaseRepository() {
             return@flow
         }
 
-        service.login(userName, passWord).doSuccess { user ->
+        RetrofitClient.userService.login(userName, passWord).doSuccess { user ->
             isLogin = true
             userJson = Gson().toJson(user)
             App.CURRENT_USER = user

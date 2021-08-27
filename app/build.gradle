@@ -54,6 +54,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation project(':lib-common')
+
     kapt Deps.GitHub.arouter_compiler
+
+    debugApi "io.github.didi.dokit:dokitx:${Versions.dokit}"
+    //文件同步模块
+//    debugImplementation "io.github.didi.dokit:dokitx-ft:${rootProject.ext.depsVersion["dokit"]}"
+    //no-op 模块
+    releaseApi "io.github.didi.dokit:dokitx-no-op:${Versions.dokit}"
 
 }

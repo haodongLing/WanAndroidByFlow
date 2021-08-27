@@ -2,12 +2,9 @@ package com.haodong.lib.common
 
 import android.app.Application
 import android.content.Context
-import androidx.annotation.NonNull
-import androidx.databinding.library.BuildConfig
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.alibaba.android.arouter.launcher.ARouter
-import com.didichuxing.doraemonkit.DoKit
 import com.haodong.lib.common.model.bean.User
 import com.haodong.lib.common.tasks.X5WebTask
 import com.haodong.lib.common.util.FFLog
@@ -23,7 +20,7 @@ import kotlin.properties.Delegates
  * Time : 2021/8/13
  * Description:
  */
-class App : Application(), ViewModelStoreOwner {
+open class App : Application(), ViewModelStoreOwner {
     init {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(object : DefaultRefreshHeaderCreator {
 
@@ -57,8 +54,6 @@ class App : Application(), ViewModelStoreOwner {
         CONTEXT = applicationContext
         APP = this
         mAppViewModelStore = ViewModelStore()
-        DoKit.Builder(this)
-            .build()
 
         initARouter()
         TaskDispatcher.init(this)
