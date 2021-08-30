@@ -58,6 +58,7 @@ object Versions {
     const val heartView = "1.0.0"
     const val blurred = "1.3.0"
     const val ponyo = "1.0.0"
+    const val StatusBarCompat="2.3.3"
 }
 
 object Deps {
@@ -137,6 +138,7 @@ object Deps {
         const val ponyo = "per.goweii.ponyo:ponyo:${Versions.ponyo}"
         const val ponyoLog = "per.goweii.ponyo:ponyo-log:${Versions.ponyo}"
         const val ponyoCrash = "per.goweii.ponyo:ponyo-crash:${Versions.ponyo}"
+        const val StatusBarCompat="com.github.niorgai:StatusBarCompat:${Versions.StatusBarCompat}"
     }
 
     object SDK {

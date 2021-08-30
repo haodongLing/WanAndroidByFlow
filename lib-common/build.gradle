@@ -105,6 +105,12 @@ dependencies {
     api Deps.AndroidX.material
 
     api Deps.SDK.TencentTBSX5
+
+    // After AndroidX
+    api (Deps.GitHub.StatusBarCompat, {
+        exclude group: 'androidx.appcompat:appcompat'
+        exclude group: 'com.google.android.material:material'
+    })
     //dokit
     //核心模块
 

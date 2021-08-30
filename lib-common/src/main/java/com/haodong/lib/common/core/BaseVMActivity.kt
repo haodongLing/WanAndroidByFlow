@@ -9,6 +9,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.haodong.lib.common.App
+import com.haodong.lib.common.R
+import com.jaeger.library.StatusBarUtil
+import qiu.niorgai.StatusBarCompat
 
 /**
  * Author: tangyuan
@@ -47,6 +50,7 @@ import com.haodong.lib.common.App
         mBinding=  DataBindingUtil.setContentView<T>(this, getLayoutId()).apply {
             lifecycleOwner = this@BaseVMActivity
         }
+        setStatusBar()
         setVariable()
         initView()
         startObserve()
@@ -60,7 +64,10 @@ import com.haodong.lib.common.App
     abstract fun initData()
 
     abstract fun startObserve()
-
+    open fun setStatusBar(){
+        //透明状态栏
+        StatusBarCompat.translucentStatusBar(this@BaseVMActivity);
+    }
 
 
 }

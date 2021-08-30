@@ -33,13 +33,42 @@ class HomeRepository : BaseRepository() {
     }.flowOn(Dispatchers.IO).catch {
         emit(DTOResult.Error(HttpCode(-1, it.message)))
     }
-    suspend fun getArticleList(page:Int,isRefresh:Boolean)= flow<BaseViewModel.BaseUiModel<ArticleList>> {
-        RetrofitClient.wanService.getHomeArticles(page).doSuccess{
-            emit(BaseViewModel.BaseUiModel(showSuccess = it,showLoading = false,isRefresh = isRefresh))
+
+    suspend fun getArticleList(page: Int, isRefresh: Boolean) = flow<BaseViewModel.BaseUiModel<ArticleList>> {
+        RetrofitClient.wanService.getHomeArticles(page).doSuccess {
+            emit(BaseViewModel.BaseUiModel(showSuccess = it, showLoading = false, isRefresh = isRefresh))
         }
     }.flowOn(Dispatchers.IO).onStart {
         emit(BaseViewModel.BaseUiModel(showLoading = true))
     }.catch {
-        emit(BaseViewModel.BaseUiModel(showError = it.message,showLoading = false,showEnd = false))
+        emit(BaseViewModel.BaseUiModel(showError = it.message, showLoading = false, showEnd = false))
     }
+
+    suspend fun collectArticle(articleId: Int) = flow<BaseViewModel.UiState<ArticleList>> {
+        RetrofitClient.wanService.collectArticle(articleId)
+            .doSuccess {
+                emit(BaseViewModel.UiState<ArticleList>(isSuccess = it, isLoading = false, isRefresh = false))
+            }.doError { emit(BaseViewModel.UiState<ArticleList>(isError = it.errMessage)) }
+
+
+    }.flowOn(Dispatchers.IO).onStart {
+        emit(BaseViewModel.UiState<ArticleList>(isLoading = true))
+    }.catch {
+        emit(BaseViewModel.UiState<ArticleList>(isLoading = false, isError = it.message))
+    }
+
+    suspend fun unCollectArticle(articleId: Int) = flow<BaseViewModel.UiState<ArticleList>> {
+        RetrofitClient.wanService.cancelCollectArticle(articleId)
+            .doSuccess {
+                emit(BaseViewModel.UiState<ArticleList>(isSuccess = it, isLoading = false, isRefresh = false))
+            }.doError { emit(BaseViewModel.UiState<ArticleList>(isError = it.errMessage)) }
+
+
+    }.flowOn(Dispatchers.IO).onStart {
+        emit(BaseViewModel.UiState<ArticleList>(isLoading = true))
+    }.catch {
+        emit(BaseViewModel.UiState<ArticleList>(isLoading = false, isError = it.message))
+    }
+
+
 }

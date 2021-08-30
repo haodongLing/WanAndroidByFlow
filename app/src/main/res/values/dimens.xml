@@ -5,4 +5,5 @@
     <dimen name="round_radius_small">3dp</dimen>
     <dimen name="text_content">15sp</dimen>
     <dimen name="text_auxiliary">13sp</dimen>
+    <dimen name="action_bar_size">24dp</dimen>
 </resources>

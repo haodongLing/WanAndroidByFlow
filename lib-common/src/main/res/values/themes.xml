@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/color_blue</item>
         <item name="colorPrimaryDark">@color/color_transparent</item>
         <item name="colorAccent">@color/color_blue</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <!-- 主题颜色 -->
         <item name="colorMain">@color/color_blue</item>
         <item name="colorMainAlpha">@color/color_blue_a60</item>
@@ -63,5 +64,7 @@
         <item name="colorIconLight">@color/color_white</item>
         <item name="colorIconDark">@color/color_gray_dark1</item>
     </style>
-
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/color_white</item>
+    </style>
 </resources>

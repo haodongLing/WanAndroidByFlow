@@ -6,6 +6,7 @@ import com.haodong.lib.common.model.DTOResult
 import com.haodong.lib.common.model.bean.ArticleList
 import com.haodong.lib.common.model.bean.Banner
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.withContext
 
 /**
  * Author: tangyuan
@@ -29,6 +30,15 @@ class HomeViewModel : BaseViewModel() {
         launchOnUI {
             repository.getBanners().collect {
                 bannerState.postValue(it)
+            }
+        }
+    }
+    fun collectArticle(articleId:Int,boolean: Boolean){
+        launchOnUI {
+            if (boolean){
+                repository.collectArticle(articleId).collect {  }
+            }else{
+                repository.unCollectArticle(articleId)
             }
         }
     }

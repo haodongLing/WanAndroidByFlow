@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.haodong.lib.common.App
+import com.haodong.lib.common.util.FFLog
 
 /**
  * Author: tangyuan
@@ -33,6 +34,7 @@ abstract class BaseVMFragment<T: ViewDataBinding>(@LayoutRes val layoutId: Int) 
     val mApplicationProvider: ViewModelProvider by lazy {
         ViewModelProvider(mContext.applicationContext as App, getApplicationFactory(mContext))
     }
+    lateinit var mRootView:View
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -89,6 +91,10 @@ abstract class BaseVMFragment<T: ViewDataBinding>(@LayoutRes val layoutId: Int) 
         startObserve()
         initData()
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
     abstract fun setVariable()
     abstract fun initView()
