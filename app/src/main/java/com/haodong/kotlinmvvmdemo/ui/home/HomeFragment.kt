@@ -9,10 +9,12 @@ import com.haodong.kotlinmvvmdemo.model.repository.HomeViewModel
 import com.haodong.kotlinmvvmdemo.widget.GlideImageLoader
 import com.haodong.lib.common.core.BaseVMFragment
 import com.haodong.lib.common.model.DTOResult
+import com.haodong.lib.common.util.FFLog
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import io.github.haodongling.lib.utils.UIUtils
+import kotlin.math.abs
 
 /**
  * Author: tangyuan
@@ -68,7 +70,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
         mBinding.banner.run {
             val topBannerWidth = UIUtils.getScreenWidth(mContext)
             val topBannerHeight = (topBannerWidth * (180 / 375f)).toInt()
-            offsetHeight = topBannerHeight
+            offsetHeight = UIUtils.dp2px(mContext, 76F);
             setImageLoader(GlideImageLoader())
             val params = layoutParams
             params.height = topBannerHeight
@@ -79,21 +81,22 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
 //            StatusBarUtil.setTranslucentForImageViewInFragment(mContext,appBarLayout)
             appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
                 lastVerticalOffset = verticalOffset
-                if (-verticalOffset > verticalOffset) {
+                FFLog.i("verticalOffset-->"+verticalOffset)
+                if (-verticalOffset > offsetHeight) {
                     layoutToolbar.setBackgroundColor(mContext.resources.getColor(R.color.colorPrimary))
                     if (statusColor != 255) {
                         statusColor = 255
                     }
                     statusColor = 255
                 } else {
-                    if (Math.abs(verticalOffset) <= offsetHeight) {
-                        totalScrollY = verticalOffset
+                    totalScrollY = if (abs(verticalOffset) <= offsetHeight) {
+                        abs(verticalOffset)
                     } else {
-                        totalScrollY = 0
+                        0
                     }
 
                     val heightAlpha: Float = Math.abs(totalScrollY * 1.0f / offsetHeight)
-                    statusColor = (heightAlpha * 255).toInt()
+                    FFLog.i("heightAlpha-->"+heightAlpha)
                     layoutToolbar.setBackgroundColor(UIUtils.getColorWithAlpha(heightAlpha,mContext.resources.getColor(R.color.colorPrimary)))
                 }
             })

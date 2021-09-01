@@ -1,21 +1,20 @@
-package com.haodong.kotlinmvvmdemo.model.repository
+package com.haodong.kotlinmvvmdemo.ui.sofa
 
+import androidx.lifecycle.MutableLiveData
+import com.haodong.kotlinmvvmdemo.model.repository.HomeRepository
 import com.haodong.lib.common.core.BaseViewModel
-import com.haodong.lib.common.model.DTOResult
 import com.haodong.lib.common.model.bean.ArticleList
-import com.haodong.lib.common.model.bean.Banner
 import com.kunminx.architecture.ui.callback.UnPeekLiveData
 import kotlinx.coroutines.flow.collect
 
 /**
  * Author: tangyuan
- * Time : 2021/8/19
+ * Time : 2021/9/1
  * Description:
  */
-class HomeViewModel : BaseViewModel() {
-    val repository = HomeRepository()
-    val articleState = UnPeekLiveData<BaseUiModel<ArticleList>>()
-    val bannerState = UnPeekLiveData<DTOResult<List<Banner>>>()
+class SofaViewModel :BaseViewModel() {
+    val repository=HomeRepository()
+    val articleState=UnPeekLiveData<BaseUiModel<ArticleList>>()
 
     fun getArticleList(page: Int, isRefresh: Boolean) {
         launchOnUI {
@@ -25,13 +24,6 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
-    fun getbanner() {
-        launchOnUI {
-            repository.getBanners().collect {
-                bannerState.postValue(it)
-            }
-        }
-    }
     fun collectArticle(articleId:Int,boolean: Boolean){
         launchOnUI {
             if (boolean){
@@ -41,5 +33,7 @@ class HomeViewModel : BaseViewModel() {
             }
         }
     }
+
+
 
 }
