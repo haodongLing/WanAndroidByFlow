@@ -6,7 +6,7 @@
     <data>
         <variable
             name="title"
-            type="com.haodong.kotlinmvvmdemo.model.bean.Title" />
+            type="io.github.haodongling.kotlinmvvmdemo.model.bean.Title" />
     </data>
 
     <FrameLayout

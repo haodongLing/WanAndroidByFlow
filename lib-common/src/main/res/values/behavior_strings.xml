@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="behavior_appbar">com.haodong.lib.common.behavior.AppFlingBehavior</string>
-    <string name="fixed_behavior_appbar">com.haodong.lib.common.behavior.FixedFlingBehavior</string>
-    <string name="recycler_view_behavior">com.haodong.lib.common.behavior.RecyclerViewBehavior</string>
+    <string name="behavior_appbar">io.github.haodongling.lib.common.behavior.AppFlingBehavior</string>
+    <string name="fixed_behavior_appbar">io.github.haodongling.lib.common.behavior.FixedFlingBehavior</string>
+    <string name="recycler_view_behavior">io.github.haodongling.lib.common.behavior.RecyclerViewBehavior</string>
 </resources>

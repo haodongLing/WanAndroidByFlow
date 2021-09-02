@@ -175,7 +175,7 @@
 
     </LinearLayout>
 
-    <com.haodong.kotlinmvvmdemo.widget.CollectView
+    <io.github.haodongling.kotlinmvvmdemo.widget.CollectView
         android:id="@+id/cv_collect"
         android:layout_width="20dp"
         android:layout_height="20dp"

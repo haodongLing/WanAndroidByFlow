@@ -1,4 +1,4 @@
-import com.haodong.dependencies.*
+import io.github.haodongling.dependencies.*
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -50,9 +50,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     api project(':lib-utils')
     api project(':lib-task-launcher')
+    api project(':lib-ui')
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     /*third*/
     api Deps.GitHub.retrofit
     api Deps.GitHub.retrofit_converter_gson

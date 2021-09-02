@@ -7,11 +7,11 @@
 
         <variable
             name="viewModel"
-            type="com.haodong.kotlinmvvmdemo.ui.login.LoginViewModel" />
+            type="io.github.haodongling.kotlinmvvmdemo.ui.login.LoginViewModel" />
 
         <variable
             name="title"
-            type="com.haodong.kotlinmvvmdemo.model.bean.Title" />
+            type="io.github.haodongling.kotlinmvvmdemo.model.bean.Title" />
     </data>
 
 

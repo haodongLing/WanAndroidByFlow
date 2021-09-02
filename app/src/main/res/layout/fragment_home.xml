@@ -14,7 +14,7 @@
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.haodong.lib.common.widget.CustomCoordinatorLayout
+            <io.github.haodongling.lib.common.widget.CustomCoordinatorLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -74,7 +74,7 @@
                                     android:layout_height="wrap_content"/>
                             </FrameLayout>
                         </Toolbar>
-                    </com.google.android.material.appbar.FixedCollapsingToolbarLayout>
+                    </com.google.android.material.appbar.FixedCollapsingToolbarLayout>>
 
                 </com.google.android.material.appbar.AppBarLayout>
                 <androidx.recyclerview.widget.RecyclerView
@@ -86,7 +86,7 @@
                     android:background="#f5f5f5"/>
 
 
-            </com.haodong.lib.common.widget.CustomCoordinatorLayout>
+            </io.github.haodongling.lib.common.widget.CustomCoordinatorLayout>
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

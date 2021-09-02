@@ -6,27 +6,27 @@
     app:startDestination="@id/nav_home">
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.haodong.kotlinmvvmdemo.ui.home.HomeFragment"
+        android:name="io.github.haodongling.kotlinmvvmdemo.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
     </fragment>
     <fragment
         android:id="@+id/nav_sofa"
-        android:name="com.haodong.kotlinmvvmdemo.ui.sofa.SofaFragment"
+        android:name="io.github.haodongling.kotlinmvvmdemo.ui.sofa.SofaFragment"
         android:label="SofaFragment"
         tools:layout="@layout/fragment_sofa">
 
     </fragment>
     <fragment
         android:id="@+id/nav_publish"
-        android:name="com.haodong.kotlinmvvmdemo.ui.publish.PublishFragment"
+        android:name="io.github.haodongling.kotlinmvvmdemo.ui.publish.PublishFragment"
         android:label="PublishFragment"
         tools:layout="@layout/fragment_publish">
 
     </fragment>
     <fragment
         android:id="@+id/nav_find"
-        android:name="com.haodong.kotlinmvvmdemo.ui.knowledge.KnowledgeNavFragment"
+        android:name="io.github.haodongling.kotlinmvvmdemo.ui.knowledge.KnowledgeNavFragment"
         android:label="FindFragment"
         tools:layout="@layout/fragment_knowledge">
 
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/nav_mine"
-        android:name="com.haodong.kotlinmvvmdemo.ui.mine.MineFragment"
+        android:name="io.github.haodongling.kotlinmvvmdemo.ui.mine.MineFragment"
         android:label="MineFragment"
         tools:layout="@layout/fragment_mine">
 

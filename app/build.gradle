@@ -1,5 +1,4 @@
-import com.haodong.dependencies.Deps
-import com.haodong.dependencies.Versions
+import io.github.haodongling.dependencies.*
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -12,7 +11,7 @@ android {
     buildToolsVersion Versions.buildTools
 
     defaultConfig {
-        applicationId "com.haodong.kotlinmvvmdemo"
+        applicationId "io.github.haodongling.kotlinmvvmdemo"
         minSdkVersion Versions.minSdk
         targetSdkVersion Versions.targetSdk
         versionCode Versions.versionCode

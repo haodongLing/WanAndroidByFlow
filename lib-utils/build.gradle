@@ -1,4 +1,4 @@
-import com.haodong.dependencies.*
+import io.github.haodongling.dependencies.*
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
