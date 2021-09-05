@@ -56,4 +56,13 @@
     <item name="itemTextColor">@color/mtrl_navigation_bar_item_tint</item>
     <item name="itemRippleColor">@color/mtrl_navigation_bar_ripple_color</item>
     </style>
+    <style name="StateView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="msv_animateViewChanges">false</item>
+        <item name="msv_emptyView">@layout/layout_state_empty</item>
+        <item name="msv_errorView">@layout/layout_state_error</item>
+        <item name="msv_loadingView">@layout/layout_state_loading</item>
+        <item name="msv_viewState">content</item>
+    </style>
 </resources>

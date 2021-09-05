@@ -11,10 +11,10 @@
         android:icon="@drawable/ic_bottom_bar_ques"
         android:title="@string/sofa" />
 
-    <item
-        android:id="@+id/nav_publish"
-        android:icon="@drawable/icon_tab_publish"
-        android:title="" />
+<!--    <item-->
+<!--        android:id="@+id/nav_publish"-->
+<!--        android:icon="@drawable/icon_tab_publish"-->
+<!--        android:title="" />-->
 
     <item
         android:id="@+id/nav_find"

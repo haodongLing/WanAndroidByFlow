@@ -15,13 +15,17 @@ interface WanService {
 
     @GET("/banner/json")
     suspend fun getBanner(): WanResponse<List<Banner>>
-
+    /**
+     * 体系数据
+     */
     @GET("/tree/json")
     suspend fun getSystemType(): WanResponse<List<SystemParent>>
 
     @GET("/article/list/{page}/json")
     suspend fun getSystemTypeDetail(@Path("page") page: Int, @Query("cid") cid: Int): WanResponse<ArticleList>
-
+    /**
+     * 搜索热词
+     */
     @GET("/navi/json")
     suspend fun getNavigation(): WanResponse<List<Navigation>>
 

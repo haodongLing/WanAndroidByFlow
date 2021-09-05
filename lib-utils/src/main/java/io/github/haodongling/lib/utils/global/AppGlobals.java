@@ -1,4 +1,4 @@
-package io.github.haodongling.lib.utils;
+package io.github.haodongling.lib.utils.global;
 
 import android.app.Application;
 

@@ -1,10 +1,11 @@
-package io.github.haodongling.kotlinmvvmdemo.model.repository
+package io.github.haodongling.kotlinmvvmdemo.ui.home
 
 import io.github.haodongling.lib.common.core.BaseViewModel
 import io.github.haodongling.lib.common.model.DTOResult
 import io.github.haodongling.lib.common.model.bean.ArticleList
 import io.github.haodongling.lib.common.model.bean.Banner
 import com.kunminx.architecture.ui.callback.UnPeekLiveData
+import io.github.haodongling.kotlinmvvmdemo.model.repository.HomeRepository
 import kotlinx.coroutines.flow.collect
 
 /**

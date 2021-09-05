@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import io.github.haodongling.kotlinmvvmdemo.R
 import io.github.haodongling.kotlinmvvmdemo.databinding.FragmentHomeBinding
-import io.github.haodongling.kotlinmvvmdemo.model.repository.HomeViewModel
 import io.github.haodongling.kotlinmvvmdemo.widget.GlideImageLoader
 import io.github.haodongling.lib.common.core.BaseVMFragment
 import io.github.haodongling.lib.common.model.DTOResult

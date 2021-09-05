@@ -1,7 +1,7 @@
 package io.github.haodongling.lib.ui.decoration
 
 import io.github.haodongling.lib.ui.R
-import io.github.haodongling.lib.utils.AppGlobals
+import io.github.haodongling.lib.utils.global.AppGlobals
 
 /**
  * Author: tangyuan
