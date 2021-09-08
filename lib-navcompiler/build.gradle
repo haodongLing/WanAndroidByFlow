@@ -1,0 +1,22 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':lib-navannotation')
+    implementation 'com.alibaba:fastjson:1.2.59'
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
+    implementation 'com.google.code.gson:gson:2.8.8'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+// java控制台输出中文乱码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}

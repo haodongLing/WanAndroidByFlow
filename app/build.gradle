@@ -45,7 +45,7 @@ kapt {
     }
 }
 dependencies {
-
+    kapt project(':lib-navcompiler')
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
@@ -53,8 +53,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation project(':lib-common')
-
     kapt Deps.GitHub.arouter_compiler
+
 
     debugApi "io.github.didi.dokit:dokitx:${Versions.dokit}"
     //文件同步模块

@@ -14,4 +14,8 @@ object BizConst {
     const val MAIN = "/app/main"
     /*启动页*/
     const val SPLASH="/app/splash"
+    const val FRAGMENT_SOFA="main/tabs/sofa"
+    const val FRAGMENT_HOME="main/tabs/home"
+    const val FRAGMENT_MINE="main/tabs/mine"
+    const val FRAGMENT_KNOWLEDGE_NAV="main/tabs/knowledgeNav"
 }

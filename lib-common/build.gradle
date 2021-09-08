@@ -51,6 +51,7 @@ dependencies {
     api project(':lib-utils')
     api project(':lib-task-launcher')
     api project(':lib-ui')
+    api project(':lib-navannotation')
 
     /*third*/
     api Deps.GitHub.retrofit
@@ -79,6 +80,7 @@ dependencies {
     api Deps.GitHub.revealLayout
     api Deps.GitHub.heartView
     api Deps.GitHub.blurred
+    api Deps.GitHub.fastJson
 
     /*kotlin*/
     api Deps.Kotlin.core_ktx

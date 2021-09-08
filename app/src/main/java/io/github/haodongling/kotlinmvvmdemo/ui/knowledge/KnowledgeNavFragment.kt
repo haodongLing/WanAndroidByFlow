@@ -7,6 +7,8 @@ import io.github.haodongling.kotlinmvvmdemo.R
 import io.github.haodongling.kotlinmvvmdemo.databinding.FragmentKnowledgeBinding
 import io.github.haodongling.kotlinmvvmdemo.databinding.FragmentKnowledgeNavBinding
 import io.github.haodongling.lib.common.core.BaseVMFragment
+import io.github.haodongling.lib.common.global.BizConst
+import io.github.haodongling.lib.navannotation.FragmentDestination
 import kotlinx.android.synthetic.main.fragment_knowledge_nav.*
 
 /**
@@ -14,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_knowledge_nav.*
  * Time : 2021/8/16
  * Description:
  */
+@FragmentDestination(pageUrl =BizConst.FRAGMENT_KNOWLEDGE_NAV, asStarter = false)
 class KnowledgeNavFragment : BaseVMFragment<FragmentKnowledgeNavBinding>(R.layout.fragment_knowledge_nav) {
     private val titleList = arrayOf("体系", "导航")
     private val fragmentList = arrayListOf<Fragment>()

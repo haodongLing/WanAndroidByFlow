@@ -1,0 +1,36 @@
+{
+  "activeColor": "#4282f4",
+  "inActiveColor": "#99000000",
+  "selectTab": 0,
+  "tabs": [
+    {
+      "size": 24,
+      "enable": true,
+      "index": 0,
+      "pageUrl": "main/tabs/home",
+      "title": "首页"
+    },
+    {
+      "size": 24,
+      "enable": true,
+      "index": 1,
+      "pageUrl": "main/tabs/sofa",
+      "title": "问答"
+    },
+
+    {
+      "size": 24,
+      "enable": true,
+      "index": 2,
+      "pageUrl":"main/tabs/knowledgeNav",
+      "title": "体系"
+    },
+    {
+      "size": 24,
+      "enable": true,
+      "index": 3,
+      "pageUrl":"main/tabs/mine",
+      "title": "我的"
+    }
+  ]
+}

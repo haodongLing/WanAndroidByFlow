@@ -59,6 +59,7 @@ object Versions {
     const val blurred = "1.3.0"
     const val ponyo = "1.0.0"
     const val StatusBarCompat="2.3.3"
+    const val fastJson="1.2.59";
 }
 
 object Deps {
@@ -139,6 +140,7 @@ object Deps {
         const val ponyoLog = "per.goweii.ponyo:ponyo-log:${Versions.ponyo}"
         const val ponyoCrash = "per.goweii.ponyo:ponyo-crash:${Versions.ponyo}"
         const val StatusBarCompat="com.github.niorgai:StatusBarCompat:${Versions.StatusBarCompat}"
+        const val fastJson="com.alibaba:fastjson:${Versions.fastJson}"
     }
 
     object SDK {

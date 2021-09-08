@@ -10,12 +10,15 @@ import io.github.haodongling.lib.common.core.BaseVMFragment
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
+import io.github.haodongling.lib.common.global.BizConst
+import io.github.haodongling.lib.navannotation.FragmentDestination
 
 /**
  * Author: tangyuan
  * Time : 2021/8/16
  * Description:
  */
+@FragmentDestination(pageUrl = BizConst.FRAGMENT_SOFA, asStarter = false)
 class SofaFragment : BaseVMFragment<FragmentSofaBinding>(R.layout.fragment_sofa), OnRefreshListener,
     OnLoadMoreListener {
     var currentPage = 0;

@@ -22,4 +22,7 @@
         <attr name="ccbv_color4" format="color" />
         <attr name="ccbv_color5" format="color" />
     </declare-styleable>
+    <declare-styleable name="AppBottomNav">
+        <attr name="abn_icons" format="reference"/>
+    </declare-styleable>
 </resources>

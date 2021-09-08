@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="bottom_icons">
+        <item >@drawable/ic_bottom_bar_home</item>
+        <item >@drawable/ic_bottom_bar_ques</item>
+        <item >@drawable/ic_bottom_bar_navi</item>
+        <item >@drawable/ic_bottom_bar_mine</item>
+    </integer-array>
+</resources>

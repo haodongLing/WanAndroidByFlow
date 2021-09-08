@@ -11,6 +11,8 @@ import io.github.haodongling.lib.common.model.DTOResult
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
+import io.github.haodongling.lib.common.global.BizConst
+import io.github.haodongling.lib.navannotation.FragmentDestination
 import io.github.haodongling.lib.utils.UIUtils
 import kotlin.math.abs
 
@@ -19,6 +21,7 @@ import kotlin.math.abs
  * Time : 2021/8/16
  * Description:
  */
+@FragmentDestination(pageUrl =BizConst.FRAGMENT_HOME, asStarter = true)
 class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home), OnRefreshListener,
     OnLoadMoreListener {
     var currentPage: Int = 0
