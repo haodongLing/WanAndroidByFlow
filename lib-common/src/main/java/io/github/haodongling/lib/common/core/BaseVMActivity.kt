@@ -2,6 +2,7 @@ package io.github.haodongling.lib.common.core
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -15,7 +16,7 @@ import qiu.niorgai.StatusBarCompat
  * Time : 2021/8/14
  * Description:
  */
- abstract class BaseVMActivity<T:ViewDataBinding> :AppCompatActivity() {
+ abstract class BaseVMActivity<T:ViewDataBinding>(@LayoutRes val contentLayoutId:Int) :AppCompatActivity(contentLayoutId) {
 
     lateinit var  mBinding: T
     val mActivityProvider: ViewModelProvider by lazy{
@@ -44,7 +45,7 @@ import qiu.niorgai.StatusBarCompat
     override fun onCreate(savedInstanceState: Bundle?) {
         initBefore()
         super.onCreate(savedInstanceState)
-        mBinding=  DataBindingUtil.setContentView<T>(this, getLayoutId()).apply {
+        mBinding=  DataBindingUtil.setContentView<T>(this, contentLayoutId).apply {
             lifecycleOwner = this@BaseVMActivity
         }
         setStatusBar()
@@ -55,7 +56,6 @@ import qiu.niorgai.StatusBarCompat
     }
    open fun initBefore(){}
 
-    abstract fun getLayoutId():Int
     abstract fun setVariable()
     abstract fun initView()
     abstract fun initData()

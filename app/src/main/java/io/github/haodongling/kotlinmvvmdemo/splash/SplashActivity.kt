@@ -17,10 +17,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
  * Description:
  */
 @Route(path =BizConst.SPLASH )
-class SplashActivity : BaseVMActivity<ActivitySplashBinding>() {
-    override fun getLayoutId(): Int {
-        return R.layout.activity_splash
-    }
+class SplashActivity : BaseVMActivity<ActivitySplashBinding>(R.layout.activity_splash) {
 
     override fun initData() {
     }

@@ -124,11 +124,10 @@ public class NavProcessor extends AbstractProcessor {
             //TypeElement是Element的一种。
             //如果我们的注解标记在了类名上。所以可以直接强转一下。使用它得到全类名
             TypeElement typeElement = (TypeElement) element;
-            //全类名com.mooc.ppjoke.home
             String clazName = typeElement.getQualifiedName().toString();
             //页面的id.此处不能重复,使用页面的类名做hascode即可
             int id = Math.abs(clazName.hashCode());
-            //页面的pageUrl相当于隐士跳转意图中的host://schem/path格式
+            //页面的pageUrl相当于隐士跳转意图中的host://scheme/path格式
             String pageUrl = null;
             //是否需要登录
             boolean needLogin = false;

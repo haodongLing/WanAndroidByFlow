@@ -16,6 +16,7 @@ import io.github.haodongling.lib.common.global.BizConst
 import io.github.haodongling.lib.common.model.bean.Destination
 import io.github.haodongling.lib.common.util.AppConfig
 import io.github.haodongling.lib.common.util.NavGraphBuilder
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 /**
@@ -24,7 +25,7 @@ import java.util.*
  * Description:
  */
 @Route(path = BizConst.MAIN)
-class MainActivity : BaseVMActivity<ActivityMainBinding>(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseVMActivity<ActivityMainBinding>( R.layout.activity_main), BottomNavigationView.OnNavigationItemSelectedListener {
     lateinit var navController: NavController;
 
     override fun initData() {
@@ -36,6 +37,7 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>(), BottomNavigationView
             val navHostFragment: NavHostFragment =
                 supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
              navController= navHostFragment.findNavController();
+//            navController.handleDeepLink()
             NavGraphBuilder.build(
                 this@MainActivity,
                 navHostFragment.childFragmentManager,
@@ -63,8 +65,15 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>(), BottomNavigationView
         return findNavController(this, R.id.nav_host_fragment).navigateUp()
     }
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_main
+    override fun onBackPressed() {
+//        super.onBackPressed()
+        val currentPageId:Int=navController.currentDestination?.id?:-1;
+        val homeDestId=navController.graph.startDestination
+        if (currentPageId!=homeDestId){
+            navView.selectedItemId=homeDestId
+            return
+        }
+        finish()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
