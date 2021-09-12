@@ -25,7 +25,7 @@ import java.util.*
  * Description:
  */
 @Route(path = BizConst.MAIN)
-class MainActivity : BaseVMActivity<ActivityMainBinding>( R.layout.activity_main), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseVMActivity<ActivityMainBinding>( ), BottomNavigationView.OnNavigationItemSelectedListener {
     lateinit var navController: NavController;
 
     override fun initData() {
@@ -87,6 +87,10 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>( R.layout.activity_main
         }
         navController.navigate(item.itemId)
         return !TextUtils.isEmpty(item.title)
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
     }
 
 

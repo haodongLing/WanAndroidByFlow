@@ -17,7 +17,7 @@ import io.github.haodongling.lib.common.util.FFLog
  * Description:
  */
 @Route(path = BizConst.LOGIN)
-class LoginActivity : BaseVMActivity<ActivityLoginBinding>(R.layout.activity_login) {
+class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
 
     val loginViewModel by lazy {
         getActivityScopeViewModel(LoginViewModel::class.java)
@@ -75,6 +75,10 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding>(R.layout.activity_log
 
     private fun dismissProgressDialog() {
         progressDialog?.dismiss()
+    }
+
+    override fun getLayoutId(): Int {
+       return R.layout.activity_login
     }
 
 

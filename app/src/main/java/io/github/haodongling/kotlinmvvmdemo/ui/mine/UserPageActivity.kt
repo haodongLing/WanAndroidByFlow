@@ -9,7 +9,7 @@ import io.github.haodongling.lib.common.core.BaseVMActivity
  * Time : 2021/9/10
  * Description:
  */
-class UserPageActivity : BaseVMActivity<ActivityUserpageBinding>(R.layout.activity_userpage) {
+class UserPageActivity : BaseVMActivity<ActivityUserpageBinding>() {
     override fun setVariable() {
     }
 
@@ -20,5 +20,9 @@ class UserPageActivity : BaseVMActivity<ActivityUserpageBinding>(R.layout.activi
     }
 
     override fun startObserve() {
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_userpage
     }
 }

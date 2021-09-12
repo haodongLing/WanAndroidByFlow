@@ -9,7 +9,7 @@ import io.github.haodongling.lib.common.core.BaseVMActivity
  * Time : 2021/9/10
  * Description:
  */
-class ArticleActivity  : BaseVMActivity<ActivityArticleBinding>(R.layout.activity_article){
+class ArticleActivity  : BaseVMActivity<ActivityArticleBinding>(){
     override fun setVariable() {
     }
 
@@ -20,5 +20,9 @@ class ArticleActivity  : BaseVMActivity<ActivityArticleBinding>(R.layout.activit
     }
 
     override fun startObserve() {
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_article
     }
 }

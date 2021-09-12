@@ -16,7 +16,7 @@ import qiu.niorgai.StatusBarCompat
  * Time : 2021/8/14
  * Description:
  */
- abstract class BaseVMActivity<T:ViewDataBinding>(@LayoutRes val contentLayoutId:Int) :AppCompatActivity(contentLayoutId) {
+ abstract class BaseVMActivity<T:ViewDataBinding> :AppCompatActivity() {
 
     lateinit var  mBinding: T
     val mActivityProvider: ViewModelProvider by lazy{
@@ -45,7 +45,7 @@ import qiu.niorgai.StatusBarCompat
     override fun onCreate(savedInstanceState: Bundle?) {
         initBefore()
         super.onCreate(savedInstanceState)
-        mBinding=  DataBindingUtil.setContentView<T>(this, contentLayoutId).apply {
+        mBinding=  DataBindingUtil.setContentView<T>(this, getLayoutId()).apply {
             lifecycleOwner = this@BaseVMActivity
         }
         setStatusBar()
@@ -56,6 +56,7 @@ import qiu.niorgai.StatusBarCompat
     }
    open fun initBefore(){}
 
+    abstract fun getLayoutId():Int
     abstract fun setVariable()
     abstract fun initView()
     abstract fun initData()
