@@ -37,6 +37,7 @@
             android:id="@+id/navView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.BottomNavigationView"
             app:abn_icons="@array/bottom_icons"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"/>

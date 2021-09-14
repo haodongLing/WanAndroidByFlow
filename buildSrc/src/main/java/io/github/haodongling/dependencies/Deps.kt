@@ -60,6 +60,9 @@ object Versions {
     const val ponyo = "1.0.0"
     const val StatusBarCompat="2.3.3"
     const val fastJson="1.2.59";
+    const val ycWebView="1.4.0" // 1.4.0 添加阿里https+dns解析版本 1.2.4普通版本
+    const val shadowLayout="3.2.3"
+    const val materialprogressbar="1.6.1"
 }
 
 object Deps {
@@ -141,6 +144,9 @@ object Deps {
         const val ponyoCrash = "per.goweii.ponyo:ponyo-crash:${Versions.ponyo}"
         const val StatusBarCompat="com.github.niorgai:StatusBarCompat:${Versions.StatusBarCompat}"
         const val fastJson="com.alibaba:fastjson:${Versions.fastJson}"
+        const val ycWebView="cn.yc:WebViewLib:${Versions.ycWebView}"
+        const val shadowLayout="com.github.lihangleo2:ShadowLayout:${Versions.shadowLayout}"
+        const val materialprogressbar="me.zhanghai.android.materialprogressbar:library:${Versions.materialprogressbar}"
     }
 
     object SDK {

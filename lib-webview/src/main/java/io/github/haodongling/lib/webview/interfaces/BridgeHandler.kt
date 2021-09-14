@@ -6,5 +6,5 @@ package io.github.haodongling.lib.webview.interfaces
  * Description:
  */
 interface BridgeHandler {
-    fun handler(data: String, function: CallBackFunction)
+    fun handler(data: String, function: CallBackFunction?=null)
 }

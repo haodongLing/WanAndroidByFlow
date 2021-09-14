@@ -6,7 +6,13 @@ package io.github.haodongling.lib.webview.ext
  * Description:
  */
 class StringExt {
-
-
-
+    fun String.isHtml(str: String): Boolean {
+        if (str.isNullOrEmpty()) {
+            return false
+        }
+        if (str.toLowerCase().contains("html") || str.toLowerCase().contains("htm")) {
+            return true
+        }
+        return false
+    }
 }

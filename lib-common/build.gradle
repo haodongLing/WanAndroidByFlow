@@ -81,6 +81,9 @@ dependencies {
     api Deps.GitHub.heartView
     api Deps.GitHub.blurred
     api Deps.GitHub.fastJson
+    api Deps.GitHub.ycWebView
+    api Deps.GitHub.shadowLayout
+    api Deps.GitHub.materialprogressbar
 
     /*kotlin*/
     api Deps.Kotlin.core_ktx
@@ -105,7 +108,7 @@ dependencies {
     api Deps.AndroidX.koin_androidx_viewmodel
     api Deps.AndroidX.material
 
-    api Deps.SDK.TencentTBSX5
+//    api Deps.SDK.TencentTBSX5
 
     // After AndroidX
     api (Deps.GitHub.StatusBarCompat, {
