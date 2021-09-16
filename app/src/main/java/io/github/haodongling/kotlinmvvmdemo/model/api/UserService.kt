@@ -2,10 +2,8 @@ package io.github.haodongling.kotlinmvvmdemo.model.api
 
 import io.github.haodongling.lib.common.model.bean.User
 import io.github.haodongling.lib.common.model.WanResponse
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import io.reactivex.Observable
+import retrofit2.http.*
 
 /**
  * Author: tangyuan

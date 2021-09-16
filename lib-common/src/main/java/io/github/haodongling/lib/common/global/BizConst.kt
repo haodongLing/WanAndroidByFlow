@@ -19,5 +19,7 @@ object BizConst {
     const val FRAGMENT_MINE="main/tabs/mine"
     const val FRAGMENT_KNOWLEDGE_NAV="main/tabs/knowledgeNav"
     /*文章详情页*/
-    const val ACTIVITY_ARTICLE="app/article"
+    const val ACTIVITY_ARTICLE="/app/article"
+    /*用户详情页*/
+    const val ACTIVITY_USERPAGE="/app/userpage"
 }

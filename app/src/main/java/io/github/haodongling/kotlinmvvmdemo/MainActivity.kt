@@ -16,6 +16,7 @@ import io.github.haodongling.lib.common.global.BizConst
 import io.github.haodongling.lib.common.model.bean.Destination
 import io.github.haodongling.lib.common.util.AppConfig
 import io.github.haodongling.lib.common.util.NavGraphBuilder
+import io.github.haodongling.lib.common.util.PreferenceUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -25,7 +26,7 @@ import java.util.*
  * Description:
  */
 @Route(path = BizConst.MAIN)
-class MainActivity : BaseVMActivity<ActivityMainBinding>( ), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseVMActivity<ActivityMainBinding>(), BottomNavigationView.OnNavigationItemSelectedListener {
     lateinit var navController: NavController;
 
     override fun initData() {
@@ -36,7 +37,7 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>( ), BottomNavigationVie
         mBinding.run {
             val navHostFragment: NavHostFragment =
                 supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-             navController= navHostFragment.findNavController();
+            navController = navHostFragment.findNavController();
 //            navController.handleDeepLink()
             NavGraphBuilder.build(
                 this@MainActivity,
@@ -67,10 +68,10 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>( ), BottomNavigationVie
 
     override fun onBackPressed() {
 //        super.onBackPressed()
-        val currentPageId:Int=navController.currentDestination?.id?:-1;
-        val homeDestId=navController.graph.startDestination
-        if (currentPageId!=homeDestId){
-            navView.selectedItemId=homeDestId
+        val currentPageId: Int = navController.currentDestination?.id ?: -1;
+        val homeDestId = navController.graph.startDestination
+        if (currentPageId != homeDestId) {
+            navView.selectedItemId = homeDestId
             return
         }
         finish()
@@ -83,7 +84,14 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>( ), BottomNavigationVie
         while (iterator.hasNext()) {
             val entry: Map.Entry<String, Destination> = iterator.next()
             val value: Destination = entry.value
-
+            if (value != null && !(PreferenceUtil(
+                    PreferenceUtil.IS_LOGIN,
+                    false
+                ) as Boolean) && value.needLogin && value.id == item.getItemId()
+            ) {
+                ARouter.getInstance().build(BizConst.LOGIN).navigation(this@MainActivity)
+                return false
+            }
         }
         navController.navigate(item.itemId)
         return !TextUtils.isEmpty(item.title)

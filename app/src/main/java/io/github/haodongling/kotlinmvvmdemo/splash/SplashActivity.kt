@@ -6,8 +6,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import io.github.haodongling.kotlinmvvmdemo.R
 import io.github.haodongling.kotlinmvvmdemo.databinding.ActivitySplashBinding
+import io.github.haodongling.lib.common.App
 import io.github.haodongling.lib.common.core.BaseVMActivity
 import io.github.haodongling.lib.common.global.BizConst
+import io.github.haodongling.lib.common.model.bean.User
 import io.github.haodongling.lib.common.util.PreferenceUtil
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -36,6 +38,7 @@ class SplashActivity : BaseVMActivity<ActivitySplashBinding>() {
                     if (isLogin) {
                         io.github.haodongling.lib.common.util.FFLog.i("uri.parse-->"+Uri.parse("haodong:mvvm/demo/main"))
 //                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                        App.CURRENT_USER=PreferenceUtil(PreferenceUtil.USER_GSON,"") as User
 
                         ARouter.getInstance().build(BizConst.MAIN).navigation(this@SplashActivity)
                     } else {

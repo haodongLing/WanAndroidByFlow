@@ -19,26 +19,26 @@ import io.github.haodongling.lib.common.global.BizConst
  * Description:
  */
 @Route(path = BizConst.ACTIVITY_ARTICLE)
-class ArticleActivity  : BaseVMActivity<ActivityArticleBinding>(), View.OnClickListener{
-    @Autowired(name="url")
+class ArticleActivity : BaseVMActivity<ActivityArticleBinding>(), View.OnClickListener {
+    @Autowired(name = "url")
     @JvmField
-    var url:String?=null
+    var url: String? = ""
+
+    @Autowired
+    @JvmField
+    var articleId: Int? = 0
+
+    @Autowired
+    @JvmField
+    var collected: Boolean = false
+
+    //    @Autowired
+//    @JvmField
+//    var user_name:String?=null
 //    @Autowired
 //    @JvmField
-//    var title:String?=null
-    @Autowired
-    @JvmField
-    var articleId:String?=null
-    @Autowired
-    @JvmField
-    var collected:String?=null
-    @Autowired
-    @JvmField
-    var user_name:String?=null
-    @Autowired
-    @JvmField
-    var user_id:String?=null
-    var hide=false
+//    var user_id:String?=null
+    var hide = false
 
 
     override fun setVariable() {
@@ -47,8 +47,8 @@ class ArticleActivity  : BaseVMActivity<ActivityArticleBinding>(), View.OnClickL
 
     override fun initView() {
         ARouter.getInstance().inject(this)
-        mBinding.pb.max=100
-        val interWebListener=object : InterWebListener{
+        mBinding.pb.max = 100
+        val interWebListener = object : InterWebListener {
             override fun hindProgressBar() {
             }
 
@@ -56,18 +56,19 @@ class ArticleActivity  : BaseVMActivity<ActivityArticleBinding>(), View.OnClickL
             }
 
             override fun startProgress(newProgress: Int) {
-                mBinding.pb.progress=newProgress
+                mBinding.pb.progress = newProgress
             }
 
             override fun showTitle(title: String?) {
             }
 
         }
-        mBinding.let { it->
+        mBinding.let { it ->
             url?.let {
                 mBinding.webview.loadUrl(url)
             }
             it.webview.x5WebChromeClient.setWebListener(interWebListener)
+            it.slBack.setOnClickListener(this@ArticleActivity)
         }
         if (!X5WebUtils.isConnected(this)) {
             ToastUtils.showRoundRectToast("请先连接上网络")
@@ -98,6 +99,7 @@ class ArticleActivity  : BaseVMActivity<ActivityArticleBinding>(), View.OnClickL
     override fun getLayoutId(): Int {
         return R.layout.activity_article
     }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (event.keyCode ==
             KeyEvent.KEYCODE_BACK && event.repeatCount == 0
@@ -111,7 +113,12 @@ class ArticleActivity  : BaseVMActivity<ActivityArticleBinding>(), View.OnClickL
     }
 
     override fun onClick(p0: View?) {
+        p0?.let {
+            when (p0.id) {
+                R.id.sl_back -> onBackPressed()
 
+            }
+        }
     }
 
 }

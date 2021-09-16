@@ -63,6 +63,8 @@ object Versions {
     const val ycWebView="1.4.0" // 1.4.0 添加阿里https+dns解析版本 1.2.4普通版本
     const val shadowLayout="3.2.3"
     const val materialprogressbar="1.6.1"
+    const val room_version="2.3.0"
+
 }
 
 object Deps {
@@ -89,6 +91,9 @@ object Deps {
         const val koin_androidx_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
         const val cardView = "androidx.cardview:cardview:${Versions.cardView}"
         const val preferences = "androidx.preference:preference:${Versions.preference}"
+        const val room_runtime="androidx.room:room-runtime:${Versions.room_version}"
+        const val room_compiler="androidx.room:room-compiler:${Versions.room_version}"
+        const val room_ktx="androidx.room:room-ktx:${Versions.room_version}"
 
 
     }

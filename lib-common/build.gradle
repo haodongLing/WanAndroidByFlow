@@ -38,6 +38,7 @@ android {
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", "common")
+        arg("room.incremental", "true")
 //        arg("AROUTER_GENERATE_DOC", "enable")
     }
 }
@@ -108,6 +109,10 @@ dependencies {
     api Deps.AndroidX.koin_androidx_viewmodel
     api Deps.AndroidX.material
 
+    //room数据库
+    api Deps.AndroidX.room_runtime
+    kapt Deps.AndroidX.room_compiler
+    api Deps.AndroidX.room_ktx
 //    api Deps.SDK.TencentTBSX5
 
     // After AndroidX

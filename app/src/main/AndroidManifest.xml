@@ -32,6 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.article.ArticleActivity" />
+        <activity android:name=".ui.mine.UserPageActivity" />
 
         <!-- 屏幕适配基准DP -->
         <meta-data

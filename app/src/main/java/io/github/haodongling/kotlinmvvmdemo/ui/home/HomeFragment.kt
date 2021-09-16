@@ -2,6 +2,9 @@ package io.github.haodongling.kotlinmvvmdemo.ui.home
 
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.Postcard
+import com.alibaba.android.arouter.facade.callback.NavCallback
+import com.alibaba.android.arouter.launcher.ARouter
 import com.google.android.material.appbar.AppBarLayout
 import io.github.haodongling.kotlinmvvmdemo.R
 import io.github.haodongling.kotlinmvvmdemo.databinding.FragmentHomeBinding
@@ -12,6 +15,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import io.github.haodongling.lib.common.global.BizConst
+import io.github.haodongling.lib.common.model.bean.Article
+import io.github.haodongling.lib.common.util.FFLog
 import io.github.haodongling.lib.navannotation.FragmentDestination
 import io.github.haodongling.lib.utils.UIUtils
 import kotlin.math.abs
@@ -21,7 +26,7 @@ import kotlin.math.abs
  * Time : 2021/8/16
  * Description:
  */
-@FragmentDestination(pageUrl =BizConst.FRAGMENT_HOME, asStarter = true)
+@FragmentDestination(pageUrl = BizConst.FRAGMENT_HOME, asStarter = true)
 class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home), OnRefreshListener,
     OnLoadMoreListener {
     var currentPage: Int = 0
@@ -43,9 +48,17 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
         homeAdapter.addChildClickViewIds(R.id.tv_chapter_name, R.id.tv_author, R.id.cv_collect)
         homeAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-                val article = adapter.data.get(position)
+                val article = adapter.data.get(position) as Article
+                ARouter.getInstance().build(BizConst.ACTIVITY_ARTICLE)
+                    .withString("url", article.link)
+                    .withInt("articleId", article.id)
+                    .withBoolean("collected", article.collect)
+                    .navigation(mContext, object : NavCallback() {
+                        override fun onArrival(postcard: Postcard?) {
+                            FFLog.i()
+                        }
 
-
+                    })
             }
             setOnItemChildClickListener { adapter, view, position ->
                 val article = adapter.data.get(position)
@@ -54,7 +67,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
 
                     }
                     R.id.tv_author -> {
-                            
+
                     }
                     R.id.cv_collect -> {
 
@@ -83,7 +96,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
 //            StatusBarUtil.setTranslucentForImageViewInFragment(mContext,appBarLayout)
             appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
                 lastVerticalOffset = verticalOffset
-                io.github.haodongling.lib.common.util.FFLog.i("verticalOffset-->"+verticalOffset)
+                io.github.haodongling.lib.common.util.FFLog.i("verticalOffset-->" + verticalOffset)
                 if (-verticalOffset > offsetHeight) {
                     layoutToolbar.setBackgroundColor(mContext.resources.getColor(R.color.colorPrimary))
                     if (statusColor != 255) {
@@ -98,8 +111,13 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                     }
 
                     val heightAlpha: Float = Math.abs(totalScrollY * 1.0f / offsetHeight)
-                    io.github.haodongling.lib.common.util.FFLog.i("heightAlpha-->"+heightAlpha)
-                    layoutToolbar.setBackgroundColor(UIUtils.getColorWithAlpha(heightAlpha,mContext.resources.getColor(R.color.colorPrimary)))
+                    io.github.haodongling.lib.common.util.FFLog.i("heightAlpha-->" + heightAlpha)
+                    layoutToolbar.setBackgroundColor(
+                        UIUtils.getColorWithAlpha(
+                            heightAlpha,
+                            mContext.resources.getColor(R.color.colorPrimary)
+                        )
+                    )
                 }
             })
 
