@@ -81,18 +81,14 @@ class MainActivity : BaseVMActivity<ActivityMainBinding>(), BottomNavigationView
         val destConfig: HashMap<String, Destination> = AppConfig.sDestConfig
         val iterator: Iterator<Map.Entry<String, Destination>> = destConfig.entries.iterator()
         //遍历 target destination 是否需要登录拦截
-        while (iterator.hasNext()) {
-            val entry: Map.Entry<String, Destination> = iterator.next()
-            val value: Destination = entry.value
-            if (value != null && !(PreferenceUtil(
-                    PreferenceUtil.IS_LOGIN,
-                    false
-                ) as Boolean) && value.needLogin && value.id == item.getItemId()
-            ) {
-                ARouter.getInstance().build(BizConst.LOGIN).navigation(this@MainActivity)
-                return false
-            }
-        }
+//        while (iterator.hasNext()) {
+//            val entry: Map.Entry<String, Destination> = iterator.next()
+//            val value: Destination = entry.value
+//            if (value != null && !(PreferenceUtil(PreferenceUtil.IS_LOGIN, false) as Boolean) && value.needLogin && value.id == item.getItemId()) {
+//                ARouter.getInstance().build(BizConst.LOGIN).navigation(this@MainActivity)
+//                return false
+//            }
+//        }
         navController.navigate(item.itemId)
         return !TextUtils.isEmpty(item.title)
     }

@@ -15,10 +15,14 @@ import java.util.*
  * Time : 2021/9/6
  * Description:
  */
-class KnowledgeAdapter : BaseQuickAdapter<SystemParent, BaseViewHolder>(layoutResId = R.layout.rv_item_knowledge) {
+class KnowledgeAdapter(onItemClickListener: OnItemClickListener) : BaseQuickAdapter<SystemParent, BaseViewHolder>(layoutResId = R.layout.rv_item_knowledge) {
     val mFlexItemTextViewCaches: Queue<TextView> = LinkedList()
     val  mInflater: LayoutInflater by lazy {
         LayoutInflater.from(context)
+    }
+    val mOnItemClickListener:OnItemClickListener;
+    init {
+        mOnItemClickListener=onItemClickListener
     }
 
     override fun convert(holder: BaseViewHolder, item: SystemParent) {
@@ -28,7 +32,13 @@ class KnowledgeAdapter : BaseQuickAdapter<SystemParent, BaseViewHolder>(layoutRe
             val systemChild = item.children[i];
             val child: TextView = createOrGetCacheFlexItemTextView(fbl)
             child.setText(Html.fromHtml(systemChild.name))
+            child.setOnClickListener {
+                mOnItemClickListener.onClick(item,i)
+            }
             fbl.addView(child)
+        }
+        holder.itemView.setOnClickListener {
+            mOnItemClickListener.onClick(item,0)
         }
 
     }
@@ -49,5 +59,9 @@ class KnowledgeAdapter : BaseQuickAdapter<SystemParent, BaseViewHolder>(layoutRe
 
     private fun createFlexItemTextView(fbl: FlexboxLayout): TextView {
         return (mInflater.inflate(R.layout.rv_item_knowledge_child, fbl, false) as TextView)
+    }
+
+    interface OnItemClickListener {
+        fun onClick(bean:SystemParent, pos: Int)
     }
 }

@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_status"
+            layout="@layout/layout_status_bar" />
+
+        <io.github.haodongling.lib.ui.MultiStateView
+            android:id="@+id/msv"
+            style="@style/StateView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:tabGravity="center"
+                    app:tabIndicatorColor="@color/colorPrimary"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabInlineLabel="true"
+                    app:tabMode="scrollable"
+                    app:tabSelectedTextColor="@color/colorPrimary"
+                    app:tabTextColor="@color/color_333"
+                    app:tabUnboundedRipple="false"></com.google.android.material.tabs.TabLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></androidx.viewpager2.widget.ViewPager2>
+            </LinearLayout>
+        </io.github.haodongling.lib.ui.MultiStateView>
+    </LinearLayout>
 </layout>

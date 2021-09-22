@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class SystemChild(val child: List<SystemChild>,
+data class SystemChild(val child: List<SystemChild>?=null,
                        val courseId: Int,
                        val id: Int,
                        val name: String,

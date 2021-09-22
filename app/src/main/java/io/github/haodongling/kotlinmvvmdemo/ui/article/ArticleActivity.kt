@@ -77,17 +77,17 @@ class ArticleActivity : BaseVMActivity<ActivityArticleBinding>(), View.OnClickLi
 
     override fun onDestroy() {
         super.onDestroy()
-        mBinding?.webview?.destroy()
+        mBinding.webview.destroy()
     }
 
     override fun onResume() {
         super.onResume()
-        mBinding?.webview?.onResume()
+        mBinding.webview.onResume()
     }
 
     override fun onStop() {
         super.onStop()
-        mBinding?.webview?.onStop()
+        mBinding.webview.onStop()
     }
 
     override fun initData() {
