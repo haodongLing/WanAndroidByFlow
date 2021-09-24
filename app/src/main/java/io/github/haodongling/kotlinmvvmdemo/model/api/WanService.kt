@@ -19,7 +19,7 @@ interface WanService {
      * 体系数据
      */
     @GET("/tree/json")
-    suspend fun getSystemType(): WanResponse<List<SystemParent>>
+    suspend fun getSystemType(): WanResponse<List<SystemChild>>
 
     @GET("/article/list/{page}/json")
     suspend fun getSystemTypeDetail(@Path("page") page: Int, @Query("cid") cid: Int): WanResponse<ArticleList>
@@ -30,10 +30,10 @@ interface WanService {
     suspend fun getNavigation(): WanResponse<List<Navigation>>
 
     @GET("/project/tree/json")
-    suspend fun getProjectType(): WanResponse<List<SystemParent>>
+    suspend fun getProjectType(): WanResponse<List<SystemChild>>
 
     @GET("/wxarticle/chapters/json")
-    suspend fun getBlogType(): WanResponse<List<SystemParent>>
+    suspend fun getBlogType(): WanResponse<List<SystemChild>>
 
     @GET("/wxarticle/list/{id}/{page}/json")
     fun getBlogArticle(@Path("id") id: Int, @Path("page") page: Int): WanResponse<ArticleList>

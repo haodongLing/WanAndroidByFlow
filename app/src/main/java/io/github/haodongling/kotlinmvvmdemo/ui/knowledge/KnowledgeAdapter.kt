@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.google.android.flexbox.FlexboxLayout
 import io.github.haodongling.kotlinmvvmdemo.R
+import io.github.haodongling.lib.common.model.bean.SystemChild
 import io.github.haodongling.lib.common.model.bean.SystemParent
 import java.util.*
 
@@ -15,7 +16,7 @@ import java.util.*
  * Time : 2021/9/6
  * Description:
  */
-class KnowledgeAdapter(onItemClickListener: OnItemClickListener) : BaseQuickAdapter<SystemParent, BaseViewHolder>(layoutResId = R.layout.rv_item_knowledge) {
+class KnowledgeAdapter(onItemClickListener: OnItemClickListener) : BaseQuickAdapter<SystemChild, BaseViewHolder>(layoutResId = R.layout.rv_item_knowledge) {
     val mFlexItemTextViewCaches: Queue<TextView> = LinkedList()
     val  mInflater: LayoutInflater by lazy {
         LayoutInflater.from(context)
@@ -25,7 +26,7 @@ class KnowledgeAdapter(onItemClickListener: OnItemClickListener) : BaseQuickAdap
         mOnItemClickListener=onItemClickListener
     }
 
-    override fun convert(holder: BaseViewHolder, item: SystemParent) {
+    override fun convert(holder: BaseViewHolder, item: SystemChild) {
         holder.setText(R.id.tv_name, item.name)
         val fbl: FlexboxLayout = holder.getView(R.id.fbl)
         for (i in item.children.indices) {
@@ -62,6 +63,6 @@ class KnowledgeAdapter(onItemClickListener: OnItemClickListener) : BaseQuickAdap
     }
 
     interface OnItemClickListener {
-        fun onClick(bean:SystemParent, pos: Int)
+        fun onClick(bean:SystemChild, pos: Int)
     }
 }

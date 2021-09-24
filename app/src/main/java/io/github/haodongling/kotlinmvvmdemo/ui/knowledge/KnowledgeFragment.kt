@@ -14,6 +14,7 @@ import io.github.haodongling.kotlinmvvmdemo.databinding.FragmentKnowledgeBinding
 import io.github.haodongling.kotlinmvvmdemo.ui.home.HomeDivider
 import io.github.haodongling.lib.common.core.BaseVMFragment
 import io.github.haodongling.lib.common.global.BizConst
+import io.github.haodongling.lib.common.model.bean.SystemChild
 import io.github.haodongling.lib.common.model.bean.SystemParent
 import io.github.haodongling.lib.common.util.FFLog
 import io.github.haodongling.lib.ui.MultiStateView
@@ -70,12 +71,12 @@ class KnowledgeFragment : BaseVMFragment<FragmentKnowledgeBinding>(R.layout.frag
         viewModel.getSystem()
     }
 
-    override fun onClick(bean: SystemParent, pos: Int) {
+    override fun onClick(bean: SystemChild, pos: Int) {
         ARouter
             .getInstance()
             .build(BizConst.ACTIVITY_KNOWLEDGE_ARTICLE)
             .withInt("curPos", pos)
-            .withParcelable("systemParent", bean)
+            .withParcelable("systemChild", bean)
             .navigation(mContext, object : NavCallback() {
                 override fun onArrival(postcard: Postcard?) {
                     FFLog.i()

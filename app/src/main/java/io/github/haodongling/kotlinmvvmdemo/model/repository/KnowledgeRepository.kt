@@ -3,6 +3,7 @@ package io.github.haodongling.kotlinmvvmdemo.model.repository
 import io.github.haodongling.kotlinmvvmdemo.model.api.RetrofitClient
 import io.github.haodongling.lib.common.core.BaseViewModel
 import io.github.haodongling.lib.common.model.bean.Navigation
+import io.github.haodongling.lib.common.model.bean.SystemChild
 import io.github.haodongling.lib.common.model.bean.SystemParent
 import io.github.haodongling.lib.common.model.doError
 import io.github.haodongling.lib.common.model.doSuccess
@@ -19,7 +20,7 @@ import kotlinx.coroutines.flow.onStart
  * Description: 体系
  */
 class KnowledgeRepository : BaseRepository() {
-    suspend fun getSystemType(isRefresh: Boolean) = flow<BaseViewModel.BaseUiModel<List<SystemParent>>> {
+    suspend fun getSystemType(isRefresh: Boolean) = flow<BaseViewModel.BaseUiModel<List<SystemChild>>> {
         RetrofitClient.wanService.getSystemType()
             .doSuccess {
                 emit(

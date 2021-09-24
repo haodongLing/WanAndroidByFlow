@@ -4,6 +4,7 @@ import com.kunminx.architecture.ui.callback.UnPeekLiveData
 import io.github.haodongling.kotlinmvvmdemo.model.repository.KnowledgeRepository
 import io.github.haodongling.lib.common.core.BaseViewModel
 import io.github.haodongling.lib.common.model.bean.Navigation
+import io.github.haodongling.lib.common.model.bean.SystemChild
 import io.github.haodongling.lib.common.model.bean.SystemParent
 import kotlinx.coroutines.flow.collect
 
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.collect
  */
 class KnowledgeViewModel :BaseViewModel() {
     val repository=KnowledgeRepository()
-    val systemData=UnPeekLiveData<BaseUiModel<List<SystemParent>>>()
+    val systemData=UnPeekLiveData<BaseUiModel<List<SystemChild>>>()
     val navigationData=UnPeekLiveData<BaseUiModel<List<Navigation>>>()
 
     open fun getNavigation(){
