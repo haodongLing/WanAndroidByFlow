@@ -1,9 +1,11 @@
 package io.github.haodongling.lib.common.util
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import io.github.haodongling.lib.common.App
+import io.github.haodongling.lib.utils.global.AppGlobals
 import java.io.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -12,15 +14,16 @@ import kotlin.reflect.KProperty
  * Created by luyao
  * on 2018/1/19 15:50
  */
-class PreferenceUtil<T>(val name: String, private val default: T) : ReadWriteProperty<Any?, T> {
+class Pref<T>(val name: String, private val default: T,val prefName:String="wan_android") : ReadWriteProperty<Any?, T> {
 
     companion object {
         const val IS_LOGIN = "is_login"
         const val USER_GSON = "user_gson"
+        const val PREF_NAME="wan_android";
     }
 
     private val prefs: SharedPreferences by lazy {
-        PreferenceManager.getDefaultSharedPreferences(App.CONTEXT)
+        AppGlobals.getApplication().getSharedPreferences(prefName,Context.MODE_PRIVATE)
     }
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {

@@ -2,7 +2,6 @@ package io.github.haodongling.kotlinmvvmdemo
 
 import android.text.TextUtils
 import android.view.MenuItem
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -16,7 +15,6 @@ import io.github.haodongling.lib.common.global.BizConst
 import io.github.haodongling.lib.common.model.bean.Destination
 import io.github.haodongling.lib.common.util.AppConfig
 import io.github.haodongling.lib.common.util.NavGraphBuilder
-import io.github.haodongling.lib.common.util.PreferenceUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 

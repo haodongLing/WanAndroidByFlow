@@ -8,7 +8,7 @@ import io.github.haodongling.lib.common.App
 import io.github.haodongling.lib.common.model.doError
 import io.github.haodongling.lib.common.model.doSuccess
 import io.github.haodongling.lib.common.model.repository.BaseRepository
-import io.github.haodongling.lib.common.util.PreferenceUtil
+import io.github.haodongling.lib.common.util.Pref
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
@@ -18,8 +18,8 @@ import kotlinx.coroutines.flow.*
  * Description:
  */
 class LoginRepository() : BaseRepository() {
-    private var isLogin by PreferenceUtil(PreferenceUtil.IS_LOGIN, false)
-    private var userJson by PreferenceUtil(PreferenceUtil.USER_GSON, "")
+    private var isLogin by Pref(Pref.IS_LOGIN, false)
+    private var userJson by Pref(Pref.USER_GSON, "")
     suspend fun register(userName: String, password: String) = flow<LoginUiState<User>> {
         if (userName.isNullOrBlank() || password.isNullOrBlank()) {
             emit(LoginUiState(enableLoginButton = false))

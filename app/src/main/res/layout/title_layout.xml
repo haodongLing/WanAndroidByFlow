@@ -14,8 +14,9 @@
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/mToolbar"
+            android:paddingTop="@dimen/action_bar_size"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="76dp"
             android:background="@color/colorPrimary"
             app:titleTextColor="@color/white"
             app:title="@{title.title}" />

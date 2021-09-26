@@ -36,23 +36,22 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
 
     override fun startObserve() {
         loginViewModel.run {
-            uiState.observe(this@LoginActivity,{
-                if (it.isLoading){
+            uiState.observe(this@LoginActivity, {
+                if (it.isLoading) {
                     showProgressDialog()
                 }
                 it.isSuccess?.let {
                     dismissProgressDialog()
-//
-                   FFLog.i("success")
+                    FFLog.i("success")
                     ARouter.getInstance().build(BizConst.MAIN).navigation(this@LoginActivity)
                     finish()
                 }
                 it.isError?.let {
                     dismissProgressDialog()
-                    FFLog.w("error-->"+it)
-                   toast(it)
+                    FFLog.w("error-->" + it)
+                    toast(it)
                 }
-                if (it.needLogin){
+                if (it.needLogin) {
                     loginViewModel.login()
                 }
             })
@@ -66,10 +65,10 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
             title = Title(R.string.login, R.drawable.arrow_back, { onBackPressed() })
         }
     }
+
     private var progressDialog: ProgressDialog? = null
     private fun showProgressDialog() {
-        if (progressDialog == null)
-            progressDialog = ProgressDialog(this)
+        if (progressDialog == null) progressDialog = ProgressDialog(this)
         progressDialog?.show()
     }
 
@@ -78,7 +77,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
     }
 
     override fun getLayoutId(): Int {
-       return R.layout.activity_login
+        return R.layout.activity_login
     }
 
 

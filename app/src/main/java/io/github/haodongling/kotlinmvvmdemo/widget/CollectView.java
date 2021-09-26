@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import io.github.haodongling.kotlinmvvmdemo.R;
-import io.github.haodongling.lib.common.util.PreferenceUtil;
+import io.github.haodongling.lib.common.util.Pref;
 
 import per.goweii.heartview.HeartView;
 import per.goweii.reveallayout.RevealLayout;
@@ -74,8 +74,8 @@ public class CollectView extends RevealLayout {
         setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PreferenceUtil<Boolean> isLogin= new PreferenceUtil<Boolean>(PreferenceUtil.IS_LOGIN, false);
-                if (isLogin.getValue(PreferenceUtil.IS_LOGIN,false)) {
+                Pref<Boolean> isLogin= new Pref<Boolean>(Pref.IS_LOGIN, false,Pref.PREF_NAME);
+                if (isLogin.getValue(Pref.IS_LOGIN,false)) {
                     if (mOnClickListener != null) {
                         mOnClickListener.onClick(CollectView.this);
                     }

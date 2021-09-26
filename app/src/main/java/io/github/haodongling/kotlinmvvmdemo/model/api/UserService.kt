@@ -2,6 +2,7 @@ package io.github.haodongling.kotlinmvvmdemo.model.api
 
 import io.github.haodongling.lib.common.model.bean.User
 import io.github.haodongling.lib.common.model.WanResponse
+import io.github.haodongling.lib.common.model.bean.UserDetail
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -22,4 +23,7 @@ interface UserService {
     @FormUrlEncoded
     @POST("/user/register")
     suspend fun register(@Field("username") userName: String, @Field("password") passWord: String, @Field("repassword") rePassWord: String): WanResponse<User>
+
+    @GET("/user/lg/userinfo/json")
+    suspend fun getUserDetail():WanResponse<UserDetail>
 }
