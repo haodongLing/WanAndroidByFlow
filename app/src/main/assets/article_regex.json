@@ -1,0 +1,36 @@
+{
+  "errorCode": 0,
+  "data": [
+    {
+      "name": "wanandroid",
+      "host": "wanandroid.com",
+      "regex": "https://www.wanandroid.com/blog/show/.*"
+    },
+    {
+      "name": "csdn",
+      "host": "csdn.net",
+      "regex": "https://.*blog.csdn.net/.*article/details/.*"
+    },
+    {
+      "name": "jianshu",
+      "host": "jianshu.com",
+      "regex": "https://www.jianshu.com/p/.*"
+    },
+    {
+      "name": "juejin",
+      "host": "juejin.cn",
+      "regex": "https://juejin.cn/post/.*"
+    },
+    {
+      "name": "weixin",
+      "host": "mp.weixin.qq.com",
+      "regex": "https://mp.weixin.qq.com/s/.*"
+    },
+    {
+      "name": "zhihu",
+      "host": "zhuanlan.zhihu.com",
+      "regex": "https://zhuanlan.zhihu.com/p/.*"
+    }
+  ],
+  "errorMsg": ""
+}

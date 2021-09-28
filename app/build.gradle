@@ -54,6 +54,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation project(':lib-common')
     kapt Deps.GitHub.arouter_compiler
+    implementation Deps.GitHub.photoView
+    implementation Deps.GitHub.swipelayout
+    implementation Deps.GitHub.anyDialog
+    implementation Deps.GitHub.anyLayer
+    implementation Deps.GitHub.disklrucache
 
 
     debugApi "io.github.didi.dokit:dokitx:${Versions.dokit}"

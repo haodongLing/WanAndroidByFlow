@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="#000000">
+
+    <per.goweii.anylayer.widget.SwipeLayout
+        android:id="@+id/dialog_image_preview_dl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <io.github.haodongling.kotlinmvvmdemo.widget.ImagePreviewContainer
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/dialog_image_preview_tv_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="加载中"
+                android:textColor="#66ffffff"
+                android:textSize="@dimen/text_content"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <io.github.haodongling.kotlinmvvmdemo.widget.ImagePreviewView
+                android:id="@+id/dialog_image_preview_pv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="?colorTransparent" />
+
+        </io.github.haodongling.kotlinmvvmdemo.widget.ImagePreviewContainer>
+
+    </per.goweii.anylayer.widget.SwipeLayout>
+
+    <LinearLayout
+        android:id="@+id/dialog_image_preview_ll_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/action_bar_height">
+
+            <ImageView
+                android:id="@+id/dialog_image_preview_iv_close"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:padding="@dimen/margin_very_thin"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin_def"
+                android:background="@drawable/bg_solid_round_color_surface_top_alpha_radius_max"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close"
+                android:tint="?attr/colorIconSurface"
+                tools:ignore="ContentDescription,UseAppTint" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

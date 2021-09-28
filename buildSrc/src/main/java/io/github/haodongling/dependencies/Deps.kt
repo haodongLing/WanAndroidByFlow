@@ -58,12 +58,17 @@ object Versions {
     const val heartView = "1.0.0"
     const val blurred = "1.3.0"
     const val ponyo = "1.0.0"
-    const val StatusBarCompat="2.3.3"
-    const val fastJson="1.2.59";
-    const val ycWebView="1.4.0" // 1.4.0 添加阿里https+dns解析版本 1.2.4普通版本
-    const val shadowLayout="3.2.3"
-    const val materialprogressbar="1.6.1"
-    const val room_version="2.3.0"
+    const val StatusBarCompat = "2.3.3"
+    const val fastJson = "1.2.59";
+    const val ycWebView = "1.4.0" // 1.4.0 添加阿里https+dns解析版本 1.2.4普通版本
+    const val shadowLayout = "3.2.3"
+    const val materialprogressbar = "1.6.1"
+    const val room_version = "2.3.0"
+    const val swipelayout = "1.2.0@aar"
+    const val photoView = "2.1.3"
+    const val anyDialog = "3.0.3"
+    const val anyLayer = "4.1.4-androidx"
+    const val disklrucache = "2.0.2"
 
 }
 
@@ -91,9 +96,9 @@ object Deps {
         const val koin_androidx_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
         const val cardView = "androidx.cardview:cardview:${Versions.cardView}"
         const val preferences = "androidx.preference:preference:${Versions.preference}"
-        const val room_runtime="androidx.room:room-runtime:${Versions.room_version}"
-        const val room_compiler="androidx.room:room-compiler:${Versions.room_version}"
-        const val room_ktx="androidx.room:room-ktx:${Versions.room_version}"
+        const val room_runtime = "androidx.room:room-runtime:${Versions.room_version}"
+        const val room_compiler = "androidx.room:room-compiler:${Versions.room_version}"
+        const val room_ktx = "androidx.room:room-ktx:${Versions.room_version}"
 
 
     }
@@ -147,11 +152,17 @@ object Deps {
         const val ponyo = "per.goweii.ponyo:ponyo:${Versions.ponyo}"
         const val ponyoLog = "per.goweii.ponyo:ponyo-log:${Versions.ponyo}"
         const val ponyoCrash = "per.goweii.ponyo:ponyo-crash:${Versions.ponyo}"
-        const val StatusBarCompat="com.github.niorgai:StatusBarCompat:${Versions.StatusBarCompat}"
-        const val fastJson="com.alibaba:fastjson:${Versions.fastJson}"
-        const val ycWebView="cn.yc:WebViewLib:${Versions.ycWebView}"
-        const val shadowLayout="com.github.lihangleo2:ShadowLayout:${Versions.shadowLayout}"
-        const val materialprogressbar="me.zhanghai.android.materialprogressbar:library:${Versions.materialprogressbar}"
+        const val StatusBarCompat = "com.github.niorgai:StatusBarCompat:${Versions.StatusBarCompat}"
+        const val fastJson = "com.alibaba:fastjson:${Versions.fastJson}"
+        const val ycWebView = "cn.yc:WebViewLib:${Versions.ycWebView}"
+        const val shadowLayout = "com.github.lihangleo2:ShadowLayout:${Versions.shadowLayout}"
+        const val materialprogressbar =
+            "me.zhanghai.android.materialprogressbar:library:${Versions.materialprogressbar}"
+        const val swipelayout = "com.daimajia.swipelayout:library:${Versions.swipelayout}"
+        const val photoView = "com.github.chrisbanes:PhotoView:${Versions.photoView}"
+        const val anyDialog = "com.github.goweii:AnyDialog:${Versions.anyDialog}"
+        const val anyLayer = "com.github.goweii:AnyLayer:${Versions.anyLayer}"
+        const val disklrucache = "com.jakewharton:disklrucache:${Versions.disklrucache}"
     }
 
     object SDK {

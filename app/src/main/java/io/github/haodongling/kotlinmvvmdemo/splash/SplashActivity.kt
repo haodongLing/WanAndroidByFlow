@@ -8,6 +8,7 @@ import io.github.haodongling.kotlinmvvmdemo.R
 import io.github.haodongling.kotlinmvvmdemo.databinding.ActivitySplashBinding
 import io.github.haodongling.lib.common.core.BaseVMActivity
 import io.github.haodongling.lib.common.global.BizConst
+import io.github.haodongling.lib.common.util.FFLog
 import io.github.haodongling.lib.common.util.Pref
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
  * Time : 2021/8/18
  * Description:
  */
-@Route(path =BizConst.SPLASH )
+@Route(path = BizConst.SPLASH)
 class SplashActivity : BaseVMActivity<ActivitySplashBinding>() {
 
     override fun initData() {
@@ -28,28 +29,33 @@ class SplashActivity : BaseVMActivity<ActivitySplashBinding>() {
         mBinding.apply {
             val timer = object : CountDownTimer(3000, 1000) {
                 override fun onTick(p0: Long) {
-                    tv_time.text = "${p0 / 1000+1}s"
+                    tv_time.text = "${p0 / 1000 + 1}s"
                 }
 
                 override fun onFinish() {
-                    var isLogin by Pref<Boolean>(Pref.IS_LOGIN, false)
-                    if (isLogin) {
-                        io.github.haodongling.lib.common.util.FFLog.i("uri.parse-->"+Uri.parse("haodong:mvvm/demo/main"))
-//                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                        ARouter.getInstance().build(BizConst.MAIN).navigation(this@SplashActivity)
-                    } else {
-                        io.github.haodongling.lib.common.util.FFLog.i("uri.parse-->"+Uri.parse("haodong:mvvm/demo/login"))
-//                        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                        ARouter.getInstance().build(BizConst.LOGIN).navigation(this@SplashActivity)
-                    }
-                    finish()
+                    jump()
                 }
 
-            }.start()
+            }
+            timer.start()
             tvJump.setOnClickListener {
-                ARouter.getInstance().build(BizConst.MAIN).navigation(this@SplashActivity)
+                jump()
             }
         }
+    }
+
+    private fun jump() {
+        val isLogin by Pref<Boolean>(Pref.IS_LOGIN, false)
+        if (isLogin) {
+            FFLog.i("uri.parse-->" + Uri.parse("haodong:mvvm/demo/main"))
+            //                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            ARouter.getInstance().build(BizConst.MAIN).navigation(this@SplashActivity)
+        } else {
+            FFLog.i("uri.parse-->" + Uri.parse("haodong:mvvm/demo/login"))
+            //                        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+            ARouter.getInstance().build(BizConst.LOGIN).navigation(this@SplashActivity)
+        }
+        finish()
     }
 
     override fun initBefore() {
