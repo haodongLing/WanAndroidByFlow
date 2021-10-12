@@ -58,4 +58,8 @@ object RetrofitClient : BaseRetrofitClient() {
                     response
                 }
     }
+    val mCookieJar:PersistentCookieJar by lazy {
+        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.CONTEXT))
+    }
+
 }

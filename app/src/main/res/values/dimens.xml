@@ -7,4 +7,5 @@
     <dimen name="text_auxiliary">13sp</dimen>
     <dimen name="action_bar_size">24dp</dimen>
     <dimen name="toolbar_size">76dp</dimen>
+    <dimen name="basic_ui_action_bar_loading_bar_height">2dp</dimen>
 </resources>

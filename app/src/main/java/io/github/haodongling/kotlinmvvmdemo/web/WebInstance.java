@@ -1,6 +1,7 @@
 package io.github.haodongling.kotlinmvvmdemo.web;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
@@ -34,8 +35,8 @@ public class WebInstance {
     private final Application mApplication;
     private final List<WebView> mCache=new ArrayList<>(1);
 
-    private WebInstance(Application application) {
-        mApplication=application;
+    private WebInstance(Activity activity) {
+        mApplication=activity.getApplication();
         WebView webView=create();
         mCache.add(webView);
 
@@ -86,11 +87,11 @@ public class WebInstance {
         }
     }
 
-    public static WebInstance getInstance() {
+    public static WebInstance getInstance( Activity activity) {
         if (sInstance == null) {
             synchronized (WebInstance.class) {
                 if (sInstance == null) {
-                    sInstance = new WebInstance(AppGlobals.getApplication());
+                    sInstance = new WebInstance(activity);
                 }
             }
         }
