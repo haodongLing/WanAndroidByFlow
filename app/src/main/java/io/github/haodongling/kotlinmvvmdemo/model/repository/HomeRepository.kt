@@ -60,8 +60,6 @@ class HomeRepository : BaseRepository() {
             .doSuccess {
                 emit(BaseViewModel.UiState<ArticleList>(isSuccess = it, isLoading = false, isRefresh = false))
             }.doError { emit(BaseViewModel.UiState<ArticleList>(isError = it.errMessage)) }
-
-
     }.flowOn(Dispatchers.IO).onStart {
         emit(BaseViewModel.UiState<ArticleList>(isLoading = true))
     }.catch {

@@ -78,6 +78,10 @@ public class LiveDataBus {
             mEventName = eventName;
         }
 
+        /**
+         * 接收：observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super T> observer)
+         * @param value
+         */
         @Override
         public void setValue(T value) {
             mVersion++;
@@ -90,6 +94,9 @@ public class LiveDataBus {
             super.postValue(value);
         }
 
+        /**
+         * 接收： observerSticky(LifecycleOwner owner, Observer<? super T> observer, boolean sticky)
+         */
         public void setStickyData(T stickyData) {
             this.mStickyData = stickyData;
             setValue(stickyData);

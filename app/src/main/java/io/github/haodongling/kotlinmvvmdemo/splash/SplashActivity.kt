@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
  */
 @Route(path = BizConst.SPLASH)
 class SplashActivity : BaseVMActivity<ActivitySplashBinding>() {
+    var jumped = false;
 
     override fun initData() {
     }
@@ -39,20 +40,21 @@ class SplashActivity : BaseVMActivity<ActivitySplashBinding>() {
             }
             timer.start()
             tvJump.setOnClickListener {
+                timer.cancel()
                 jump()
             }
         }
     }
 
     private fun jump() {
+        if (jumped) {
+            return
+        }
+        jumped = true
         val isLogin by Pref<Boolean>(Pref.IS_LOGIN, false)
         if (isLogin) {
-            FFLog.i("uri.parse-->" + Uri.parse("haodong:mvvm/demo/main"))
-            //                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             ARouter.getInstance().build(BizConst.MAIN).navigation(this@SplashActivity)
         } else {
-            FFLog.i("uri.parse-->" + Uri.parse("haodong:mvvm/demo/login"))
-            //                        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             ARouter.getInstance().build(BizConst.LOGIN).navigation(this@SplashActivity)
         }
         finish()

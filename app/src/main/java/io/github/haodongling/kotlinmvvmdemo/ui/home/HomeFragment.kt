@@ -16,7 +16,9 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import io.github.haodongling.lib.common.global.BizConst
 import io.github.haodongling.lib.common.model.bean.Article
+import io.github.haodongling.lib.common.sharedpre.PreferenceExt
 import io.github.haodongling.lib.common.util.FFLog
+import io.github.haodongling.lib.common.util.Pref
 import io.github.haodongling.lib.navannotation.FragmentDestination
 import io.github.haodongling.lib.utils.UIUtils
 import kotlin.math.abs
@@ -32,7 +34,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
     var currentPage: Int = 0
     var isRefresh: Boolean = true;
     var hasbanner = false
-    val homeViewModel by lazy {
+    private val homeViewModel by lazy {
         getFragmentScopeViewModel(HomeViewModel::class.java)
     }
     lateinit var homeAdapter: HomeAdapter
@@ -61,7 +63,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                     })
             }
             setOnItemChildClickListener { adapter, view, position ->
-                val article = adapter.data.get(position)
+                val article = adapter.data.get(position) as Article
                 when (view.id) {
                     R.id.tv_chapter_name -> {
 
@@ -70,6 +72,15 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
 
                     }
                     R.id.cv_collect -> {
+//                        val hasLogin by Pref<Boolean>(Pref.IS_LOGIN,false)
+//                        if (hasLogin){
+//                            val collected=!article.collect;
+//                            homeViewModel.collectArticle(article.id,collected)
+//                            article.collect=collected;
+//                            adapter.data[position] = collected;
+//                        }else{
+//                            ARouter.getInstance().build(BizConst.LOGIN).navigation(mContext)
+//                        }
 
                     }
                 }
@@ -96,7 +107,6 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
 //            StatusBarUtil.setTranslucentForImageViewInFragment(mContext,appBarLayout)
             appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
                 lastVerticalOffset = verticalOffset
-                io.github.haodongling.lib.common.util.FFLog.i("verticalOffset-->" + verticalOffset)
                 if (-verticalOffset > offsetHeight) {
                     layoutToolbar.setBackgroundColor(mContext.resources.getColor(R.color.colorPrimary))
                     if (statusColor != 255) {
@@ -111,7 +121,6 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                     }
 
                     val heightAlpha: Float = Math.abs(totalScrollY * 1.0f / offsetHeight)
-                    io.github.haodongling.lib.common.util.FFLog.i("heightAlpha-->" + heightAlpha)
                     layoutToolbar.setBackgroundColor(
                         UIUtils.getColorWithAlpha(
                             heightAlpha,
@@ -176,6 +185,16 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                 }
 
             })
+            collectState.observe(this@HomeFragment,{
+                it.isSuccess?.let {
+                    FFLog.i("isSuccess")
+                }
+                it.isError?.let  {str->
+                    FFLog.i("isError-->{$str}")
+                }
+
+            })
+
         }
     }
 

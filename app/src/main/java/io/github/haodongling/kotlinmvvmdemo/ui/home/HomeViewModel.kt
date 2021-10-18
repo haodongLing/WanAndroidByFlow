@@ -1,5 +1,6 @@
 package io.github.haodongling.kotlinmvvmdemo.ui.home
 
+import androidx.lifecycle.MutableLiveData
 import io.github.haodongling.lib.common.core.BaseViewModel
 import io.github.haodongling.lib.common.model.DTOResult
 import io.github.haodongling.lib.common.model.bean.ArticleList
@@ -17,6 +18,7 @@ class HomeViewModel : BaseViewModel() {
     val repository = HomeRepository()
     val articleState = UnPeekLiveData<BaseUiModel<ArticleList>>()
     val bannerState = UnPeekLiveData<DTOResult<List<Banner>>>()
+    val collectState= MutableLiveData<UiState<ArticleList>>()
 
     fun getArticleList(page: Int, isRefresh: Boolean) {
         launchOnUI {
@@ -36,9 +38,13 @@ class HomeViewModel : BaseViewModel() {
     fun collectArticle(articleId:Int,boolean: Boolean){
         launchOnUI {
             if (boolean){
-                repository.collectArticle(articleId).collect {  }
+                 repository.collectArticle(articleId).collect {
+                    collectState.value=it
+                }
             }else{
-                repository.unCollectArticle(articleId)
+                repository.unCollectArticle(articleId).collect{
+                    collectState.value=it;
+                }
             }
         }
     }

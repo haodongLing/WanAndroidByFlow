@@ -68,7 +68,8 @@ class ArticleActivity : BaseVMActivity<ActivityArticleBinding>(), View.OnClickLi
                 mBinding.webview.loadUrl(url)
             }
             it.webview.x5WebChromeClient.setWebListener(interWebListener)
-            it.slBack.setOnClickListener(this@ArticleActivity)
+//            it.slBack.setOnClickListener(this@ArticleActivity)
+            it.flBack.setOnClickListener(this@ArticleActivity)
         }
         if (!X5WebUtils.isConnected(this)) {
             ToastUtils.showRoundRectToast("请先连接上网络")
@@ -115,8 +116,7 @@ class ArticleActivity : BaseVMActivity<ActivityArticleBinding>(), View.OnClickLi
     override fun onClick(p0: View?) {
         p0?.let {
             when (p0.id) {
-                R.id.sl_back -> onBackPressed()
-
+                R.id.fl_back -> onBackPressed()
             }
         }
     }

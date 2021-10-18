@@ -179,8 +179,8 @@
         android:id="@+id/cv_collect"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        tools:rl_checked="false"
         android:layout_alignBottom="@+id/ll_chapter"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        tools:rl_checked="false" />
 
 </RelativeLayout>
