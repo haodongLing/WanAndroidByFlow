@@ -2,10 +2,7 @@ package io.github.haodongling.lib.common.core
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 /**
  * Author: tangyuan
@@ -41,5 +38,10 @@ open class BaseViewModel : ViewModel() {
         var isRefresh: Boolean = false // 刷新
 
     )
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
+    }
 
 }

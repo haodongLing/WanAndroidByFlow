@@ -49,7 +49,7 @@ object RetrofitClient : BaseRetrofitClient() {
                                 .header("Cache-Control", "public, max-age=$maxAge")
                                 .build()
                     } else {
-                        val maxStale = 60 * 60 * 24 * 28 // tolerate 4-weeks stale
+                        val maxStale = 60 * 60 * 24 * 7 // tolerate 4-weeks stale
                         response.newBuilder()
                                 .removeHeader("Pragma")
                                 .header("Cache-Control", "public, only-if-cached, max-stale=$maxStale")

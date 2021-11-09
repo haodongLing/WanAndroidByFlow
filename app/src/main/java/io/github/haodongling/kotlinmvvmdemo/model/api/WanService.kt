@@ -1,5 +1,6 @@
 package io.github.haodongling.kotlinmvvmdemo.model.api
 
+import io.github.haodongling.kotlinmvvmdemo.model.bean.CollectUrlResponse
 import io.github.haodongling.lib.common.model.WanResponse
 import io.github.haodongling.lib.common.model.bean.*
 import retrofit2.http.*
@@ -12,6 +13,13 @@ import retrofit2.http.*
 interface WanService {
     @GET("/article/list/{page}/json")
     suspend fun getHomeArticles(@Path("page") page: Int): WanResponse<ArticleList>
+
+    /**
+     * 问答
+     * pageId,拼接在链接上，例如上面的1
+     */
+    @GET("wenda/list/{page}/json")
+    suspend fun getWendaArticles(@Path("page") page: Int): WanResponse<ArticleList>
 
     @GET("/banner/json")
     suspend fun getBanner(): WanResponse<List<Banner>>
@@ -80,4 +88,23 @@ interface WanService {
     @FormUrlEncoded
     @POST("/lg/user_article/add/json")
     suspend fun shareArticle(@Field("title") title: String, @Field("link") url: String): WanResponse<String>
+
+
+    /**
+     * 收藏网址
+     */
+    @POST("lg/collect/addtool/json")
+    suspend fun collectUrl(
+        @Query("name") name: String,
+        @Query("link") link: String
+    ): WanResponse<CollectUrlResponse>
+
+    /**
+     * 取消收藏网址
+     */
+    @POST("lg/collect/deletetool/json")
+    suspend fun deleteTool(@Query("id") id: Int): WanResponse<Any>
+
+
+
 }

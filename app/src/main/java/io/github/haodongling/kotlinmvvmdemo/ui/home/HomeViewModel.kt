@@ -31,20 +31,7 @@ class HomeViewModel : BaseViewModel() {
     fun getbanner() {
         launchOnUI {
             repository.getBanners().collect {
-                bannerState.postValue(it)
-            }
-        }
-    }
-    fun collectArticle(articleId:Int,boolean: Boolean){
-        launchOnUI {
-            if (boolean){
-                 repository.collectArticle(articleId).collect {
-                    collectState.value=it
-                }
-            }else{
-                repository.unCollectArticle(articleId).collect{
-                    collectState.value=it;
-                }
+                bannerState.value=it
             }
         }
     }

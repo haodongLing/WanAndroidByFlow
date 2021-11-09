@@ -4,6 +4,7 @@ import io.github.haodongling.kotlinmvvmdemo.model.repository.HomeRepository
 import io.github.haodongling.lib.common.core.BaseViewModel
 import io.github.haodongling.lib.common.model.bean.ArticleList
 import com.kunminx.architecture.ui.callback.UnPeekLiveData
+import io.github.haodongling.kotlinmvvmdemo.model.repository.WendaRepository
 import kotlinx.coroutines.flow.collect
 
 /**
@@ -12,27 +13,15 @@ import kotlinx.coroutines.flow.collect
  * Description:
  */
 class SofaViewModel :BaseViewModel() {
-    val repository=HomeRepository()
+    val repository=WendaRepository()
     val articleState=UnPeekLiveData<BaseUiModel<ArticleList>>()
 
-    fun getArticleList(page: Int, isRefresh: Boolean) {
+    fun getWendaList(page: Int, isRefresh: Boolean) {
         launchOnUI {
-            repository.getArticleList(page, isRefresh).collect {
+            repository.getWenDaList(page, isRefresh).collect {
                 articleState.postValue(it)
             }
         }
     }
-
-    fun collectArticle(articleId:Int,boolean: Boolean){
-        launchOnUI {
-            if (boolean){
-                repository.collectArticle(articleId).collect {  }
-            }else{
-                repository.unCollectArticle(articleId)
-            }
-        }
-    }
-
-
 
 }

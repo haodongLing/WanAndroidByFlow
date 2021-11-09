@@ -14,6 +14,8 @@ import io.github.haodongling.lib.common.model.DTOResult
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
+import io.github.haodongling.kotlinmvvmdemo.model.event.CollectEvent
+import io.github.haodongling.lib.common.extention.LiveDataBus
 import io.github.haodongling.lib.common.global.BizConst
 import io.github.haodongling.lib.common.model.bean.Article
 import io.github.haodongling.lib.common.sharedpre.PreferenceExt
@@ -37,6 +39,9 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
     private val homeViewModel by lazy {
         getFragmentScopeViewModel(HomeViewModel::class.java)
     }
+    private val collectViewModel by lazy {
+        getFragmentScopeViewModel(CollectViewModel::class.java)
+    }
     lateinit var homeAdapter: HomeAdapter
     var lastVerticalOffset: Int = -1
     var statusColor: Int = 0 // 状态栏透明度
@@ -51,10 +56,8 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
         homeAdapter.run {
             setOnItemClickListener { adapter, view, position ->
                 val article = adapter.data.get(position) as Article
-                ARouter.getInstance().build(BizConst.ACTIVITY_ARTICLE)
-                    .withString("url", article.link)
-                    .withInt("articleId", article.id)
-                    .withBoolean("collected", article.collect)
+                ARouter.getInstance().build(BizConst.ACTIVITY_ARTICLE).withString("url", article.link)
+                    .withInt("articleId", article.id).withBoolean("collected", article.collect)
                     .navigation(mContext, object : NavCallback() {
                         override fun onArrival(postcard: Postcard?) {
                             FFLog.i()
@@ -72,15 +75,16 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
 
                     }
                     R.id.cv_collect -> {
-//                        val hasLogin by Pref<Boolean>(Pref.IS_LOGIN,false)
-//                        if (hasLogin){
-//                            val collected=!article.collect;
-//                            homeViewModel.collectArticle(article.id,collected)
-//                            article.collect=collected;
-//                            adapter.data[position] = collected;
-//                        }else{
-//                            ARouter.getInstance().build(BizConst.LOGIN).navigation(mContext)
-//                        }
+                        val hasLogin by Pref<Boolean>(Pref.IS_LOGIN, false)
+                        if (hasLogin) {
+                            val collected = !article.collect;
+                            collectViewModel.collectArticle(article.id, collected, position)
+                            article.collect = collected;
+                            adapter.data[position] =article;
+                            notifyItemChanged(position)
+                        } else {
+                            ARouter.getInstance().build(BizConst.LOGIN).navigation(mContext)
+                        }
 
                     }
                 }
@@ -123,8 +127,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                     val heightAlpha: Float = Math.abs(totalScrollY * 1.0f / offsetHeight)
                     layoutToolbar.setBackgroundColor(
                         UIUtils.getColorWithAlpha(
-                            heightAlpha,
-                            mContext.resources.getColor(R.color.colorPrimary)
+                            heightAlpha, mContext.resources.getColor(R.color.colorPrimary)
                         )
                     )
                 }
@@ -185,17 +188,36 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                 }
 
             })
-            collectState.observe(this@HomeFragment,{
-                it.isSuccess?.let {
-                    FFLog.i("isSuccess")
-                }
-                it.isError?.let  {str->
-                    FFLog.i("isError-->{$str}")
-                }
+            LiveDataBus.get().with(BizConst.COLLECT_ARTICLE)
+                .observerSticky(this@HomeFragment, object : Observer<CollectEvent> {
+                    override fun onChanged(event: CollectEvent) {
+                        FFLog.i("event-->+$event")
+                        if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
+                            homeAdapter.data.get(event.position).collect = event.collect;
+                            homeAdapter.notifyItemChanged(event.position)
+                        } else {
+                            if (homeAdapter.data.size > 0) {
+                                for(i in 0 until homeAdapter.data.size){
 
-            })
+                                    if (homeAdapter.data.get(i).id == event.id) {
+                                        homeAdapter.data.get(i).collect = event.collect
+                                        homeAdapter.notifyDataSetChanged()
+                                    }
+                                }
+
+
+                            }
+
+                        }
+                    }
+
+                },true)
 
         }
+
+//        collectViewModel.run {
+//            collectArticleState.
+//        }
     }
 
     override fun setVariable() {
