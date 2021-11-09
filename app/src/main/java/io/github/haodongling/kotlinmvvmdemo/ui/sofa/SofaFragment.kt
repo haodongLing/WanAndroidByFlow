@@ -97,7 +97,11 @@ class SofaFragment : BaseVMFragment<FragmentSofaBinding>(R.layout.fragment_sofa)
                         mBinding.refreshLayout.finishLoadMore()
                         homeAdapter.data.addAll(list.datas)
                     }
-                    currentPage = list.curPage
+                    /*接口好像有问题，自己维护*/
+                    if (currentPage<list.pageCount){
+                        currentPage++
+                    }
+
                     homeAdapter.notifyDataSetChanged()
                     if (list.over) {
                         mBinding.refreshLayout.setEnableLoadMore(false)
@@ -119,21 +123,32 @@ class SofaFragment : BaseVMFragment<FragmentSofaBinding>(R.layout.fragment_sofa)
             .observerSticky(this@SofaFragment, object : Observer<CollectEvent> {
                 override fun onChanged(event: CollectEvent) {
                     FFLog.i("event-->+$event")
-                    if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
-                        homeAdapter.data.get(event.position).collect = event.collect;
-                        homeAdapter.notifyItemChanged(event.position)
-                    } else {
-                        if (homeAdapter.data.size > 0) {
-                            for(i in 0 until homeAdapter.data.size){
+//                    if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
+//                        homeAdapter.data.get(event.position).collect = event.collect;
+//                        homeAdapter.notifyItemChanged(event.position)
+//                    } else {
+//                        if (homeAdapter.data.size > 0) {
+//                            for(i in 0 until homeAdapter.data.size){
+//
+//                                if (homeAdapter.data.get(i).id == event.id) {
+//                                    homeAdapter.data.get(i).collect = event.collect
+//                                    homeAdapter.notifyDataSetChanged()
+//                                }
+//                            }
+//
+//
+//                        }
+//
+//                    }
+                    if (homeAdapter.data.size > 0) {
+                        for(i in 0 until homeAdapter.data.size){
 
-                                if (homeAdapter.data.get(i).id == event.id) {
-                                    homeAdapter.data.get(i).collect = event.collect
-                                    homeAdapter.notifyDataSetChanged()
-                                }
+                            if (homeAdapter.data.get(i).id == event.id) {
+                                homeAdapter.data.get(i).collect = event.collect
+                                homeAdapter.notifyDataSetChanged()
                             }
-
-
                         }
+
 
                     }
                 }
