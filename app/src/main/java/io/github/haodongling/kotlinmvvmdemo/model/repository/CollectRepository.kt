@@ -1,7 +1,7 @@
 package io.github.haodongling.kotlinmvvmdemo.model.repository
 
 import io.github.haodongling.kotlinmvvmdemo.model.api.RetrofitClient
-import io.github.haodongling.kotlinmvvmdemo.model.bean.CollectUrlResponse
+import io.github.haodongling.kotlinmvvmdemo.model.bean.CollectUrlBean
 import io.github.haodongling.lib.common.core.BaseViewModel
 import io.github.haodongling.lib.common.model.bean.ArticleList
 import io.github.haodongling.lib.common.model.doError
@@ -46,14 +46,14 @@ class CollectRepository : BaseRepository() {
     /**
      * 收藏网址
      */
-    suspend fun collectUrl(name: String, link: String) = flow<BaseViewModel.UiState<CollectUrlResponse>> {
+    suspend fun collectUrl(name: String, link: String) = flow<BaseViewModel.UiState<CollectUrlBean>> {
         RetrofitClient.wanService.collectUrl(name,link).doSuccess {
-            emit(BaseViewModel.UiState<CollectUrlResponse>(isSuccess = it, isLoading = false, isRefresh = false))
-        }.doError { emit(BaseViewModel.UiState<CollectUrlResponse>(isError = it.errMessage)) }
+            emit(BaseViewModel.UiState<CollectUrlBean>(isSuccess = it, isLoading = false, isRefresh = false))
+        }.doError { emit(BaseViewModel.UiState<CollectUrlBean>(isError = it.errMessage)) }
     }.flowOn(Dispatchers.IO).onStart {
-        emit(BaseViewModel.UiState<CollectUrlResponse>(isLoading = true))
+        emit(BaseViewModel.UiState<CollectUrlBean>(isLoading = true))
     }.catch {
-        emit(BaseViewModel.UiState<CollectUrlResponse>(isLoading = false, isError = it.message))
+        emit(BaseViewModel.UiState<CollectUrlBean>(isLoading = false, isError = it.message))
     }
     /**
      * 取消收藏网址

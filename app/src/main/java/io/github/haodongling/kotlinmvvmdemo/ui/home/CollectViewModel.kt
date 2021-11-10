@@ -1,7 +1,7 @@
 package io.github.haodongling.kotlinmvvmdemo.ui.home
 
 import com.kunminx.architecture.ui.callback.UnPeekLiveData
-import io.github.haodongling.kotlinmvvmdemo.model.bean.CollectUrlResponse
+import io.github.haodongling.kotlinmvvmdemo.model.bean.CollectUrlBean
 import io.github.haodongling.kotlinmvvmdemo.model.event.CollectEvent
 import io.github.haodongling.kotlinmvvmdemo.model.repository.CollectRepository
 import io.github.haodongling.lib.common.core.BaseViewModel
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.collect
  */
 class CollectViewModel : BaseViewModel() {
     val collectRepository by lazy { CollectRepository() }
-    val collectUrlState = UnPeekLiveData<UiState<CollectUrlResponse>>()
+    val collectUrlState = UnPeekLiveData<UiState<CollectUrlBean>>()
     val unCollectUrlState=UnPeekLiveData<UiState<Any?>>()
 
     fun collectArticle(articleId: Int, boolean: Boolean,position: Int) {

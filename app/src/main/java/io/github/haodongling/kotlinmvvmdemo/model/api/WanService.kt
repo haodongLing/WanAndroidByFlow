@@ -1,6 +1,7 @@
 package io.github.haodongling.kotlinmvvmdemo.model.api
 
-import io.github.haodongling.kotlinmvvmdemo.model.bean.CollectUrlResponse
+import io.github.haodongling.kotlinmvvmdemo.model.bean.CollectUrlBean
+import io.github.haodongling.kotlinmvvmdemo.model.bean.SearchBean
 import io.github.haodongling.lib.common.model.WanResponse
 import io.github.haodongling.lib.common.model.bean.*
 import retrofit2.http.*
@@ -97,13 +98,29 @@ interface WanService {
     suspend fun collectUrl(
         @Query("name") name: String,
         @Query("link") link: String
-    ): WanResponse<CollectUrlResponse>
+    ): WanResponse<CollectUrlBean>
 
     /**
      * 取消收藏网址
      */
     @POST("lg/collect/deletetool/json")
     suspend fun deleteTool(@Query("id") id: Int): WanResponse<Any>
+
+    /**
+     * 获取热门搜索数据
+     */
+    @GET("hotkey/json")
+    suspend fun getSearchData(): WanResponse<ArrayList<SearchBean>>
+
+    /**
+     * 根据关键词搜索数据
+     */
+    @POST("article/query/{page}/json")
+    suspend fun getSearchDataByKey(
+        @Path("page") pageNo: Int,
+        @Query("k") searchKey: String
+    ): WanResponse<ArticleList>
+
 
 
 

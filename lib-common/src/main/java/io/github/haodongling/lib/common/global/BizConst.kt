@@ -19,6 +19,8 @@ object BizConst {
     const val ACTIVITY_ARTICLE="/app/article"
     /*用户详情页*/
     const val ACTIVITY_USERPAGE="/app/userpage"
+
+    const val ACTIVITY_SEARCH="/app/search"
     /*体系*/
     const val ACTIVITY_KNOWLEDGE_ARTICLE="/app/knowledge_article"
 

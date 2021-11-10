@@ -1,5 +1,6 @@
 package io.github.haodongling.kotlinmvvmdemo.ui.home
 
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.Postcard
@@ -32,7 +33,7 @@ import kotlin.math.abs
  */
 @FragmentDestination(pageUrl = BizConst.FRAGMENT_HOME, asStarter = true)
 class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home), OnRefreshListener,
-    OnLoadMoreListener {
+    OnLoadMoreListener,View.OnClickListener {
     var currentPage: Int = 0
     var isRefresh: Boolean = true;
     var hasbanner = false
@@ -132,6 +133,8 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                     )
                 }
             })
+            ivScan.setOnClickListener(this@HomeFragment)
+            ivSearch.setOnClickListener(this@HomeFragment)
 
         }
     }
@@ -234,6 +237,21 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
     override fun onLoadMore(refreshLayout: RefreshLayout) {
         isRefresh = false
         homeViewModel.getArticleList(currentPage, isRefresh)
+    }
+
+    override fun onClick(p0: View?) {
+        when(p0?.id){
+            R.id.iv_search->{
+                ARouter.getInstance().build(BizConst.ACTIVITY_SEARCH).navigation(mContext)
+            }
+            R.id.iv_scan->{
+
+            }
+            else->{
+
+            }
+
+        }
     }
 
 }

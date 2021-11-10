@@ -35,6 +35,7 @@
         <activity android:name=".ui.article.ArticleActivity" />
         <activity android:name=".ui.mine.UserPageActivity" />
         <activity android:name=".ui.knowledge.KnowledgeArticleActivity" />
+        <activity android:name=".ui.search.SearchActivity" />
 
         <!-- 屏幕适配基准DP -->
         <meta-data
