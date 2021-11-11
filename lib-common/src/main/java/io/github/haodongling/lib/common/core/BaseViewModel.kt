@@ -38,6 +38,23 @@ open class BaseViewModel : ViewModel() {
         var isRefresh: Boolean = false // 刷新
 
     )
+    fun <T> BaseViewModel.launch(
+        block: () -> T,
+        success: (T) -> Unit,
+        error: (Throwable) -> Unit = {}
+    ) {
+        viewModelScope.launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    block()
+                }
+            }.onSuccess {
+                success(it)
+            }.onFailure {
+                error(it)
+            }
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()

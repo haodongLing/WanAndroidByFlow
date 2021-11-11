@@ -111,6 +111,7 @@ class SearchActivity : BaseVMActivity<ActivitySearchBinding>() {
     }
 
     fun search(key: String) {
+        updateKey(key)
         showResultFragment()
         requestSeaViewModel.searchKey.value = key
     }
@@ -133,6 +134,20 @@ class SearchActivity : BaseVMActivity<ActivitySearchBinding>() {
         t.hide(mSearchHistoryFragment)
         t.show(mSearchResultFragment)
         t.commit()
+    }
+    fun updateKey(keyStr: String) {
+        requestSeaViewModel.historyData.value?.let {
+            if (it.contains(keyStr)) {
+                //当搜索历史中包含该数据时 删除
+                it.remove(keyStr)
+            } else if (it.size >= 10) {
+                //如果集合的size 有10个以上了，删除最后一个
+                it.removeAt(it.size - 1)
+            }
+            //添加新数据到第一条
+            it.add(0, keyStr)
+            requestSeaViewModel.historyData.value = it
+        }
     }
 
 

@@ -1,6 +1,7 @@
 package io.github.haodongling.kotlinmvvmdemo
 
 import com.didichuxing.doraemonkit.DoKit
+import com.tencent.mmkv.MMKV
 import io.github.haodongling.lib.common.App
 
 /**
@@ -13,5 +14,6 @@ class Application : App() {
         super.onCreate()
         DoKit.Builder(this)
             .build()
+        MMKV.initialize(this.filesDir.absolutePath + "/mmkv")
     }
 }

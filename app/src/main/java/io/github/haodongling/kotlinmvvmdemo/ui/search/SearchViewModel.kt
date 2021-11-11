@@ -49,9 +49,15 @@ class SearchViewModel : BaseViewModel() {
     }
 
     fun getHistoryData() {
-        viewModelScope.launch(Dispatchers.Main) {
-            historyData.value = CaCheUtil.getSearchHistoryData()
-
+        launch({
+            CaCheUtil.getSearchHistoryData()
+        }, {
+            historyData.value = it
+        }, {
+            //获取本地历史数据出异常了
+        })
+        if (historyData.value==null){
+            historyData.value=ArrayList()
         }
     }
 

@@ -96,7 +96,7 @@ class SearchFragment : BaseVMFragment<FragmentSearchBinding>(R.layout.fragment_s
 
     override fun startObserve() {
         requestSeaViewModel.run {
-            hotDataState.observe(this@SearchFragment, Observer {
+            hotDataState.observe(viewLifecycleOwner, Observer {
                 it.isSuccess?.let {
                     hotAdapter.setList(it)
                 }
@@ -105,7 +105,7 @@ class SearchFragment : BaseVMFragment<FragmentSearchBinding>(R.layout.fragment_s
                 }
             })
 
-            historyData.observe(this@SearchFragment, Observer {
+            historyData.observe(viewLifecycleOwner, Observer {
                 historyAdapter.data = it;
                 historyAdapter.notifyDataSetChanged()
                 CaCheUtil.setSearchHistoryData(it.toJson())
