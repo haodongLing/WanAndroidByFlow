@@ -1,17 +1,18 @@
 package io.github.haodongling.kotlinmvvmdemo.ui.search
-
+import android.widget.SearchView
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
+
 import io.github.haodongling.kotlinmvvmdemo.R
 import io.github.haodongling.kotlinmvvmdemo.databinding.ActivitySearchBinding
-import io.github.haodongling.kotlinmvvmdemo.util.CaCheUtil
+
 import io.github.haodongling.lib.common.core.BaseVMActivity
-import io.github.haodongling.lib.common.ext.toJson
+import io.github.haodongling.lib.common.ext.hideSoftKeyboard
 import io.github.haodongling.lib.common.global.BizConst
+import io.github.haodongling.lib.common.util.FFLog
 import kotlinx.android.synthetic.main.activity_search.*
 
 /**
@@ -19,68 +20,120 @@ import kotlinx.android.synthetic.main.activity_search.*
  * Time : 2021/11/10
  * Description:
  */
-@Route(path =BizConst.ACTIVITY_SEARCH )
+@Route(path = BizConst.ACTIVITY_SEARCH)
 class SearchActivity : BaseVMActivity<ActivitySearchBinding>() {
-    val historyAdapter:SearchHistoryAdapter by lazy { SearchHistoryAdapter(arrayListOf()) }
-    val hotAdapter:SearchHotAdapter by lazy { SearchHotAdapter(arrayListOf()) }
-    val requestSeaViewModel:SearchViewModel by lazy { SearchViewModel() }
+    var mIsResultPage = false;
+    private val mFragmentManager: FragmentManager by lazy {
+        supportFragmentManager
+    }
+    lateinit var mSearchHistoryFragment: SearchFragment
+    lateinit var mSearchResultFragment: SearchResultFragment
+    val requestSeaViewModel: SearchViewModel by lazy { getActivityScopeViewModel(SearchViewModel::class.java) }
+
+
     override fun getLayoutId(): Int {
-       return R.layout.activity_search
+        return R.layout.activity_search
     }
 
     override fun setVariable() {
     }
 
+    override fun onBackPressed() {
+        if (mIsResultPage) {
+            hideSoftKeyboard(this)
+            showHistoryFragment()
+        } else {
+            super.onBackPressed()
+        }
+
+    }
+
     override fun initView() {
-        //初始化搜搜历史Recyclerview
-//        search_historyRv.init(LinearLayoutManager(context), historyAdapter, false)
-        search_historyRv.run {
-            layoutManager= LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter=historyAdapter
-            isNestedScrollingEnabled=false
-        }
-        //初始化热门Recyclerview
-        val layoutManager = FlexboxLayoutManager(this)
-        //方向 主轴为水平方向，起点在左端
-        layoutManager.flexDirection = FlexDirection.ROW
-        //左对齐
-        layoutManager.justifyContent = JustifyContent.FLEX_START
-//        search_hotRv.init(layoutManager, hotAdapter, false)
-        search_hotRv.run {
-            this.layoutManager=layoutManager
-            setHasFixedSize(true)
-            adapter=hotAdapter
-            isNestedScrollingEnabled=false
-        }
         iv_back.setOnClickListener {
             onBackPressed()
         }
+        val transaction = mFragmentManager.beginTransaction();
+        val searchHistoryFragment = mFragmentManager.findFragmentByTag(
+            SearchFragment::class.java.getName()
+        )
+        if (searchHistoryFragment == null) {
+            mSearchHistoryFragment = SearchFragment.create()
+            transaction.add(R.id.fl, mSearchHistoryFragment, SearchFragment::class.java.getName())
+        } else {
+            mSearchHistoryFragment = searchHistoryFragment as SearchFragment
+        }
+        val searchResultFragment = mFragmentManager.findFragmentByTag(
+            SearchResultFragment::class.java.name
+        )
+        if (searchResultFragment == null) {
+            mSearchResultFragment = SearchResultFragment.create()
+            transaction.add(R.id.fl, mSearchResultFragment, SearchResultFragment::class.java.name)
+        } else {
+            mSearchResultFragment = searchResultFragment as SearchResultFragment
+        }
+        transaction.show(mSearchHistoryFragment)
+        transaction.hide(mSearchResultFragment)
+        transaction.commit()
+        mIsResultPage = false
+        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                p0?.let {
+                    search(it)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+
+                return false
+            }
+
+
+        })
+        search_view.setOnCloseListener {
+            FFLog.i("onClose")
+            showHistoryFragment()
+            false
+        }
+        search_view.isIconifiedByDefault = true
 
     }
 
     override fun initData() {
-        requestSeaViewModel.getHistoryData()
-        requestSeaViewModel.getHotData()
+
     }
 
     override fun startObserve() {
-        requestSeaViewModel.run {
-            hotDataState.observe(this@SearchActivity, Observer {
-                it.isSuccess?.let {
-                    hotAdapter.setList(it)
-                }
-                it.isError?.let {
+        requestSeaViewModel.searchKey.observe(this@SearchActivity, Observer {
+           showResultFragment()
+        })
 
-                }
-            })
-
-            historyData.observe(this@SearchActivity, Observer {
-                historyAdapter.data=it;
-                historyAdapter.notifyDataSetChanged()
-                CaCheUtil.setSearchHistoryData(it.toJson())
-            })
-        }
     }
+
+    fun search(key: String) {
+        showResultFragment()
+        requestSeaViewModel.searchKey.value = key
+    }
+
+    fun showHistoryFragment() {
+        FFLog.i()
+        if (!mIsResultPage) return
+        mIsResultPage = false
+        val t: FragmentTransaction = mFragmentManager.beginTransaction()
+        t.hide(mSearchResultFragment)
+        t.show(mSearchHistoryFragment)
+        t.commit()
+    }
+
+    fun showResultFragment() {
+        FFLog.i()
+        if (mIsResultPage) return
+        mIsResultPage = true
+        val t: FragmentTransaction = mFragmentManager.beginTransaction()
+        t.hide(mSearchHistoryFragment)
+        t.show(mSearchResultFragment)
+        t.commit()
+    }
+
 
 }
