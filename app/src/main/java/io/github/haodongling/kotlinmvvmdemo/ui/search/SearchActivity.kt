@@ -75,27 +75,26 @@ class SearchActivity : BaseVMActivity<ActivitySearchBinding>() {
         transaction.hide(mSearchResultFragment)
         transaction.commit()
         mIsResultPage = false
-        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                p0?.let {
-                    search(it)
+        search_view.run {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(p0: String?): Boolean {
+                    p0?.let {
+                        search(it)
+                    }
+                    return false
                 }
-                return false
+                override fun onQueryTextChange(p0: String?): Boolean {
+
+                    return false
+                }
+            })
+            setOnCloseListener {
+                FFLog.i("onClose")
+                showHistoryFragment()
+                false
             }
-
-            override fun onQueryTextChange(p0: String?): Boolean {
-
-                return false
-            }
-
-
-        })
-        search_view.setOnCloseListener {
-            FFLog.i("onClose")
-            showHistoryFragment()
-            false
+            isIconifiedByDefault = true
         }
-        search_view.isIconifiedByDefault = true
 
     }
 
