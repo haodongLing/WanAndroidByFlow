@@ -1,7 +1,6 @@
 package io.github.haodongling.kotlinmvvmdemo.ui.search
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.kunminx.architecture.ui.callback.UnPeekLiveData
 import io.github.haodongling.kotlinmvvmdemo.model.bean.SearchBean
 import io.github.haodongling.kotlinmvvmdemo.model.repository.SearchRepository
@@ -9,9 +8,7 @@ import io.github.haodongling.kotlinmvvmdemo.util.CaCheUtil
 import io.github.haodongling.lib.common.core.BaseViewModel
 import io.github.haodongling.lib.common.model.bean.ArticleList
 import io.github.haodongling.lib.common.util.FFLog
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 /**
  * Author: tangyuan

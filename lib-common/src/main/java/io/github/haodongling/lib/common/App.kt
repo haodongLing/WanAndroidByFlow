@@ -2,6 +2,7 @@ package io.github.haodongling.lib.common
 
 import android.app.Application
 import android.content.Context
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.alibaba.android.arouter.launcher.ARouter
@@ -22,19 +23,8 @@ import kotlin.properties.Delegates
  */
 open class App : Application(), ViewModelStoreOwner {
     init {
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(object : DefaultRefreshHeaderCreator {
-
-            override fun createRefreshHeader(context: Context, layout: RefreshLayout): RefreshHeader {
-                return ClassicsHeader(context)
-            }
-
-        });
-        SmartRefreshLayout.setDefaultRefreshFooterCreator(object : DefaultRefreshFooterCreator {
-            override fun createRefreshFooter(context: Context, layout: RefreshLayout): RefreshFooter {
-                return ClassicsFooter(context)
-            }
-
-        });
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ -> ClassicsHeader(context) };
+        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ -> ClassicsFooter(context) };
     }
 
     private lateinit var mAppViewModelStore: ViewModelStore
@@ -42,7 +32,7 @@ open class App : Application(), ViewModelStoreOwner {
     companion object {
         var CONTEXT: Context by Delegates.notNull()
         var APP: App by Delegates.notNull()
-        lateinit var CURRENT_USER: User
+
     }
 
     override fun attachBaseContext(base: Context?) {
@@ -85,4 +75,18 @@ open class App : Application(), ViewModelStoreOwner {
     override fun getViewModelStore(): ViewModelStore {
         return mAppViewModelStore
     }
+    private var mFactory: ViewModelProvider.Factory? = null
+    /**
+     * 获取一个全局的ViewModel
+     */
+    fun getAppViewModelProvider(): ViewModelProvider {
+        return ViewModelProvider(this, this.getAppFactory())
+    }
+    private fun getAppFactory(): ViewModelProvider.Factory {
+        if (mFactory == null) {
+            mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this)
+        }
+        return mFactory as ViewModelProvider.Factory
+    }
+
 }

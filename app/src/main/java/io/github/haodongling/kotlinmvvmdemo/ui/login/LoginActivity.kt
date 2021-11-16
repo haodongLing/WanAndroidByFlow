@@ -3,9 +3,11 @@ package io.github.haodongling.kotlinmvvmdemo.ui.login
 import android.app.ProgressDialog
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import io.github.haodongling.kotlinmvvmdemo.Application
 import io.github.haodongling.kotlinmvvmdemo.R
 import io.github.haodongling.kotlinmvvmdemo.databinding.ActivityLoginBinding
 import io.github.haodongling.kotlinmvvmdemo.model.bean.Title
+import io.github.haodongling.kotlinmvvmdemo.util.CaCheUtil
 import io.github.haodongling.lib.common.core.BaseVMActivity
 import io.github.haodongling.lib.common.ext.toast
 import io.github.haodongling.lib.common.global.BizConst
@@ -40,9 +42,11 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
                 if (it.isLoading) {
                     showProgressDialog()
                 }
-                it.isSuccess?.let {
+                it.isSuccess?.let { it->
                     dismissProgressDialog()
                     FFLog.i("success")
+                    Application.appViewModel.userInfo.value=it
+                    CaCheUtil.setUser(it)
                     ARouter.getInstance().build(BizConst.MAIN).navigation(this@LoginActivity)
                     finish()
                 }

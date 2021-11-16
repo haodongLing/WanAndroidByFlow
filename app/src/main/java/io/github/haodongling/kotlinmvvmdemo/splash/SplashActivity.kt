@@ -1,15 +1,13 @@
 package io.github.haodongling.kotlinmvvmdemo.splash
 
-import android.net.Uri
 import android.os.CountDownTimer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import io.github.haodongling.kotlinmvvmdemo.R
 import io.github.haodongling.kotlinmvvmdemo.databinding.ActivitySplashBinding
+import io.github.haodongling.kotlinmvvmdemo.util.CaCheUtil
 import io.github.haodongling.lib.common.core.BaseVMActivity
 import io.github.haodongling.lib.common.global.BizConst
-import io.github.haodongling.lib.common.util.FFLog
-import io.github.haodongling.lib.common.util.Pref
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
@@ -51,8 +49,7 @@ class SplashActivity : BaseVMActivity<ActivitySplashBinding>() {
             return
         }
         jumped = true
-        val isLogin by Pref<Boolean>(Pref.IS_LOGIN, false)
-        if (isLogin) {
+        if (CaCheUtil.isLogin()) {
             ARouter.getInstance().build(BizConst.MAIN).navigation(this@SplashActivity)
         } else {
             ARouter.getInstance().build(BizConst.LOGIN).navigation(this@SplashActivity)

@@ -70,6 +70,7 @@ object Versions {
     const val anyLayer = "4.1.4-androidx"
     const val disklrucache = "2.0.2"
     const val mmkv="1.0.22"
+    const val coroutines_adapter="0.9.2"
 
 }
 
@@ -165,6 +166,8 @@ object Deps {
         const val anyLayer = "com.github.goweii:AnyLayer:${Versions.anyLayer}"
         const val disklrucache = "com.jakewharton:disklrucache:${Versions.disklrucache}"
         const val mmkv="com.tencent:mmkv:${Versions.mmkv}"    //微信开源项目，替代SP
+        const val coroutines_adapter= "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Versions.coroutines_adapter}"
+
 
     }
 

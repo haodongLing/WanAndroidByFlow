@@ -90,6 +90,7 @@ dependencies {
     api Deps.Kotlin.core_ktx
     api Deps.Kotlin.kotlin_stdlib
     api Deps.Kotlin.coroutines_android
+    api Deps.GitHub.coroutines_adapter
     /*jetpack*/
     /*android*/
     api Deps.AndroidX.lifecycle_common_java8

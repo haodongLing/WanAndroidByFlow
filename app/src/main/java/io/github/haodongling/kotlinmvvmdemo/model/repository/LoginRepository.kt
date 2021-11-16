@@ -46,7 +46,6 @@ class LoginRepository() : BaseRepository() {
         RetrofitClient.userService.login(userName, passWord).doSuccess { user ->
             isLogin = true
             userJson = Gson().toJson(user)
-            App.CURRENT_USER = user
             emit(LoginUiState(isSuccess = user, enableLoginButton = true))
         }.doError { errorMsg ->
             emit(LoginUiState<User>(isError = errorMsg.errMessage, enableLoginButton = true))
