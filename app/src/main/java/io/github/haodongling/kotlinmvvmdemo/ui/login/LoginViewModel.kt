@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
  * Description:
  */
 class LoginViewModel() : BaseViewModel() {
-    val repository = LoginRepository()
+   private val repository = LoginRepository()
     val userName = ObservableField<String>("")
     val passWord = ObservableField<String>("")
 

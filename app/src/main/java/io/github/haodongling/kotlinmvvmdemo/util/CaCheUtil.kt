@@ -9,7 +9,7 @@ import io.github.haodongling.lib.common.model.bean.User
 /**
  * Author: tangyuan
  * Time : 2021/11/10
- * Description:
+ * Description: 缓存数据管理类
  */
 object CaCheUtil {
     const val TABLE_WANANDROID="wan_android"

@@ -10,16 +10,16 @@ import io.github.haodongling.lib.common.App
  * Description:
  */
 class Application : App() {
-    companion object{
+    companion object {
         lateinit var appViewModel: AppViewModel
     }
+
     override fun onCreate() {
         super.onCreate()
         MMKV.initialize(this.filesDir.absolutePath + "/mmkv")
-        appViewModel=getAppViewModelProvider().get(AppViewModel::class.java)
-        DoKit.Builder(this)
-            .build()
-
-
+        appViewModel = getAppViewModelProvider().get(AppViewModel::class.java)
+        DoKit.Builder(this).build()
     }
 }
+
+val appViewModel: AppViewModel by lazy { Application.appViewModel }

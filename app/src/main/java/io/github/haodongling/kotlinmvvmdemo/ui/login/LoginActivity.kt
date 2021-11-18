@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import io.github.haodongling.kotlinmvvmdemo.Application
+import io.github.haodongling.kotlinmvvmdemo.Application.Companion.appViewModel
 import io.github.haodongling.kotlinmvvmdemo.R
 import io.github.haodongling.kotlinmvvmdemo.databinding.ActivityLoginBinding
 import io.github.haodongling.kotlinmvvmdemo.model.bean.Title
@@ -21,7 +22,7 @@ import io.github.haodongling.lib.common.util.FFLog
 @Route(path = BizConst.LOGIN)
 class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
 
-    val loginViewModel by lazy {
+   private val loginViewModel by lazy {
         getActivityScopeViewModel(LoginViewModel::class.java)
     }
 
@@ -45,7 +46,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
                 it.isSuccess?.let { it->
                     dismissProgressDialog()
                     FFLog.i("success")
-                    Application.appViewModel.userInfo.value=it
+                   appViewModel.userInfo.value=it
                     CaCheUtil.setUser(it)
                     ARouter.getInstance().build(BizConst.MAIN).navigation(this@LoginActivity)
                     finish()
