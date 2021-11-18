@@ -41,7 +41,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
         getFragmentScopeViewModel(HomeViewModel::class.java)
     }
     private val collectViewModel by lazy {
-        getFragmentScopeViewModel(CollectViewModel::class.java)
+        getApplicationScopeViewModel(CollectViewModel::class.java)
     }
     lateinit var homeAdapter: HomeAdapter
     var lastVerticalOffset: Int = -1
@@ -80,7 +80,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                         if (hasLogin) {
                             val collected = !article.collect;
                             collectViewModel.collectArticle(article.id, collected, position)
-                            article.collect = collected;
+                            article.setCollect(collected)
                             adapter.data[position] =article;
                             notifyItemChanged(position)
                         } else {
@@ -140,6 +140,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
     }
 
     override fun initData() {
+        FFLog.i()
         homeViewModel.getbanner()
         homeViewModel.getArticleList(currentPage, isRefresh)
 
@@ -191,30 +192,35 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                 }
 
             })
-            LiveDataBus.get().with(BizConst.COLLECT_ARTICLE)
-                .observerSticky(this@HomeFragment, object : Observer<CollectEvent> {
-                    override fun onChanged(event: CollectEvent) {
-                        FFLog.i("event-->+$event")
-                        if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
-                            homeAdapter.data.get(event.position).collect = event.collect;
-                            homeAdapter.notifyItemChanged(event.position)
-                        } else {
-                            if (homeAdapter.data.size > 0) {
-                                for(i in 0 until homeAdapter.data.size){
+            collectViewModel.collectEvent.observe(viewLifecycleOwner,object :Observer<CollectEvent>{
+                override fun onChanged(event: CollectEvent) {
+                    FFLog.i("event-->+$event")
+                    if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
+                        homeAdapter.data.get(event.position).collect = event.collect;
+                        homeAdapter.notifyItemChanged(event.position)
+                    } else {
+                        if (homeAdapter.data.size > 0) {
+                            for(i in 0 until homeAdapter.data.size){
 
-                                    if (homeAdapter.data.get(i).id == event.id) {
-                                        homeAdapter.data.get(i).collect = event.collect
-                                        homeAdapter.notifyDataSetChanged()
-                                    }
+                                if (homeAdapter.data.get(i).id == event.id) {
+                                    homeAdapter.data.get(i).collect = event.collect
+                                    homeAdapter.notifyDataSetChanged()
                                 }
-
-
                             }
 
-                        }
-                    }
 
-                },true)
+                        }
+
+                    }
+                }
+            })
+//            LiveDataBus.get().with(BizConst.COLLECT_ARTICLE)
+//                .observe(this@HomeFragment, object : Observer<CollectEvent> {
+//                    override fun onChanged(event: CollectEvent) {
+//
+//                    }
+//
+//                })
 
         }
 

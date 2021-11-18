@@ -19,7 +19,7 @@ public class ResponseInterceptor implements Interceptor {
     @Override
     public Response intercept(@NotNull Chain chain) throws IOException {
         Response response=chain.proceed(chain.request());
-        FFLog.i("reponse-->"+response.toString());
+        FFLog.d("reponse-->"+response.toString());
 //        try {
 //            if (response.body()!=null){
 //                BufferedSource source = response.body().source();

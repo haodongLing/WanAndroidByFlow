@@ -77,9 +77,9 @@ class SearchResultFragment : BaseVMFragment<FragmentSearchResultBinding>(R.layou
                         if (hasLogin) {
                             val collected = !article.collect;
                             collectViewModel.collectArticle(article.id, collected, position)
-                            article.collect = collected;
-                            adapter.data[position] = article;
-                            notifyItemChanged(position)
+                            article.setCollect(collected)
+//                            adapter.data[position] = article;
+//                            notifyItemChanged(position)
                         } else {
                             ARouter.getInstance().build(BizConst.LOGIN).navigation(mContext)
                         }
@@ -136,7 +136,31 @@ class SearchResultFragment : BaseVMFragment<FragmentSearchResultBinding>(R.layou
             }
         })
 
-        LiveDataBus.get().with(BizConst.COLLECT_ARTICLE).observerSticky(mContext, object : Observer<CollectEvent> {
+//        LiveDataBus.get().with(BizConst.COLLECT_ARTICLE).observe(mContext, object : Observer<CollectEvent> {
+//            override fun onChanged(event: CollectEvent) {
+//                FFLog.i("event-->+$event")
+//                if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
+//                    homeAdapter.data.get(event.position).collect = event.collect;
+//                    homeAdapter.notifyItemChanged(event.position)
+//                } else {
+//                    if (homeAdapter.data.size > 0) {
+//                        for (i in 0 until homeAdapter.data.size) {
+//
+//                            if (homeAdapter.data.get(i).id == event.id) {
+//                                homeAdapter.data.get(i).collect = event.collect
+//                                homeAdapter.notifyDataSetChanged()
+//                            }
+//                        }
+//
+//
+//                    }
+//
+//                }
+//            }
+//
+//        })
+
+        collectViewModel.collectEvent.observe(viewLifecycleOwner,object :Observer<CollectEvent>{
             override fun onChanged(event: CollectEvent) {
                 FFLog.i("event-->+$event")
                 if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
@@ -144,7 +168,7 @@ class SearchResultFragment : BaseVMFragment<FragmentSearchResultBinding>(R.layou
                     homeAdapter.notifyItemChanged(event.position)
                 } else {
                     if (homeAdapter.data.size > 0) {
-                        for (i in 0 until homeAdapter.data.size) {
+                        for(i in 0 until homeAdapter.data.size){
 
                             if (homeAdapter.data.get(i).id == event.id) {
                                 homeAdapter.data.get(i).collect = event.collect
@@ -157,8 +181,7 @@ class SearchResultFragment : BaseVMFragment<FragmentSearchResultBinding>(R.layou
 
                 }
             }
-
-        }, true)
+        })
     }
 
     open fun search(key: String) {
