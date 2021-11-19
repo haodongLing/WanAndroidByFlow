@@ -32,6 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     app:tabGravity="center"
+                    app:tabTextAppearance="@style/TabLayoutTextStyle"
                     app:tabIndicatorColor="@color/colorPrimary"
                     app:tabIndicatorFullWidth="false"
                     app:tabIndicatorHeight="2dp"

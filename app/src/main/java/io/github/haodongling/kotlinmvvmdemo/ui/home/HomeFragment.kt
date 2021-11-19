@@ -23,7 +23,9 @@ import io.github.haodongling.lib.common.sharedpre.PreferenceExt
 import io.github.haodongling.lib.common.util.FFLog
 import io.github.haodongling.lib.common.util.Pref
 import io.github.haodongling.lib.navannotation.FragmentDestination
+import io.github.haodongling.lib.ui.MultiStateView
 import io.github.haodongling.lib.utils.UIUtils
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlin.math.abs
 
 /**
@@ -137,6 +139,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
             ivSearch.setOnClickListener(this@HomeFragment)
 
         }
+        msv.viewState=MultiStateView.ViewState.LOADING
     }
 
     override fun initData() {
@@ -166,7 +169,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                     } else {
                         mBinding.refreshLayout.setEnableLoadMore(true)
                     }
-
+                    msv.viewState=MultiStateView.ViewState.CONTENT
                 }
                 it.showError?.let {
                     if (isRefresh) {
@@ -174,6 +177,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                     } else {
                         mBinding.refreshLayout.finishLoadMore()
                     }
+                    mBinding.msv.viewState = MultiStateView.ViewState.ERROR
                 }
             })
             bannerState.observe(this@HomeFragment, Observer {
