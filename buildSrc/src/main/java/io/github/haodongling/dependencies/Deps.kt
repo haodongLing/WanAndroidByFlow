@@ -127,6 +127,7 @@ object Deps {
             "com.github.CymChad:BaseRecyclerViewAdapterHelper:${Versions.baseRecyclerViewAdapterHelper}"
         const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
         const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_compiler}"
+        const val glide_okhttp3_integration="com.github.bumptech.glide:okhttp3-integration:${Versions.glide}"
 
         //    const val verticalTabLayout = "q.rorbin:VerticalTabLayout:${Versions.verticalTabLayout}"
         const val flowLayout = "com.hyman:flowlayout-lib:${Versions.flowLayout}"

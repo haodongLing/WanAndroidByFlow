@@ -27,7 +27,7 @@
                         android:id="@+id/appBarLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_behavior="@string/fixed_behavior_appbar"
+                        app:layout_behavior="@string/appbar_layout_behavior"
                         app:elevation="0dp">
                         <com.google.android.material.appbar.FixedCollapsingToolbarLayout
                             android:layout_width="match_parent"

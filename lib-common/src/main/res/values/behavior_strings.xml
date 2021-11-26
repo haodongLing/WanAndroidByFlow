@@ -3,4 +3,5 @@
     <string name="behavior_appbar">io.github.haodongling.lib.common.behavior.AppFlingBehavior</string>
     <string name="fixed_behavior_appbar">io.github.haodongling.lib.common.behavior.FixedFlingBehavior</string>
     <string name="recycler_view_behavior">io.github.haodongling.lib.common.behavior.RecyclerViewBehavior</string>
+    <string name="appbar_layout_behavior">io.github.haodongling.lib.common.behavior.AppBarLayoutBehavior</string>
 </resources>

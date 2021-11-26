@@ -22,8 +22,6 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import io.github.haodongling.lib.common.glide.progress.OnProgressListener;
-import io.github.haodongling.lib.common.glide.progress.ProgressInterceptor;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -63,6 +63,7 @@ dependencies {
     api Deps.GitHub.baseRecyclerViewAdapterHelper
     api Deps.GitHub.glide
     kapt Deps.GitHub.glide_compiler
+    api  Deps.GitHub.glide_okhttp3_integration
     api Deps.GitHub.flowLayout
     api Deps.GitHub.persistentCookieJar
     api Deps.GitHub.licensesDialog
