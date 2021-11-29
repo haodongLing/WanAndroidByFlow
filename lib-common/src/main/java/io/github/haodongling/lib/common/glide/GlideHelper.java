@@ -25,16 +25,13 @@ import com.bumptech.glide.request.transition.Transition;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import io.github.haodongling.lib.utils.Utils;
+import io.github.haodongling.lib.common.glide.progress.OnProgressListener;
+import io.github.haodongling.lib.common.glide.progress.ProgressInterceptor;
+import io.github.haodongling.lib.utils.global.AppGlobals;
 import io.github.haodongling.lib.utils.listener.SimpleCallback;
 import io.github.haodongling.lib.utils.listener.SimpleListener;
 
-/**
- * Glide图片加载框架的帮助类
- *
- * @author Cuizhen
- * @date 2018/8/29-上午9:51
- */
+
 public class GlideHelper {
 
     private final RequestManager mManager;
@@ -413,7 +410,7 @@ public class GlideHelper {
         if (context != null) {
             return context;
         }
-        return Utils.getAppContext();
+        return AppGlobals.getApplication();
     }
 
     private RequestBuilder<Bitmap> getBmpBuilder() {
