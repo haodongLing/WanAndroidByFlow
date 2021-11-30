@@ -90,7 +90,7 @@ object CssStyleManager {
     }
 
     private fun getCacheFile(name: String): File {
-        return File(CacheUtils.getFilesDir(), "web/css/${name}.css")
+        return File(CacheUtils.filesDir, "web/css/${name}.css")
     }
 
     private fun getFromNet(name: String): String? {

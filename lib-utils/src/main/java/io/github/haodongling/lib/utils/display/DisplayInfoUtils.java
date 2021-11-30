@@ -10,7 +10,7 @@ import android.view.WindowManager;
 
 import java.lang.reflect.Method;
 
-import io.github.haodongling.lib.utils.Utils;
+import io.github.haodongling.lib.utils.global.AppGlobals;
 
 
 /**
@@ -36,7 +36,7 @@ public final class DisplayInfoUtils {
     }
 
     private DisplayInfoUtils() {
-        mContext = Utils.getAppContext();
+        mContext = AppGlobals.getApplication().getApplicationContext();
         mDisplayMetrics = mContext.getResources().getDisplayMetrics();
     }
 

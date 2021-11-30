@@ -26,7 +26,7 @@ object HtmlCacheManager :CoroutineScope by GlobalScope{
             }
         }
         if (diskLruCache == null) {
-            val file = File(CacheUtils.getFilesDir(), "web/html")
+            val file = File(CacheUtils.filesDir, "web/html")
             if (!file.exists()) {
                 file.mkdirs()
             }

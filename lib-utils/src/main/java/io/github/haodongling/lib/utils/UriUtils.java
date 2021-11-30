@@ -3,7 +3,8 @@ package io.github.haodongling.lib.utils;
 import android.net.Uri;
 import android.os.Build;
 
-import androidx.core.content.FileProvider;import io.github.haodongling.lib.utils.Utils;
+import androidx.core.content.FileProvider;
+import io.github.haodongling.lib.utils.global.AppGlobals;
 
 import java.io.File;
 
@@ -16,7 +17,7 @@ public class UriUtils {
 
     public static Uri getFileUri(File file) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return FileProvider.getUriForFile(Utils.getAppContext(), Utils.getAppContext().getPackageName() + ".file.path.share", file);
+            return FileProvider.getUriForFile(AppGlobals.getApplication().getApplicationContext(), AppGlobals.getApplication().getApplicationContext().getPackageName() + ".file.path.share", file);
         }
         return Uri.fromFile(file);
     }
