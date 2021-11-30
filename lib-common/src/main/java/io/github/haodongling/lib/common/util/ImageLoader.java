@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import io.github.haodongling.lib.common.R;
 import io.github.haodongling.lib.common.glide.GlideHelper;
+import io.github.haodongling.lib.common.glide.progress.ProgressImageViewTarget;
+import io.github.haodongling.lib.common.glide.progress.ProgressPlaceholderDrawable;
 import io.github.haodongling.lib.common.glide.transformation.BlurTransformation;
 
 import androidx.core.content.ContextCompat;
@@ -23,7 +25,7 @@ public class ImageLoader {
     public static void image(ImageView imageView, String url) {
         GlideHelper.with(imageView.getContext())
                 .errorHolder(ContextCompat.getDrawable(imageView.getContext(), R.drawable.shape_image_place_holder))
-                .placeHolder(ContextCompat.getDrawable(imageView.getContext(), R.drawable.shape_image_place_holder))
+                .placeHolder(new ProgressPlaceholderDrawable(imageView.getContext(), R.drawable.shape_image_place_holder))
                 .cache(true)
                 .load(url)
                 .into(imageView);
@@ -52,7 +54,7 @@ public class ImageLoader {
         GlideHelper.with(imageView.getContext())
                 .cache(true)
                 .errorHolder(ContextCompat.getDrawable(imageView.getContext(), R.drawable.shape_image_place_holder))
-                .placeHolder(ContextCompat.getDrawable(imageView.getContext(), R.drawable.shape_image_place_holder))
+                .placeHolder(new ProgressPlaceholderDrawable(imageView.getContext(), R.drawable.shape_image_place_holder))
                 .load(url)
                 .into(imageView);
     }

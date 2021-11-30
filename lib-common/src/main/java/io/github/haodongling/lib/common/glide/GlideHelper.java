@@ -26,6 +26,7 @@ import com.bumptech.glide.request.transition.Transition;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import io.github.haodongling.lib.common.glide.progress.OnProgressListener;
+import io.github.haodongling.lib.common.glide.progress.ProgressImageViewTarget;
 import io.github.haodongling.lib.common.glide.progress.ProgressInterceptor;
 import io.github.haodongling.lib.utils.global.AppGlobals;
 import io.github.haodongling.lib.utils.listener.SimpleCallback;
@@ -101,6 +102,10 @@ public class GlideHelper {
             }
         };
         return this;
+    }
+
+    public void into(ProgressImageViewTarget progressImageViewTarget) {
+
     }
 
     public enum As {
@@ -201,30 +206,7 @@ public class GlideHelper {
         }
         switch (as) {
             case DRAWABLE:
-                getBuilder().apply(options).into(new ImageViewTarget<Drawable>(imageView) {
-                    @Override
-                    protected void setResource(@Nullable Drawable resource) {
-                        imageView.setImageDrawable(resource);
-                    }
-
-                    @Override
-                    public void onLoadStarted(@Nullable Drawable placeholder) {
-                        super.onLoadStarted(placeholder);
-                        notifyLoadStarted();
-                    }
-
-                    @Override
-                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        super.onResourceReady(resource, transition);
-                        notifyResourceReady();
-                    }
-
-                    @Override
-                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                        super.onLoadFailed(errorDrawable);
-                        notifyLoadFailed();
-                    }
-                });
+                getBuilder().apply(options).into(new ProgressImageViewTarget<Drawable>(mImageUrl,imageView));
                 break;
             case GIF:
                 getGifBuilder().apply(options).into(new ImageViewTarget<GifDrawable>(imageView) {
