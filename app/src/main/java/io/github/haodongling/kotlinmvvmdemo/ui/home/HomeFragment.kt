@@ -16,15 +16,15 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import io.github.haodongling.kotlinmvvmdemo.model.event.CollectEvent
-import io.github.haodongling.lib.common.extention.LiveDataBus
+import io.github.haodongling.kotlinmvvmdemo.util.MultiStateUtils
 import io.github.haodongling.lib.common.global.BizConst
 import io.github.haodongling.lib.common.model.bean.Article
-import io.github.haodongling.lib.common.sharedpre.PreferenceExt
 import io.github.haodongling.lib.common.util.FFLog
 import io.github.haodongling.lib.common.util.Pref
 import io.github.haodongling.lib.navannotation.FragmentDestination
 import io.github.haodongling.lib.ui.MultiStateView
 import io.github.haodongling.lib.utils.UIUtils
+import io.github.haodongling.lib.utils.listener.SimpleListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlin.math.abs
 
@@ -34,8 +34,8 @@ import kotlin.math.abs
  * Description:
  */
 @FragmentDestination(pageUrl = BizConst.FRAGMENT_HOME, asStarter = true)
-class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home), OnRefreshListener,
-    OnLoadMoreListener,View.OnClickListener {
+class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home), OnRefreshListener, OnLoadMoreListener,
+    View.OnClickListener {
     var currentPage: Int = 0
     var isRefresh: Boolean = true;
     var hasbanner = false
@@ -55,8 +55,8 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
         mBinding.refreshLayout.setOnRefreshListener(this)
         mBinding.refreshLayout.setOnLoadMoreListener(this)
         homeAdapter = HomeAdapter(R.layout.rv_item_article)
-        homeAdapter.addChildClickViewIds(R.id.tv_chapter_name, R.id.tv_author, R.id.cv_collect)
         homeAdapter.run {
+            addChildClickViewIds(R.id.tv_chapter_name, R.id.tv_author, R.id.cv_collect)
             setOnItemClickListener { adapter, view, position ->
                 val article = adapter.data.get(position) as Article
                 ARouter.getInstance().build(BizConst.ACTIVITY_ARTICLE).withString("url", article.link)
@@ -83,7 +83,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                             val collected = !article.collect;
                             collectViewModel.collectArticle(article.id, collected, position)
                             article.setCollect(collected)
-                            adapter.data[position] =article;
+                            adapter.data[position] = article;
                             notifyItemChanged(position)
                         } else {
                             ARouter.getInstance().build(BizConst.LOGIN).navigation(mContext)
@@ -139,7 +139,11 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
             ivSearch.setOnClickListener(this@HomeFragment)
 
         }
-        msv.viewState=MultiStateView.ViewState.LOADING
+        msv.viewState = MultiStateView.ViewState.LOADING
+        MultiStateUtils.setEmptyAndErrorClick(msv) {
+            MultiStateUtils.toLoading(msv)
+            clicktoRefresh()
+        }
     }
 
     override fun initData() {
@@ -169,7 +173,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                     } else {
                         mBinding.refreshLayout.setEnableLoadMore(true)
                     }
-                    msv.viewState=MultiStateView.ViewState.CONTENT
+                    msv.viewState = MultiStateView.ViewState.CONTENT
                 }
                 it.showError?.let {
                     if (isRefresh) {
@@ -196,7 +200,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                 }
 
             })
-            collectViewModel.collectEvent.observe(viewLifecycleOwner,object :Observer<CollectEvent>{
+            collectViewModel.collectEvent.observe(viewLifecycleOwner, object : Observer<CollectEvent> {
                 override fun onChanged(event: CollectEvent) {
                     FFLog.i("event-->+$event")
                     if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
@@ -204,7 +208,7 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
                         homeAdapter.notifyItemChanged(event.position)
                     } else {
                         if (homeAdapter.data.size > 0) {
-                            for(i in 0 until homeAdapter.data.size){
+                            for (i in 0 until homeAdapter.data.size) {
 
                                 if (homeAdapter.data.get(i).id == event.id) {
                                     homeAdapter.data.get(i).collect = event.collect
@@ -237,6 +241,10 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
+        clicktoRefresh()
+    }
+
+    private fun clicktoRefresh() {
         isRefresh = true
         currentPage = 0
         mBinding.refreshLayout.finishRefresh(1000)
@@ -250,14 +258,14 @@ class HomeFragment : BaseVMFragment<FragmentHomeBinding>(R.layout.fragment_home)
     }
 
     override fun onClick(p0: View?) {
-        when(p0?.id){
-            R.id.iv_search->{
+        when (p0?.id) {
+            R.id.iv_search -> {
                 ARouter.getInstance().build(BizConst.ACTIVITY_SEARCH).navigation(mContext)
             }
-            R.id.iv_scan->{
+            R.id.iv_scan -> {
 
             }
-            else->{
+            else -> {
 
             }
 

@@ -1,25 +1,25 @@
 package io.github.haodongling.kotlinmvvmdemo.ui.sofa
 
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.Postcard
+import com.alibaba.android.arouter.facade.callback.NavCallback
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.listener.OnItemClickListener
-import io.github.haodongling.kotlinmvvmdemo.R
-import io.github.haodongling.kotlinmvvmdemo.databinding.FragmentSofaBinding
-import io.github.haodongling.kotlinmvvmdemo.ui.home.HomeAdapter
-import io.github.haodongling.kotlinmvvmdemo.ui.home.HomeDivider
-import io.github.haodongling.lib.common.core.BaseVMFragment
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import io.github.haodongling.kotlinmvvmdemo.model.event.CollectEvent
+import io.github.haodongling.kotlinmvvmdemo.R
+import io.github.haodongling.kotlinmvvmdemo.databinding.FragmentSofaBinding
 import io.github.haodongling.kotlinmvvmdemo.ui.home.CollectViewModel
-import io.github.haodongling.lib.common.extention.LiveDataBus
+import io.github.haodongling.kotlinmvvmdemo.ui.home.HomeAdapter
+import io.github.haodongling.kotlinmvvmdemo.ui.home.HomeDivider
+import io.github.haodongling.lib.common.core.BaseVMFragment
 import io.github.haodongling.lib.common.global.BizConst
 import io.github.haodongling.lib.common.model.bean.Article
 import io.github.haodongling.lib.common.util.FFLog
 import io.github.haodongling.lib.common.util.Pref
 import io.github.haodongling.lib.navannotation.FragmentDestination
+import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * Author: tangyuan
@@ -45,8 +45,16 @@ class SofaFragment : BaseVMFragment<FragmentSofaBinding>(R.layout.fragment_sofa)
             homeAdapter = HomeAdapter(R.layout.rv_item_article)
             homeAdapter.addChildClickViewIds(R.id.tv_chapter_name, R.id.tv_author, R.id.cv_collect)
             homeAdapter.let { it ->
-                it.setOnItemClickListener(OnItemClickListener { adapter, view, position ->
+                it.setOnItemClickListener(OnItemClickListener { adapter, _, position ->
+                    val article = adapter.data[position] as Article
+                    ARouter.getInstance().build(BizConst.ACTIVITY_ARTICLE).withString("url", article.link)
+                        .withInt("articleId", article.id).withBoolean("collected", article.collect)
+                        .navigation(mContext, object : NavCallback() {
+                            override fun onArrival(postcard: Postcard?) {
+                                FFLog.i()
+                            }
 
+                        })
                 })
                 it.setOnItemChildClickListener { adapter, view, position ->
                     val article = adapter.data.get(position) as Article
@@ -63,7 +71,7 @@ class SofaFragment : BaseVMFragment<FragmentSofaBinding>(R.layout.fragment_sofa)
                                 val collected = !article.collect;
                                 collectViewModel.collectArticle(article.id, collected, position)
                                 article.collect = collected;
-                                adapter.data[position] =article;
+                                adapter.data[position] = article;
                                 homeAdapter.notifyItemChanged(position)
                             } else {
                                 ARouter.getInstance().build(BizConst.LOGIN).navigation(mContext)
@@ -98,7 +106,7 @@ class SofaFragment : BaseVMFragment<FragmentSofaBinding>(R.layout.fragment_sofa)
                         homeAdapter.data.addAll(list.datas)
                     }
                     /*接口好像有问题，自己维护*/
-                    if (currentPage<list.pageCount){
+                    if (currentPage < list.pageCount) {
                         currentPage++
                     }
 
@@ -119,41 +127,24 @@ class SofaFragment : BaseVMFragment<FragmentSofaBinding>(R.layout.fragment_sofa)
                 }
             })
         }
-        LiveDataBus.get().with(BizConst.COLLECT_ARTICLE)
-            .observerSticky(this@SofaFragment, object : Observer<CollectEvent> {
-                override fun onChanged(event: CollectEvent) {
-                    FFLog.i("event-->+$event")
-//                    if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
-//                        homeAdapter.data.get(event.position).collect = event.collect;
-//                        homeAdapter.notifyItemChanged(event.position)
-//                    } else {
-//                        if (homeAdapter.data.size > 0) {
-//                            for(i in 0 until homeAdapter.data.size){
-//
-//                                if (homeAdapter.data.get(i).id == event.id) {
-//                                    homeAdapter.data.get(i).collect = event.collect
-//                                    homeAdapter.notifyDataSetChanged()
-//                                }
-//                            }
-//
-//
-//                        }
-//
-//                    }
-                    if (homeAdapter.data.size > 0) {
-                        for(i in 0 until homeAdapter.data.size){
+        collectViewModel.collectEvent.observe(viewLifecycleOwner, { event ->
+            FFLog.i("event-->+$event")
+            if (homeAdapter.data.size > event.position && homeAdapter.data.get(event.position).id == event.id) {
+                homeAdapter.data.get(event.position).collect = event.collect;
+                homeAdapter.notifyItemChanged(event.position)
+            } else {
+                if (homeAdapter.data.size > 0) {
+                    for (i in 0 until homeAdapter.data.size) {
 
-                            if (homeAdapter.data.get(i).id == event.id) {
-                                homeAdapter.data.get(i).collect = event.collect
-                                homeAdapter.notifyDataSetChanged()
-                            }
+                        if (homeAdapter.data.get(i).id == event.id) {
+                            homeAdapter.data.get(i).collect = event.collect
+                            homeAdapter.notifyDataSetChanged()
                         }
-
-
                     }
                 }
 
-            },true)
+            }
+        })
     }
 
     override fun setVariable() {
@@ -161,6 +152,10 @@ class SofaFragment : BaseVMFragment<FragmentSofaBinding>(R.layout.fragment_sofa)
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
+        clicktoRefresh()
+    }
+
+    private fun clicktoRefresh() {
         isRefresh = true
         currentPage = 0
         mBinding.refreshLayout.finishRefresh(1000)
