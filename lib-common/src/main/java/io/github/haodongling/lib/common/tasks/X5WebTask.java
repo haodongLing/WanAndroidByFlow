@@ -1,5 +1,6 @@
 package io.github.haodongling.lib.common.tasks;
 
+import com.haodong.launch.dispatcher.task.Task;
 import com.ycbjie.webviewlib.cache.WebCacheType;
 import com.ycbjie.webviewlib.cache.WebViewCacheDelegate;
 import com.ycbjie.webviewlib.cache.WebViewCacheWrapper;
@@ -7,8 +8,6 @@ import com.ycbjie.webviewlib.utils.X5LogUtils;
 import com.ycbjie.webviewlib.utils.X5WebUtils;
 
 import java.io.File;
-
-import io.github.haodongling.lib.dispatcher.launcher.task.Task;
 
 /**
  * Author: tangyuan
@@ -51,9 +50,9 @@ public class X5WebTask extends Task {
         //2.创建调用处理器对象，实现类
         WebViewCacheWrapper.Builder builder = new WebViewCacheWrapper.Builder(mContext);
         //设置缓存路径，默认getCacheDir，名称CacheWebViewCache
-        builder.setCachePath(new File(mContext.getCacheDir().toString(),"CacheWebView"))
+        builder.setCachePath(new File(mContext.getCacheDir().toString(), "CacheWebView"))
                 //设置缓存大小，默认100M
-                .setCacheSize(1024*1024*50)
+                .setCacheSize(1024 * 1024 * 50)
                 //设置本地路径
                 //.setAssetsDir("yc")
                 //设置http请求链接超时，默认20秒

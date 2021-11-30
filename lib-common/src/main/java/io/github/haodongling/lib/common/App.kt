@@ -6,14 +6,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.alibaba.android.arouter.launcher.ARouter
-import io.github.haodongling.lib.common.model.bean.User
-import io.github.haodongling.lib.common.tasks.X5WebTask
-import io.github.haodongling.lib.common.util.FFLog
-import io.github.haodongling.lib.dispatcher.launcher.TaskDispatcher
+import com.haodong.launch.dispatcher.TaskDispatcher
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.*
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import io.github.haodongling.lib.common.tasks.X5WebTask
+import io.github.haodongling.lib.common.util.FFLog
 import kotlin.properties.Delegates
 
 /**

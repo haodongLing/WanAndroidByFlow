@@ -71,6 +71,7 @@ object Versions {
     const val disklrucache = "2.0.2"
     const val mmkv="1.0.22"
     const val coroutines_adapter="0.9.2"
+    const val launch_dispatcher="1.0.0"
 
 }
 
@@ -168,6 +169,7 @@ object Deps {
         const val disklrucache = "com.jakewharton:disklrucache:${Versions.disklrucache}"
         const val mmkv="com.tencent:mmkv:${Versions.mmkv}"    //微信开源项目，替代SP
         const val coroutines_adapter= "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Versions.coroutines_adapter}"
+        const val launch_dispatcher=  "io.github.haodongling:Launch_Dispatcher:${Versions.launch_dispatcher}"
 
 
     }

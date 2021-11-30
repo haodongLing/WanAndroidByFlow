@@ -50,7 +50,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     testImplementation 'junit:junit:4.13.2'
     api project(':lib-utils')
-    api project(':lib-task-launcher')
+//    api project(':lib-task-launcher')
     api project(':lib-ui')
     api project(':lib-navannotation')
 
@@ -86,6 +86,7 @@ dependencies {
     api Deps.GitHub.ycWebView
     api Deps.GitHub.shadowLayout
     api Deps.GitHub.materialprogressbar
+    api Deps.GitHub.launch_dispatcher
 
     /*kotlin*/
     api Deps.Kotlin.core_ktx
